@@ -10,7 +10,7 @@ export const WelcomePage = (props: Props) => {
 
   return (
     <Box className={classes.box}>
-        <h1>
+        <h1 className={classes.title}>
             Welcome Page
         </h1>
     </Box>

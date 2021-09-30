@@ -13,6 +13,9 @@ export const useStyles = makeStyles(thme =>
       display:'flex',
       flexDirection:'column',
     },
+    title :{
+        backgroundColor: 'red',
+    }
   })
 );
 
