@@ -1,6 +1,7 @@
 import React from 'react';
 import { Avatar, Box } from '@material-ui/core';
 import {useStyles} from './welcomePage.style';
+import { Title } from '../title/title';
 
 type Props = {
 }
@@ -10,9 +11,7 @@ export const WelcomePage = (props: Props) => {
 
   return (
     <Box className={classes.box}>
-        <h1 className={classes.title}>
-            Welcome Page
-        </h1>
+        <Title fontSize ={34} text = {'Welcome Page !'}/>
     </Box>
   );
 }
