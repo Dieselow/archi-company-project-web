@@ -7,16 +7,8 @@ export const useStyles = makeStyles(thme =>
         display: 'flex',
         flexDirection: 'row',
         margin: 0,
-        backgroundColor: '#7289da',
+        backgroundColor: 'red',
     },
-    link: {
-        backgroundColor : 'white',
-        margin : 5,
-        color: 'black',
-        padding: 5,
-        fontFamily: 'Monaco',
-        borderRadius:10,
-    }
 })
 );
 

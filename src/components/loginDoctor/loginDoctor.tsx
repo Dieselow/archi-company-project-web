@@ -1,21 +1,22 @@
 import React from 'react';
 import { Box, Typography } from '@material-ui/core';
-import { useStyles } from './header.style';
+import { useStyles } from './loginDoctor.style';
 import { CustomButton } from '../customButton/customButton';
-import { Link } from "react-router-dom";
-
 type Props = {
 }
 
+const onClick = () => {
+    console.log('Clicked !')
+}
 
-export const Header = (props: Props) => {
+export const LoginDoctor = (props: Props) => {
     const styleProps = {
     }
     const classes = useStyles(styleProps);
 
     return (
         <Box className={classes.box}>
-            <Link className={classes.link} to="/login">Register/Login</Link>
+            <CustomButton onClick={onClick} text={'Login/Register'}/>
         </Box>
     );
 }
