@@ -11,7 +11,7 @@ export const Title = (props: Props) => {
     const text = props.text;
     const styleProps = {
         fontSize : props.fontSize,
-        backgroundColor : 'red',
+        backgroundColor : 'green',
     }
     const classes = useStyles(styleProps);
 
