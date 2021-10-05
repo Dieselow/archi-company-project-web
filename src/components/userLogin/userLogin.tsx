@@ -43,8 +43,8 @@ export const UserLogin = (props: Props) => {
 
             <TextField 
             onChange = {(event) => onChangeUsername(event.target.value)}
-            label="Outlined" 
-            variant="outlined" />
+            label='' 
+            variant='outlined' />
 
             <Typography className={classes.typography}>
                 Password
@@ -52,8 +52,8 @@ export const UserLogin = (props: Props) => {
 
             <TextField
             onChange = {(event) => onChangePassword(event.target.value)}
-            label="Outlined" 
-            variant="outlined"/>
+            label='' 
+            variant='outlined'/>
 
             <CustomButton text='Login' onClick={onClick} />
 
