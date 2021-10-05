@@ -5,7 +5,16 @@ import { Title } from '../title/title';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { LoginPatient } from '../loginPatient/loginPatient';
 import { UserLogin } from '../userLogin/userLogin';
+import { CrudPatient } from '../crudPatient/crudPatient';
+import { Patient } from '../crudPatient/crudPatient';
 
+const patient : Patient = {
+  firstname : 'Toto',
+  lastname : 'Doe',
+  adress: '779 rue huard',
+  phoneNumber: '0999',
+  email: 'toto@gmail.com'
+}
 
 type Props = {
 }
@@ -28,6 +37,9 @@ export const WelcomePage = (props: Props) => {
           </Route>}
         <Route path='/login'>
           <UserLogin />
+        </Route>          
+        <Route path='/crudpatient'> 
+          <CrudPatient patient={patient} />
         </Route>
       </Switch>
     </Router>
