@@ -16,9 +16,11 @@ export const LoginPatient = (props: Props) => {
     const classes = useStyles(styleProps);
 
     return (
-        <Box>
-            <Header/>
-            <img src={'welcome.jpeg'} alt="Logo" />
+        <Box >
+            <Header />
+            <Box className={classes.box}>
+                <img className={classes.image} src={'logo.png'} alt="Logo" />
+            </Box>
         </Box>
     );
 }
