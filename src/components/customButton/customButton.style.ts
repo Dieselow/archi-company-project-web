@@ -1,17 +1,18 @@
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { Style } from './customButton';
 
 export const useStyles = makeStyles(thme =>
 ({
     button: {
         margin: 10,
-        backgroundColor: 'white',
-        padding: 10,
+        backgroundColor: (props : Style ) => props.backgroundColor,
+        padding: (props : Style ) => props.margin,
     },
     typography: {
-        color: 'black',
+        color: (props : Style ) => props.color,
         fontFamily: 'Monaco',
         borderRadius:2,   
-        fontSize: 20     
+        fontSize: (props : Style ) => props.fontSize,    
     }
 })
 );
