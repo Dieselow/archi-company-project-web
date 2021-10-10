@@ -3,6 +3,7 @@ import { Button, Typography, Box } from '@material-ui/core';
 import { useStyles } from './personalData.style';
 import { Patient } from '../crudPatient/crudPatient';
 import { CustomButton } from '../customButton/customButton';
+import { button } from '../../utils/customButton/customButtonHelper';
 
 type Props = {
     onClick: () => void;
@@ -20,7 +21,7 @@ export const PersonalData = (props: Props) => {
         <Typography>
             Personal Data
         </Typography>
-        <CustomButton text={'Edit'} onClick={props.onClick}/>
+        <CustomButton text={'Edit'} onClick={props.onClick} style={button}/>
         </Box>
         <Typography>
             address : {patient.adress}

@@ -5,6 +5,7 @@ import { Banner } from '../banner/banner';
 import { CustomButton } from '../customButton/customButton';
 import { PersonalData } from '../personalData/personalData';
 import { AppointmentData, Appointment } from '../appointmentData/appointmentData';
+import { button } from '../../utils/customButton/customButtonHelper';
 
 
 export type Patient = {
@@ -50,7 +51,7 @@ export const CrudPatient = (props: Props) => {
     return (<Box>
         <Banner onClick={onClick} textTypography={'hello ' + props.patient.firstname} textButton={'Log out' } />
         <Box className={classes.box1}>
-            <CustomButton text={'My health file'} onClick={onClickCustom} />
+            <CustomButton text={'My health file'} onClick={onClickCustom} style={button}/>
             <Box className={classes.box2}>
                 <Box className={classes.box3}>
                     <AppointmentData appointments={appointments}/>
