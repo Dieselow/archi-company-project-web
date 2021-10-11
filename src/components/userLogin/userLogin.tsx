@@ -6,7 +6,10 @@ import { Login } from '../login/login';
 import { CustomButton } from '../customButton/customButton';
 import { subButton } from '../../utils/customButton/customButtonHelper';
 
+export type UserType = 'patient' | 'caregiver' | 'secretary';
+
 type Props = {
+    type : UserType;
 }
 
 export const UserLogin = (props: Props) => {
@@ -19,11 +22,10 @@ export const UserLogin = (props: Props) => {
     const onChangeLogin = () => {
         setIsLogin(!isLogin);
     }
-
     
     return (
         <Box className={classes.box}>
-            {isLogin ? <Login/> : <Register/>}
+            {isLogin ? <Login type={props.type}/> : <Register type={props.type}/>}
             
             <CustomButton onClick={onChangeLogin} text={isLogin ? 'New account' : 'Member'} style={subButton}/>
         </Box>

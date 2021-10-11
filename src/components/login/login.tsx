@@ -5,12 +5,12 @@ import { CustomButton } from '../customButton/customButton';
 import { button } from '../../utils/customButton/customButtonHelper';
 import { api } from '../../utils/api/api';
 import axios from 'axios';
+import { CustomForm } from '../customForm/customForm';
+import { form } from '../../utils/customForm/customFormHelper';
+import { UserType } from '../userLogin/userLogin';
 
 type Props = {
-}
-
-const onClick = () => {
-    console.log('Clicked !')
+    type: UserType;
 }
 
 export const Login = (props: Props) => {
@@ -19,7 +19,6 @@ export const Login = (props: Props) => {
     const styleProps = {
     }
     const classes = useStyles(styleProps);
-
 
     const onClick = () => {
         axios.post(api.login, {
@@ -44,26 +43,12 @@ export const Login = (props: Props) => {
     return (
         <Box className={classes.box}>
             <Typography className={classes.typography}>
-                Connection
+                Login {props.type} 
             </Typography>
 
-            <Typography className={classes.typography}>
-                Email
-            </Typography>
+            <CustomForm text={'Email'} style={form} onChange={onChangeEmail} />
 
-            <TextField
-                onChange={(event) => onChangeEmail(event.target.value)}
-                label=''
-                variant='outlined' />
-
-            <Typography className={classes.typography}>
-                Password
-            </Typography>
-
-            <TextField
-                onChange={(event) => onChangePassword(event.target.value)}
-                label=''
-                variant='outlined' />
+            <CustomForm text={'Password'} style={form} onChange={onChangePassword} />
 
             <CustomButton text='Login' onClick={onClick} style={button} />
         </Box>
