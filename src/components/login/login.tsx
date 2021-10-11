@@ -14,7 +14,7 @@ const onClick = () => {
 }
 
 export const Login = (props: Props) => {
-    const [username, setUsername] = React.useState<string>('');
+    const [email, setEmail] = React.useState<string>('');
     const [password, setPassword] = React.useState<string>('');
     const styleProps = {
     }
@@ -23,7 +23,7 @@ export const Login = (props: Props) => {
 
     const onClick = () => {
         axios.post(api.login, {
-            username: username,
+            email: email,
             password: password,
         }).then((response: any) => {
             console.log(response);
@@ -31,9 +31,9 @@ export const Login = (props: Props) => {
             alert(reason);
         });
     }
-    const onChangeUsername = (username: string) => {
+    const onChangeEmail = (username: string) => {
         console.log(username);
-        setUsername(username);
+        setEmail(username);
     }
 
     const onChangePassword = (password: string) => {
@@ -48,11 +48,11 @@ export const Login = (props: Props) => {
             </Typography>
 
             <Typography className={classes.typography}>
-                Username
+                Email
             </Typography>
 
             <TextField
-                onChange={(event) => onChangeUsername(event.target.value)}
+                onChange={(event) => onChangeEmail(event.target.value)}
                 label=''
                 variant='outlined' />
 

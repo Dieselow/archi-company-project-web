@@ -29,7 +29,7 @@ export const Register = (props: Props) => {
 
 
     const onClick = () => {
-        axios.post(api.registerPatient, {
+        axios.post(api.register, {
             username: username,
             firstName: firstname,
             lastName: lastname,
@@ -39,9 +39,9 @@ export const Register = (props: Props) => {
             address: address,
             phoneNumber: phoneNumber,
         }).then((response: any) => {
-            
+            console.log(response);
         }).catch((reason: any) => {
-            alert(reason);
+            alert(reason.response.data);
         });
     }
 
