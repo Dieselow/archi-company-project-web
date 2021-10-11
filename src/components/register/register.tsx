@@ -3,14 +3,14 @@ import { Box, Typography, TextField, Button } from '@material-ui/core';
 import { useStyles } from './register.style';
 import { CustomButton } from '../customButton/customButton';
 import { button } from '../../utils/customButton/customButtonHelper';
-import { api } from '../../utils/api/api';
+import { api, getRegister } from '../../utils/api/api';
+import { CustomForm } from '../customForm/customForm';
+import { form } from '../../utils/customForm/customFormHelper';
 import axios from 'axios';
+import { UserType } from '../userLogin/userLogin';
 
 type Props = {
-}
-
-const onClick = () => {
-    console.log('Clicked !')
+    type: UserType;
 }
 
 export const Register = (props: Props) => {
@@ -22,26 +22,71 @@ export const Register = (props: Props) => {
     const [birth, setBirth] = React.useState<string>('');
     const [address, setAdress] = React.useState<string>('');
     const [phoneNumber, setPhoneNumber] = React.useState<string>('');
+    const [salary, setSalary] = React.useState<string>('');
+    const [schedule, setSchedule] = React.useState<string>('');
+    const [employmentDate, setEmploymentDate] = React.useState<string>('');
+    const [licence, setLicence] = React.useState<string>('');
 
     const styleProps = {
     }
     const classes = useStyles(styleProps);
 
+    const getRegisterBody = () => {
+        switch (props.type) {
+            case 'caregiver':
+                return {
+                    username: username,
+                    firstName: firstname,
+                    lastName: lastname,
+                    password: password,
+                    email: email,
+                    dateOfBirth: birth,
+                    address: address,
+                    phoneNumber: phoneNumber,
+                    salary: salary,
+                    workSchedule: schedule,
+                    employmentDate: employmentDate,
+                    licenceNumber: licence,
+                }
+                break;
+
+            case 'patient':
+                return {
+                    username: username,
+                    firstName: firstname,
+                    lastName: lastname,
+                    password: password,
+                    email: email,
+                    dateOfBirth: birth,
+                    address: address,
+                    phoneNumber: phoneNumber,
+                }
+                break;
+
+            case 'secretary':
+                return {
+                    username: username,
+                    firstName: firstname,
+                    lastName: lastname,
+                    password: password,
+                    email: email,
+                    dateOfBirth: birth,
+                    address: address,
+                    phoneNumber: phoneNumber,
+                    salary: salary,
+                    workSchedule: schedule,
+                    employmentDate: employmentDate,
+                }
+                break;
+        }
+    }
 
     const onClick = () => {
-        axios.post(api.registerPatient, {
-            username: username,
-            firstName: firstname,
-            lastName: lastname,
-            password: password,
-            email: email,
-            dateOfBirth : birth,
-            address: address,
-            phoneNumber: phoneNumber,
-        }).then((response: any) => {
-            
+        axios.post(getRegister(props.type), getRegisterBody())
+        .then((response: any) => {
+            console.log(response);
         }).catch((reason: any) => {
-            alert(reason);
+            alert(reason.response.data);
         });
     }
 
@@ -85,85 +130,60 @@ export const Register = (props: Props) => {
         setPhoneNumber(phone);
     }
 
+    const onChangeSalary = (salary: string) => {
+        console.log(salary);
+        setSalary(salary);
+    }
+
+    const onChangeSchedule = (schedule: string) => {
+        console.log(schedule);
+        setSchedule(schedule);
+    }
+
+    const onChangeEmplomentDate = (emplomentDate: string) => {
+        console.log(emplomentDate);
+        setEmploymentDate(emplomentDate);
+    }
+
+    const onChangeLicence = (licence: string) => {
+        console.log(licence);
+        setLicence(licence);
+    }
+
     return (
         <Box className={classes.box}>
             <Typography className={classes.typographyTitle}>
-                New account
+                Register {props.type}
             </Typography>
 
-            <Typography className={classes.typography}>
-                Username
-            </Typography>
+            <CustomForm text={'Username'} style={form} onChange={onChangeUsername} />
 
-            <TextField
-                onChange={(event) => onChangeUsername(event.target.value)}
-                label=''
-                variant='outlined' />
+            <CustomForm text={'Firstname'} style={form} onChange={onChangeFirstname} />
 
-            <Typography className={classes.typography}>
-                Firstname
-            </Typography>
+            <CustomForm text={'Lastname'} style={form} onChange={onChangeLastname} />
 
-            <TextField
-                onChange={(event) => onChangeFirstname(event.target.value)}
-                label=''
-                variant='outlined' />
+            <CustomForm text={'Password'} style={form} onChange={onChangePassword} />
 
-            <Typography className={classes.typography}>
-                Lastname
-            </Typography>
+            <CustomForm text={'Email'} style={form} onChange={onChangeEmail} />
 
-            <TextField
-                onChange={(event) => onChangeLastname(event.target.value)}
-                label=''
-                variant='outlined' />
+            <CustomForm text={'Birth date'} style={form} onChange={onChangeBirth} />
 
-            <Typography className={classes.typography}>
-                Password
-            </Typography>
+            <CustomForm text={'Address'} style={form} onChange={onChangeAddress} />
 
-            <TextField
-                onChange={(event) => onChangePassword(event.target.value)}
-                label=''
-                variant='outlined' />
+            <CustomForm text={'Phone number'} style={form} onChange={onChangePhoneNumber} />
 
-            <Typography className={classes.typography}>
-                Email
-            </Typography>
+            {props.type === 'caregiver' || props.type === 'secretary' ? <Box>
 
-            <TextField
-                onChange={(event) => onChangeEmail(event.target.value)}
-                label=''
-                variant='outlined' />
+                <CustomForm text={'Salary'} style={form} onChange={onChangeSalary} />
 
-            <Typography className={classes.typography}>
-                Date of birth
-            </Typography>
+                <CustomForm text={'Work schedule'} style={form} onChange={onChangeSchedule} />
 
-            <TextField
-                onChange={(event) => onChangeBirth(event.target.value)}
-                label=''
-                variant='outlined' />
-
-            <Typography className={classes.typography}>
-                Address
-            </Typography>
-
-            <TextField
-                onChange={(event) => onChangeAddress(event.target.value)}
-                label=''
-                variant='outlined' />
-
-            <Typography className={classes.typography}>
-                Phone number
-            </Typography>
-
-            <TextField
-                onChange={(event) => onChangePhoneNumber(event.target.value)}
-                label=''
-                variant='outlined' />
-
-            <CustomButton text='Register' onClick={onClick} style={button}/>
+                <CustomForm text={'Emploment date'} style={form} onChange={onChangeEmplomentDate} /></Box> : ''
+            }
+            {props.type === 'caregiver' ?
+                <CustomForm text={'Licence number'} style={form} onChange={onChangeLicence} /> : ''
+            }
+            <CustomButton text='Register' onClick={onClick} style={button} />
         </Box>
     );
 }

@@ -22,7 +22,7 @@ export const useStyles = makeStyles(thme =>
       flexDirection:'column',
       width: '95%',
       margin : 'auto',
-      marginTop: '0%',
+      marginTop: '5%',
       backgroundColor: '#037682',
       borderRadius:10,      
     },

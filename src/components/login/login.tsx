@@ -5,25 +5,24 @@ import { CustomButton } from '../customButton/customButton';
 import { button } from '../../utils/customButton/customButtonHelper';
 import { api } from '../../utils/api/api';
 import axios from 'axios';
+import { CustomForm } from '../customForm/customForm';
+import { form } from '../../utils/customForm/customFormHelper';
+import { UserType } from '../userLogin/userLogin';
 
 type Props = {
-}
-
-const onClick = () => {
-    console.log('Clicked !')
+    type: UserType;
 }
 
 export const Login = (props: Props) => {
-    const [username, setUsername] = React.useState<string>('');
+    const [email, setEmail] = React.useState<string>('');
     const [password, setPassword] = React.useState<string>('');
     const styleProps = {
     }
     const classes = useStyles(styleProps);
 
-
     const onClick = () => {
         axios.post(api.login, {
-            username: username,
+            email: email,
             password: password,
         }).then((response: any) => {
             console.log(response);
@@ -31,9 +30,9 @@ export const Login = (props: Props) => {
             alert(reason);
         });
     }
-    const onChangeUsername = (username: string) => {
+    const onChangeEmail = (username: string) => {
         console.log(username);
-        setUsername(username);
+        setEmail(username);
     }
 
     const onChangePassword = (password: string) => {
@@ -44,26 +43,12 @@ export const Login = (props: Props) => {
     return (
         <Box className={classes.box}>
             <Typography className={classes.typography}>
-                Connection
+                Login {props.type} 
             </Typography>
 
-            <Typography className={classes.typography}>
-                Username
-            </Typography>
+            <CustomForm text={'Email'} style={form} onChange={onChangeEmail} />
 
-            <TextField
-                onChange={(event) => onChangeUsername(event.target.value)}
-                label=''
-                variant='outlined' />
-
-            <Typography className={classes.typography}>
-                Password
-            </Typography>
-
-            <TextField
-                onChange={(event) => onChangePassword(event.target.value)}
-                label=''
-                variant='outlined' />
+            <CustomForm text={'Password'} style={form} onChange={onChangePassword} />
 
             <CustomButton text='Login' onClick={onClick} style={button} />
         </Box>

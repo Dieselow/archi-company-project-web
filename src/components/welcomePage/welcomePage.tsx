@@ -32,14 +32,15 @@ export const WelcomePage = (props: Props) => {
           <LoginPatient />
         </Route>
         {isPossible &&
-          <Route path='/doctor'>
-            <UserLogin/>
+          <Route path='/caregiver'>
+            <UserLogin type={'caregiver'}/>
+          </Route>}
+        {isPossible &&
+          <Route path='/secretary'>
+            <UserLogin type={'secretary'}/>
           </Route>}
         <Route path='/login'>
-          <UserLogin />
-        </Route>          
-        <Route path='/crudpatient'> 
-          <CrudPatient patient={patient} />
+          <UserLogin type={'patient'}/>
         </Route>
       </Switch>
     </Router>
