@@ -42,6 +42,9 @@ export const WelcomePage = (props: Props) => {
         <Route path='/login'>
           <UserLogin type={'patient'}/>
         </Route>
+        <Route path='/crud/patient'>
+          <CrudPatient patient={patient}/>
+        </Route>
       </Switch>
     </Router>
   );

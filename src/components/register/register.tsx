@@ -8,6 +8,7 @@ import { CustomForm } from '../customForm/customForm';
 import { form } from '../../utils/customForm/customFormHelper';
 import axios from 'axios';
 import { UserType } from '../userLogin/userLogin';
+import { useHistory } from "react-router-dom";
 
 type Props = {
     type: UserType;
@@ -26,6 +27,7 @@ export const Register = (props: Props) => {
     const [schedule, setSchedule] = React.useState<string>('');
     const [employmentDate, setEmploymentDate] = React.useState<string>('');
     const [licence, setLicence] = React.useState<string>('');
+    const history = useHistory();
 
     const styleProps = {
     }
@@ -85,6 +87,7 @@ export const Register = (props: Props) => {
         axios.post(getRegister(props.type), getRegisterBody())
         .then((response: any) => {
             console.log(response);
+            history.push("/crud/patient");
         }).catch((reason: any) => {
             alert(reason.response.data);
         });
