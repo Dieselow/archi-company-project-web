@@ -13,3 +13,10 @@ export const button : Style = {
     fontSize: 18,
     margin : 5,
 }
+
+export const titleButton : Style = {
+    backgroundColor : 'white',
+    color : 'black',
+    fontSize: 25,
+    margin : 5,
+}

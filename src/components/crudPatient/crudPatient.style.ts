@@ -13,26 +13,33 @@ export const useStyles = makeStyles(thme =>
         borderRadius: 2,
         fontSize: 20
     },
-    box1: {
-        backgroundColor: 'red',
+    background: {
+        height: '90vh',
     },
-    box2: {
-        backgroundColor: 'green',
+    content: {
+        backgroundColor: '#4e9fa7',
         alignItems: 'center',
         justifyContent: 'center',
         display: 'flex',
         flexDirection: 'row',
+        height: '75vh',
         margin: 10,
+        borderRadius: 10,
     },
-    box3: {
-        backgroundColor: 'blue',
+    appointements: {
         width: '50%',
-        margin: 5
+        margin: 15
     },
-    box4: {
-        backgroundColor: 'yellow',
+    personalData: {
         width: '50%',
-        margin: 5
+        margin: 15
+    },
+    box : {
+        height: '100vh',
+        width: '100vw',
+        margin: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
     }
 })
 );

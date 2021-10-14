@@ -5,7 +5,7 @@ import { Banner } from '../banner/banner';
 import { CustomButton } from '../customButton/customButton';
 import { PersonalData } from '../personalData/personalData';
 import { AppointmentData, Appointment } from '../appointmentData/appointmentData';
-import { button } from '../../utils/customButton/customButtonHelper';
+import { titleButton } from '../../utils/customButton/customButtonHelper';
 
 
 export type Patient = {
@@ -48,15 +48,16 @@ export const CrudPatient = (props: Props) => {
         console.log('on click !');
         setOpen(true);
     }
-    return (<Box>
-        <Banner onClick={onClick} textTypography={'hello ' + props.patient.firstname} textButton={'Log out' } />
-        <Box className={classes.box1}>
-            <CustomButton text={'My health file'} onClick={onClickCustom} style={button}/>
-            <Box className={classes.box2}>
-                <Box className={classes.box3}>
+    return (<Box className={classes.box}>
+        <Banner onClick={onClick} textTypography={'Hello ' + props.patient.firstname +'.'} textButton={'Log out' } />
+
+        <Box className={classes.background}>
+            <CustomButton text={'My health file'} onClick={onClickCustom} style={titleButton}/>
+            <Box className={classes.content}>
+                <Box className={classes.appointements}>
                     <AppointmentData appointments={appointments}/>
                 </Box>
-                <Box className={classes.box4}>
+                <Box className={classes.personalData}>
                     <PersonalData onClick={onClickCustom} patient={props.patient}/>
                 </Box>
             </Box>

@@ -3,20 +3,22 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles(thme =>
 ({
     box: {
-        padding : 5,
+        padding : 10,
         display: 'flex',
-        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
         margin: 0,
         backgroundColor: '#037682',
+        borderRadius: 30,        
     },
-    link: {
-        backgroundColor : 'white',
-        margin : 10,
-        color: 'black',
+    typography: {
+        fontSize: 30,
+        color: 'white',
         padding: 10,
         fontFamily: 'Monaco',
-        borderRadius:10,
-    }
+        fontWeight: 'bold'
+    },
 })
 );
 

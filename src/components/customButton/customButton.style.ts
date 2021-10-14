@@ -7,6 +7,7 @@ export const useStyles = makeStyles(thme =>
         margin: 10,
         backgroundColor: (props : Style ) => props.backgroundColor,
         padding: (props : Style ) => props.margin,
+        borderRadius: 5
     },
     typography: {
         color: (props : Style ) => props.color,

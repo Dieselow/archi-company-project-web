@@ -24,7 +24,7 @@ export const AppointmentData = (props: Props) => {
     const classes = useStyles(styleProps);
 
     return (<Box className={classes.box}>
-        <Typography>Appointments history</Typography>
+        <Typography className={classes.typography}>Appointments history</Typography>
         <Box>
             <CustomButton text={'Create a new appointment'} onClick={onClickCreate} style={button}/>
             {props.appointments.map(x => <AppointmentItem appointment={x}/>)}

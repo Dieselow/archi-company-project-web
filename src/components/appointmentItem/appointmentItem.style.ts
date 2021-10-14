@@ -9,14 +9,13 @@ export const useStyles = makeStyles(thme =>
         flexDirection: 'row',
         margin: 2,
     },
-    link: {
-        backgroundColor : 'white',
-        margin : 10,
-        color: 'black',
+    typography: {
+        fontSize: 20,
+        color: 'white',
         padding: 10,
         fontFamily: 'Monaco',
-        borderRadius:10,
-    }
+        fontWeight: 'bold'
+    },
 })
 );
 

@@ -23,7 +23,7 @@ export const AppointmentItem = (props: Props) => {
     const classes = useStyles(styleProps);
 
     return (<Box className={classes.box}>
-        <Typography>
+        <Typography className={classes.typography}>
             {props.appointment.date}
         </Typography>
         <CustomButton text={'Access prescription'} onClick={onClickAccess} style={button}/>

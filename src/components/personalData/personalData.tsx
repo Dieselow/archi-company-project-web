@@ -18,18 +18,18 @@ export const PersonalData = (props: Props) => {
 
     return (<Box >
         <Box className={classes.box}>
-        <Typography>
+        <Typography className={classes.titleTypography}>
             Personal Data
         </Typography>
         <CustomButton text={'Edit'} onClick={props.onClick} style={button}/>
         </Box>
-        <Typography>
+        <Typography className={classes.typography}>
             address : {patient.adress}
         </Typography>
-        <Typography>
+        <Typography className={classes.typography}>
             phone number : {patient.phoneNumber}
         </Typography>
-        <Typography>
+        <Typography className={classes.typography}>
             email : {patient.email}
         </Typography>
     </Box>
