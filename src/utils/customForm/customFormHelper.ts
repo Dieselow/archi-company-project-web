@@ -7,3 +7,10 @@ export const form : Style = {
     margin : 0,
     fontFamily: 'Monaco',
 }
+export const formPopUp : Style = {
+    fontSize : 18,
+    color: 'black',
+    backgroundColor: 'Transparent',
+    margin : 0,
+    fontFamily: 'Monaco',
+}

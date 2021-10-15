@@ -159,32 +159,32 @@ export const Register = (props: Props) => {
                 Register {props.type}
             </Typography>
 
-            <CustomForm text={'Username'} style={form} onChange={onChangeUsername} />
+            <CustomForm text={'Username'} style={form} onChange={onChangeUsername} formType={'textfield'} />
 
-            <CustomForm text={'Firstname'} style={form} onChange={onChangeFirstname} />
+            <CustomForm text={'Firstname'} style={form} onChange={onChangeFirstname} formType={'textfield'} />
 
-            <CustomForm text={'Lastname'} style={form} onChange={onChangeLastname} />
+            <CustomForm text={'Lastname'} style={form} onChange={onChangeLastname} formType={'textfield'} />
 
-            <CustomForm text={'Password'} style={form} onChange={onChangePassword} />
+            <CustomForm text={'Password'} style={form} onChange={onChangePassword} formType={'textfield'} />
 
-            <CustomForm text={'Email'} style={form} onChange={onChangeEmail} />
+            <CustomForm text={'Email'} style={form} onChange={onChangeEmail} formType={'textfield'} />
 
-            <CustomForm text={'Birth date'} style={form} onChange={onChangeBirth} />
+            <CustomForm text={'Birth date'} style={form} onChange={onChangeBirth} formType={'textfield'} />
 
-            <CustomForm text={'Address'} style={form} onChange={onChangeAddress} />
+            <CustomForm text={'Address'} style={form} onChange={onChangeAddress} formType={'textfield'} />
 
-            <CustomForm text={'Phone number'} style={form} onChange={onChangePhoneNumber} />
+            <CustomForm text={'Phone number'} style={form} onChange={onChangePhoneNumber} formType={'textfield'} />
 
             {props.type === 'caregiver' || props.type === 'secretary' ? <Box>
 
-                <CustomForm text={'Salary'} style={form} onChange={onChangeSalary} />
+                <CustomForm text={'Salary'} style={form} onChange={onChangeSalary} formType={'textfield'} />
 
-                <CustomForm text={'Work schedule'} style={form} onChange={onChangeSchedule} />
+                <CustomForm text={'Work schedule'} style={form} onChange={onChangeSchedule} formType={'textfield'} />
 
-                <CustomForm text={'Emploment date'} style={form} onChange={onChangeEmplomentDate} /></Box> : ''
+                <CustomForm text={'Emploment date'} style={form} onChange={onChangeEmplomentDate} formType={'textfield'} /></Box> : ''
             }
             {props.type === 'caregiver' ?
-                <CustomForm text={'Licence number'} style={form} onChange={onChangeLicence} /> : ''
+                <CustomForm text={'Licence number'} style={form} onChange={onChangeLicence} formType={'textfield'} /> : ''
             }
             <CustomButton text='Register' onClick={onClick} style={button} />
         </Box>

@@ -6,6 +6,7 @@ import { CustomButton } from '../customButton/customButton';
 import { PersonalData } from '../personalData/personalData';
 import { AppointmentData, Appointment } from '../appointmentData/appointmentData';
 import { titleButton } from '../../utils/customButton/customButtonHelper';
+import { AppointmentPopUp } from '../appointmentPopUp/appointmentPopUp';
 
 
 export type Patient = {
@@ -34,9 +35,6 @@ type Props = {
 const onClick = (variable: any) => {
     console.log('on click !');
 }
-const handleClose = () => {
-
-}
 
 export const CrudPatient = (props: Props) => {
   const [open, setOpen] = React.useState(false);
@@ -47,6 +45,9 @@ export const CrudPatient = (props: Props) => {
     const onClickCustom = () => {
         console.log('on click !');
         setOpen(true);
+    }
+    const handleClose = () => {
+        setOpen(false);
     }
     return (<Box className={classes.box}>
         <Banner onClick={onClick} textTypography={'Hello ' + props.patient.firstname +'.'} textButton={'Log out' } />
@@ -64,7 +65,7 @@ export const CrudPatient = (props: Props) => {
         </Box>
         <Banner onClick={onClick} textButton={'Delete account'} />
         <Dialog open={open} onClose={handleClose}>
-            <Typography>{'test'}</Typography>
+            <AppointmentPopUp onClick={handleClose}/>
         </Dialog>
     </Box>
     );
