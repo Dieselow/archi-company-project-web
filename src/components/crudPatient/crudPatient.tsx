@@ -46,7 +46,8 @@ export const CrudPatient = (props: Props) => {
         console.log('on click !');
         setOpen(true);
     }
-    const handleClose = () => {
+    const handleClose = (value: string) => {
+        console.log(value);
         setOpen(false);
     }
     return (<Box className={classes.box}>

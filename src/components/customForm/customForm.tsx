@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField, Typography, Box, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import { useStyles } from './customForm.style';
-
+import { ListForm } from '../appointmentPopUp/appointmentPopUp';
 export type FormType = 'textfield' | 'list' | 'date';
 
 export type Style = {
@@ -17,11 +17,12 @@ type Props = {
     onChange: (value: string) => void;
     style: Style;
     formType: FormType;
-    list?: any;
+    list?: ListForm[];
 }
 
 export const CustomForm = (props: Props) => {
     const classes = useStyles(props.style);
+    const list = props.list;
 
     const renderSwitch = () => {
         switch (props.formType) {
@@ -30,6 +31,7 @@ export const CustomForm = (props: Props) => {
                     label=''
                     type='date'
                     defaultValue='2017-05-24'
+                    onChange={(event) => props.onChange(event.target.value)}
                     InputLabelProps={{
                         shrink: true,
                     }}
@@ -38,14 +40,13 @@ export const CustomForm = (props: Props) => {
 
             case 'list':
                 return <FormControl >
-                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                    <InputLabel id="demo-simple-select-label">{props.text}</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
+                        defaultValue={''}
                     >
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        {list?.map((x : ListForm )=> <MenuItem value={x.value} onClick={() => props.onChange(x.value)}>{x.value}</MenuItem>)}                    
                     </Select>
                 </FormControl>
                 break;

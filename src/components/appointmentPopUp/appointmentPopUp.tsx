@@ -13,17 +13,45 @@ type Props = {
     onClick: (value: any) => void;
 }
 
+export type Room = {
+    name: string;
+}
+
 const getCaregivers = () => {
 
+}
+
+export type Appointment = {
+    date: string;
+    name: string;
+    doctor: string;
+    room: string;
+}
+
+export type ListForm = {
+    value: string;
 }
 
 export const AppointmentPopUp = (props: Props) => {
     const [date, setDate] = React.useState<string>('');
     const [name, setName] = React.useState<string>('');
     const [doctor, setDoctor] = React.useState<string>('');
-    const [room, setRoom] = React.useState<string>('');
+    const [room, setRoom] = React.useState<string>();
     const styleProps = {
     }
+
+    const rooms: ListForm[] = [
+        {
+            value: 'room 1'
+        },
+        {
+            value: 'room 2'
+        },
+        {
+            value: 'room 3'
+        },
+    ]
+
     const classes = useStyles(styleProps);
 
     const onChangeDate = (date: string) => {
@@ -45,7 +73,6 @@ export const AppointmentPopUp = (props: Props) => {
         console.log(room);
         setRoom(room);
     }
-
     return (<Box className={classes.box}>
 
         <Typography className={classes.typography}>
@@ -58,9 +85,16 @@ export const AppointmentPopUp = (props: Props) => {
 
         <CustomForm text={'Doctor'} style={formPopUp} onChange={onChangeDoctor} formType={'list'} />
 
-        <CustomForm text={'Room'} style={formPopUp} onChange={onChangeRoom} formType={'list'} />
+        <CustomForm text={'Room'} style={formPopUp} onChange={onChangeRoom} formType={'list'} list={rooms} />
 
-        <CustomButton text='Create' onClick={() => props.onClick('test')} style={button} />
+        <CustomButton text='Create' onClick={() => props.onClick(
+            {
+                date: date,
+                name: name,
+                doctor: doctor,
+                room : room,
+            }
+        )} style={button} />
     </Box>
     );
 }
