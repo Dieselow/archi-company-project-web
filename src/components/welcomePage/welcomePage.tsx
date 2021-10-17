@@ -7,6 +7,8 @@ import { LoginPatient } from '../loginPatient/loginPatient';
 import { UserLogin } from '../userLogin/userLogin';
 import { CrudPatient } from '../crudPatient/crudPatient';
 import { Patient } from '../crudPatient/crudPatient';
+import {Caregiver} from '../crudCaregiver/crudCaregiver';
+import {CrudCaregiver} from '../crudCaregiver/crudCaregiver';
 
 const patient : Patient = {
   firstname : 'Toto',
@@ -14,6 +16,14 @@ const patient : Patient = {
   adress: '779 rue huard',
   phoneNumber: '0999',
   email: 'toto@gmail.com'
+}
+const caregiver : Caregiver = {
+  firstname : 'Edward',
+  lastname : 'House',
+  adress: '3 rue De Gaulle',
+  phoneNumber: '012399',
+  email: 'DrHouse@gmail.com',
+  employmentdate: '08/10/1998'
 }
 
 type Props = {
@@ -35,10 +45,14 @@ export const WelcomePage = (props: Props) => {
           <Route path='/caregiver'>
             <UserLogin type={'caregiver'}/>
           </Route>}
+          <Route path='/crud/caregiver'>
+          <CrudCaregiver caregiver={caregiver}/>
+        </Route>
         {isPossible &&
           <Route path='/secretary'>
             <UserLogin type={'secretary'}/>
           </Route>}
+          
         <Route path='/login'>
           <UserLogin type={'patient'}/>
         </Route>
