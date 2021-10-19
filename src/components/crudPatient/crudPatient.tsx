@@ -2,15 +2,11 @@ import React from 'react';
 import { Button, Typography, Box, Dialog } from '@material-ui/core';
 import { useStyles } from './crudPatient.style';
 import { Banner } from '../banner/banner';
-import { CustomButton } from '../customButton/customButton';
 import { PersonalData } from '../personalData/personalData';
 import { AppointmentData, Appointment } from '../appointmentData/appointmentData';
-import { titleButton } from '../../utils/customButton/customButtonHelper';
 import { AppointmentPopUp } from '../popUp/appointmentPopUp/appointmentPopUp';
 import { EditPopUp } from '../popUp/editPopUp/editPopUp';
-import { PrescriptionPopUp, Prescription} from '../popUp/prescriptionPopUp/prescriptionPopUp';
 import { useHistory } from 'react-router-dom';
-
 
 export type Patient = {
     firstname: string;
