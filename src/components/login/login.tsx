@@ -8,7 +8,7 @@ import axios from 'axios';
 import { CustomForm } from '../customForm/customForm';
 import { form } from '../../utils/customForm/customFormHelper';
 import { UserType } from '../userLogin/userLogin';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 type Props = {
     type: UserType;
@@ -28,7 +28,7 @@ export const Login = (props: Props) => {
             password: password,
         }).then((response: any) => {
             console.log(response);
-            history.push("/crud/patient");
+            history.push('/crud/patient');
         }).catch((reason: any) => {
             alert(reason);
         });

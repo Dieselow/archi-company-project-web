@@ -16,8 +16,13 @@ export const useStyles = makeStyles(thme =>
     },
     box: {
         width: '80%',
+        minWidth: 400,
         margin: 5,
-        padding: 5
+        padding: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        display: 'flex',
+        flexDirection: 'column',
     }
 })
 );

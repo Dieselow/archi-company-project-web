@@ -11,10 +11,16 @@ export const useStyles = makeStyles(thme =>
     },
     typography: {
         fontSize: 20,
-        color: 'white',
+        color: 'black',
         padding: 10,
         fontFamily: 'Monaco',
         fontWeight: 'bold'
+    },
+    typographyLight: {
+        fontSize: 16,
+        color: 'black',
+        padding: 8,
+        fontFamily: 'Monaco',
     },
 })
 );

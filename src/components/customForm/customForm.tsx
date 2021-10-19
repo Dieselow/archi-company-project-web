@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField, Typography, Box, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import { useStyles } from './customForm.style';
-import { ListForm } from '../appointmentPopUp/appointmentPopUp';
+import { ListForm } from '../popUp/appointmentPopUp/appointmentPopUp';
 export type FormType = 'textfield' | 'list' | 'date';
 
 export type Style = {

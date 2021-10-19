@@ -1,16 +1,17 @@
 import React from 'react';
 import { Button, Typography, Box } from '@material-ui/core';
 import { useStyles } from './appointmentPopUp.style';
-import { CustomButton } from '../customButton/customButton';
-import { button } from '../../utils/customButton/customButtonHelper';
-import { Login } from '../login/login';
-import { CustomForm } from '../customForm/customForm';
-import { subButton } from '../../utils/customButton/customButtonHelper';
-import { formPopUp } from '../../utils/customForm/customFormHelper';
-import { UserType } from '../userLogin/userLogin';
+import { CustomButton } from '../../customButton/customButton';
+import { button } from '../../../utils/customButton/customButtonHelper';
+import { Login } from '../../login/login';
+import { CustomForm } from '../../customForm/customForm';
+import { subButton } from '../../../utils/customButton/customButtonHelper';
+import { formPopUp } from '../../../utils/customForm/customFormHelper';
+import { UserType } from '../../userLogin/userLogin';
 
 type Props = {
     onClick: (value: any) => void;
+    onClickClose: () => void;
 }
 
 export type Room = {
@@ -36,7 +37,7 @@ export const AppointmentPopUp = (props: Props) => {
     const [date, setDate] = React.useState<string>('');
     const [name, setName] = React.useState<string>('');
     const [doctor, setDoctor] = React.useState<string>('');
-    const [room, setRoom] = React.useState<string>();
+    const [room, setRoom] = React.useState<string>('');
     const styleProps = {
     }
 
@@ -92,9 +93,12 @@ export const AppointmentPopUp = (props: Props) => {
                 date: date,
                 name: name,
                 doctor: doctor,
-                room : room,
+                room: room,
             }
         )} style={button} />
+
+        <CustomButton text='Close' onClick={props.onClickClose} style={button} />
+
     </Box>
     );
 }

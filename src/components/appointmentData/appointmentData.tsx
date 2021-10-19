@@ -11,7 +11,8 @@ export type Appointment = {
 }
 
 type Props = {
-    appointments : Appointment[]
+    appointments : Appointment[],
+    onClick : () => void;
 }
 
 const onClickCreate = () => {
@@ -26,7 +27,7 @@ export const AppointmentData = (props: Props) => {
     return (<Box className={classes.box}>
         <Typography className={classes.typography}>Appointments history</Typography>
         <Box>
-            <CustomButton text={'Create a new appointment'} onClick={onClickCreate} style={button}/>
+            <CustomButton text={'Create a new appointment'} onClick={props.onClick} style={button}/>
             {props.appointments.map(x => <AppointmentItem appointment={x}/>)}
         </Box>
     </Box>
