@@ -12,7 +12,10 @@ import { useHistory } from 'react-router-dom';
 
 type Props = {
     type: UserType;
+    onChange : () => void;
 }
+
+export var bearerToken = '';
 
 export const Login = (props: Props) => {
     const [email, setEmail] = React.useState<string>('');
@@ -22,13 +25,25 @@ export const Login = (props: Props) => {
     }
     const classes = useStyles(styleProps);
 
+    const getDetails = () => {
+        axios.post(api.details)
+    }
+
     const onClick = () => {
         axios.post(api.login, {
             email: email,
             password: password,
         }).then((response: any) => {
             console.log(response);
-            history.push('/crud/patient');
+            props.onChange();
+            switch(props.type)
+            {
+                case 'patient':
+                    history.push('/crud/patient');
+                    break;
+            }            
+            bearerToken = response.data.token;
+            console.log(bearerToken);
         }).catch((reason: any) => {
             alert(reason);
         });

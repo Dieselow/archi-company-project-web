@@ -8,12 +8,13 @@ import { UserLogin } from '../userLogin/userLogin';
 import { CrudPatient } from '../crudPatient/crudPatient';
 import { Patient } from '../crudPatient/crudPatient';
 
-const patient : Patient = {
-  firstname : 'Toto',
-  lastname : 'Doe',
+const patient: Patient = {
+  firstname: 'Toto',
+  lastname: 'Doe',
   adress: '779 rue huard',
   phoneNumber: '0999',
-  email: 'toto@gmail.com'
+  email: 'toto@gmail.com',
+  id: 1,
 }
 
 type Props = {
@@ -21,7 +22,12 @@ type Props = {
 const isPossible = true;
 
 export const WelcomePage = (props: Props) => {
+  const [isPossible, setIsPossible] = React.useState<boolean>(false);
   const classes = useStyles();
+
+  const onChange = () => {
+    setIsPossible(true);
+  }
 
   return (
     <Router>
@@ -31,20 +37,19 @@ export const WelcomePage = (props: Props) => {
         <Route exact path='/'>
           <LoginPatient />
         </Route>
-        {isPossible &&
-          <Route path='/caregiver'>
-            <UserLogin type={'caregiver'}/>
-          </Route>}
-        {isPossible &&
-          <Route path='/secretary'>
-            <UserLogin type={'secretary'}/>
-          </Route>}
+        <Route path='/caregiver'>
+          <UserLogin onChange={onChange} type={'caregiver'} />
+        </Route>
+        <Route path='/secretary'>
+          <UserLogin onChange={onChange} type={'secretary'} />
+        </Route>
         <Route path='/login'>
-          <UserLogin type={'patient'}/>
+          <UserLogin onChange={onChange} type={'patient'} />
         </Route>
-        <Route path='/crud/patient'>
-          <CrudPatient patient={patient}/>
-        </Route>
+        {isPossible &&
+          <Route path='/crud/patient'>
+            <CrudPatient patient={patient} />
+          </Route>}
       </Switch>
     </Router>
   );

@@ -15,9 +15,6 @@ type Props = {
     onClick : () => void;
 }
 
-const onClickCreate = () => {
-
-}
 
 export const AppointmentData = (props: Props) => {
     const styleProps = {

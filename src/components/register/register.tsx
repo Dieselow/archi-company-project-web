@@ -12,6 +12,7 @@ import { useHistory } from "react-router-dom";
 
 type Props = {
     type: UserType;
+    changePage: () => void;
 }
 
 export const Register = (props: Props) => {
@@ -87,7 +88,7 @@ export const Register = (props: Props) => {
         axios.post(getRegister(props.type), getRegisterBody())
         .then((response: any) => {
             console.log(response);
-            history.push("/crud/patient");
+            props.changePage();
         }).catch((reason: any) => {
             alert(reason.response.data);
         });

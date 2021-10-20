@@ -7,6 +7,8 @@ import { AppointmentData, Appointment } from '../appointmentData/appointmentData
 import { AppointmentPopUp } from '../popUp/appointmentPopUp/appointmentPopUp';
 import { EditPopUp } from '../popUp/editPopUp/editPopUp';
 import { useHistory } from 'react-router-dom';
+import { api } from '../../utils/api/api';
+import axios from 'axios';
 
 export type Patient = {
     firstname: string;
@@ -14,15 +16,16 @@ export type Patient = {
     adress: string;
     phoneNumber: string;
     email: string;
+    id: number;
 }
 
-const appointments : Appointment[] = [
+const appointments: Appointment[] = [
     {
-        date : 'Lundi',
+        date: 'Lundi',
         data: 'test',
     },
     {
-        date : 'Mardi',
+        date: 'Mardi',
         data: 'test2',
     }
 ]
@@ -33,15 +36,23 @@ type Props = {
 
 
 export const CrudPatient = (props: Props) => {
-  const [openAppointment, setOpenAppointment] = React.useState(false);
-  const [openEdit, setEdit] = React.useState(false);
-  const history = useHistory();
+    const [openAppointment, setOpenAppointment] = React.useState(false);
+    const [openEdit, setEdit] = React.useState(false);
+    const history = useHistory();
     const styleProps = {
     }
     const classes = useStyles(styleProps);
 
     const onClickDelete = () => {
         console.log('Delete'); //TODO API DELETE CALL
+        axios.post(api.delete + props.patient.id.toString()).
+        then((response: any) => {
+            alert(props.patient.firstname + ' deleted');
+            console.log(response);
+            history.push('/');
+        }).catch((reason: any) => {
+            alert(reason);
+        });
     }
     const onClickLogOut = () => {
         history.push('/');
@@ -67,29 +78,29 @@ export const CrudPatient = (props: Props) => {
         console.log(value);
         setEdit(false);
     }
-    
+
     return (<Box className={classes.box}>
-        <Banner onClick={onClickLogOut} textTypography={'Hello ' + props.patient.firstname +'.'} textButton={'Log out' } />
+        <Banner onClick={onClickLogOut} textTypography={'Hello ' + props.patient.firstname + '.'} textButton={'Log out'} />
 
         <Box className={classes.background}>
             {/* <CustomButton text={'My health file'} onClick={onClickCustom} style={titleButton}/> */}
             <Box className={classes.content}>
                 <Box className={classes.appointements}>
-                    <AppointmentData appointments={appointments} onClick={onClickAppointment}/>
+                    <AppointmentData appointments={appointments} onClick={onClickAppointment} />
                 </Box>
                 <Box className={classes.personalData}>
-                    <PersonalData onClick={onClickEdit} patient={props.patient}/>
+                    <PersonalData onClick={onClickEdit} patient={props.patient} />
                 </Box>
             </Box>
         </Box>
         <Banner onClick={onClickDelete} textButton={'Delete account'} />
 
         <Dialog open={openAppointment}>
-            <AppointmentPopUp onClick={handleCloseAppointment} onClickClose={onClickAppointmentClose}/>
+            <AppointmentPopUp onClick={handleCloseAppointment} onClickClose={onClickAppointmentClose} />
         </Dialog>
 
         <Dialog open={openEdit}>
-            <EditPopUp onClick={handleCloseEdit} onClickClose={onClickEditClose}/>
+            <EditPopUp onClick={handleCloseEdit} onClickClose={onClickEditClose} />
         </Dialog>
 
     </Box>
