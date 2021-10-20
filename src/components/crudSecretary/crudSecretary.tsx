@@ -4,7 +4,7 @@ import { useStyles } from './crudSecretary.style';
 import { Banner } from '../banner/banner';
 import { CustomButton } from '../customButton/customButton';
 import { TicketData, Ticket } from '../ticketData/ticketData';
-import { AppointmentData, Appointment } from '../appointmentData/appointmentData';
+import { AppointmentData, Appointment } from '../secretaryAppointmentData/secretaryAppointmentData';
 import { titleButton } from '../../utils/customButton/customButtonHelper';
 import { AppointmentPopUp } from '../appointmentPopUp/appointmentPopUp';
 

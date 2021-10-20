@@ -3,7 +3,8 @@ import { Button, Typography, Box } from '@material-ui/core';
 import { useStyles } from './ticketItem.style';
 import { CustomButton } from '../customButton/customButton';
 import { button } from '../../utils/customButton/customButtonHelper';
-import {} from '../ticketItem/ticketItem.style';
+
+
 export type Ticket = {
     name: string;
     data: string;

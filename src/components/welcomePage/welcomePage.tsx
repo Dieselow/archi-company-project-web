@@ -9,6 +9,7 @@ import { CrudPatient } from '../crudPatient/crudPatient';
 import { Patient } from '../crudPatient/crudPatient';
 import {Caregiver} from '../crudCaregiver/crudCaregiver';
 import {CrudCaregiver} from '../crudCaregiver/crudCaregiver';
+import { CrudSecretary, Secretary } from '../crudSecretary/crudSecretary';
 
 const patient : Patient = {
   firstname : 'Toto',
@@ -26,6 +27,14 @@ const caregiver : Caregiver = {
   employmentdate: '08/10/1998'
 }
 
+const secretary : Secretary = {
+  firstname : 'Edward',
+  lastname : 'House',
+  adress: '3 rue De Gaulle',
+  phoneNumber: '012399',
+  email: 'DrHouse@gmail.com',
+  employmentdate: '08/10/1998'
+}
 type Props = {
 }
 const isPossible = true;
@@ -52,6 +61,9 @@ export const WelcomePage = (props: Props) => {
           <Route path='/secretary'>
             <UserLogin type={'secretary'}/>
           </Route>}
+          <Route path='/crud/secretary'>
+          <CrudSecretary secretary={secretary}/>
+        </Route>
           
         <Route path='/login'>
           <UserLogin type={'patient'}/>
