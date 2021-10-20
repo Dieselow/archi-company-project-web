@@ -4,9 +4,10 @@ import { useStyles } from './crudCaregiver.style';
 import { Banner } from '../banner/banner';
 import { CustomButton } from '../customButton/customButton';
 import { CaregiverData } from '../caregiverData/caregiverData';
-import { AppointmentData, Appointment } from '../appointmentData/appointmentData';
+import {PatientData,Patient } from '../caregiverPatientData/caregiverPatientData';
+import { CaregiverAppointmentData, Appointment } from '../caregiverAppointementData/caregiverAppointmentData';
 import { titleButton } from '../../utils/customButton/customButtonHelper';
-import { AppointmentPopUp } from '../appointmentPopUp/appointmentPopUp';
+import { AppointmentPopUp } from '../caregiverAppointmentPopUp/caregiverAppointmentPopUp';
 import {} from '../crudSecretary/crudSecretary';
 
 export type Caregiver = {
@@ -24,16 +25,30 @@ export const Patientlist: any[] =[
 ]
 
 
+const patients : Patient[]= [
+    {
+        firstname:'Jack',
+        lastname: 'Morgan',
+        healthfile: 'Broken knee-August 2007',
+    },
+    {
+        firstname:'Arthur',
+        lastname: 'Biden',
+        healthfile: 'flu - Autumn 2012',
+    }
+]
 
 
 const appointments : Appointment[] = [
     {
         date : 'Lundi',
         data: 'M Doe, Lumbago',
+        hasPrescription: true,
     },
     {
         date : 'Mardi',
         data: 'Mme Ludwig, Fièvre',
+        hasPrescription: false,
     }
 ]
 
@@ -66,10 +81,10 @@ export const CrudCaregiver = (props: Props) => {
             <CustomButton text={'My info'} onClick={onClickCustom} style={titleButton}/>
             <Box className={classes.content}>
                 <Box className={classes.appointements}>
-                    <AppointmentData appointments={appointments}/>
+                    <CaregiverAppointmentData appointments={appointments}/>
                 </Box>
                 <Box className={classes.caregiverData}>
-                    <CaregiverData onClick={onClickCustom} caregiver={props.caregiver}/>
+                    <PatientData patients={patients}/>
                 </Box>
             </Box>
         </Box>
