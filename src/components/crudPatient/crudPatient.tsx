@@ -32,8 +32,8 @@ type Props = {
     patient: Patient
 }
 
-const onClick = (variable: any) => {
-    console.log('on click !');
+const onClick = () => {
+   
 }
 
 export const CrudPatient = (props: Props) => {

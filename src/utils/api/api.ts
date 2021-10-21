@@ -9,6 +9,7 @@ export const api = {
         secretary: base + '/secretaries/auth/register',
     },
     login: base + '/auth/login',
+    welcome: base + '/welcome',
 }
 
 export const getRegister = (type: UserType) => {

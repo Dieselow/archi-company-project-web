@@ -1,14 +1,19 @@
 import React from 'react';
 import { Button, Typography, Box, Dialog } from '@material-ui/core';
 import { useStyles } from './crudCaregiver.style';
-import { Banner } from '../banner/banner';
-import { CustomButton } from '../customButton/customButton';
+import { Banner } from '../../banner/banner';
+import { CustomButton } from '../../customButton/customButton';
 import { CaregiverData } from '../caregiverData/caregiverData';
 import {PatientData,Patient } from '../caregiverPatientData/caregiverPatientData';
 import { CaregiverAppointmentData, Appointment } from '../caregiverAppointementData/caregiverAppointmentData';
-import { titleButton } from '../../utils/customButton/customButtonHelper';
+import { titleButton } from '../../../utils/customButton/customButtonHelper';
 import { AppointmentPopUp } from '../caregiverAppointmentPopUp/caregiverAppointmentPopUp';
-import {} from '../crudSecretary/crudSecretary';
+
+import {} from '../../crudSecretary/crudSecretary';
+import axios from 'axios';
+import {api} from '../../../utils/api/api';
+
+
 
 export type Caregiver = {
     firstname: string;
@@ -74,6 +79,16 @@ export const CrudCaregiver = (props: Props) => {
         console.log(value);
         setOpen(false);
     }
+
+    const callWelcome = () =>{
+        axios.get(api.welcome).then((response: any)=>{
+            console.log(response);
+
+        }).catch((reason: any)=>{
+            console.log(reason);
+        });
+
+    }
     return (<Box className={classes.box}>
         <Banner onClick={onClick} textTypography={'Hello ' + props.caregiver.firstname +'.'} textButton={'Log out' } />
 
@@ -88,6 +103,7 @@ export const CrudCaregiver = (props: Props) => {
                 </Box>
             </Box>
         </Box>
+        <CustomButton text={'My info'} onClick={callWelcome} style={titleButton}/>
         <Banner onClick={onClick} textButton={'Inventory'} />
         <Dialog open={open} onClose={handleClose}>
             <AppointmentPopUp onClick={handleClose}/>

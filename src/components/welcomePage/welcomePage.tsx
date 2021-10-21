@@ -7,8 +7,8 @@ import { LoginPatient } from '../loginPatient/loginPatient';
 import { UserLogin } from '../userLogin/userLogin';
 import { CrudPatient } from '../crudPatient/crudPatient';
 import { Patient } from '../crudPatient/crudPatient';
-import {Caregiver} from '../crudCaregiver/crudCaregiver';
-import {CrudCaregiver} from '../crudCaregiver/crudCaregiver';
+import {Caregiver} from '../Caregiver/crudCaregiver/crudCaregiver';
+import {CrudCaregiver} from '../Caregiver/crudCaregiver/crudCaregiver';
 import { CrudSecretary, Secretary } from '../crudSecretary/crudSecretary';
 
 const patient : Patient = {
@@ -34,6 +34,10 @@ const secretary : Secretary = {
   phoneNumber: '012399',
   email: 'DrHouse@gmail.com',
   employmentdate: '08/10/1998'
+}
+
+const onChange=() => {
+
 }
 type Props = {
 }

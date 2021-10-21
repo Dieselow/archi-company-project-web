@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Typography, Box } from '@material-ui/core';
 import { useStyles } from './caregiverData.style';
-import { CustomButton } from '../customButton/customButton';
-import { button } from '../../utils/customButton/customButtonHelper';
+import { CustomButton } from '../../customButton/customButton';
+import { button } from '../../../utils/customButton/customButtonHelper';
 import { Caregiver } from '../crudCaregiver/crudCaregiver';
 
 type Props = {
