@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Typography, Box } from '@material-ui/core';
 import { useStyles } from './personalData.style';
-import { Patient } from '../crudPatient/crudPatient';
+import { Patient } from '../crud/crudPatient/crudPatient';
 import { CustomButton } from '../customButton/customButton';
 import { button } from '../../utils/customButton/customButtonHelper';
 

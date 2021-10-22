@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 
 type Props = {
     type: UserType;
-    onChange : () => void;
+    onChange: () => void;
 }
 
 export var bearerToken = '';
@@ -25,10 +25,6 @@ export const Login = (props: Props) => {
     }
     const classes = useStyles(styleProps);
 
-    const getDetails = () => {
-        axios.post(api.details)
-    }
-
     const onClick = () => {
         axios.post(api.login, {
             email: email,
@@ -36,16 +32,30 @@ export const Login = (props: Props) => {
         }).then((response: any) => {
             console.log(response);
             props.onChange();
-            switch(props.type)
-            {
+            bearerToken = response.data.token;
+            console.log(bearerToken);
+            switch (props.type) {
                 case 'patient':
                     history.push('/crud/patient');
                     break;
-            }            
-            bearerToken = response.data.token;
-            console.log(bearerToken);
+            }
         }).catch((reason: any) => {
             alert(reason);
+        }).then(() => {
+            console.log({
+                headers: { Authorization: `Bearer ${bearerToken}` }
+            });
+            console.log(bearerToken);
+            axios.get(api.details,
+                {
+                    headers: {
+                        Authorization: `Bearer ${bearerToken}`
+                    }
+                }).then((response: any) => {
+                    console.log(response);
+                }).catch((reason: any) => {
+                    console.log(reason);
+                })
         });
     }
     const onChangeEmail = (username: string) => {
@@ -61,7 +71,7 @@ export const Login = (props: Props) => {
     return (
         <Box className={classes.box}>
             <Typography className={classes.typography}>
-                Login {props.type} 
+                Login {props.type}
             </Typography>
 
             <CustomForm text={'Email'} style={form} onChange={onChangeEmail} formType={'textfield'} />

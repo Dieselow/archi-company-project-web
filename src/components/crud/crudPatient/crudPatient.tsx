@@ -1,13 +1,13 @@
 import React from 'react';
 import { Button, Typography, Box, Dialog } from '@material-ui/core';
 import { useStyles } from './crudPatient.style';
-import { Banner } from '../banner/banner';
-import { PersonalData } from '../personalData/personalData';
-import { AppointmentData, Appointment } from '../appointmentData/appointmentData';
-import { AppointmentPopUp } from '../popUp/appointmentPopUp/appointmentPopUp';
-import { EditPopUp } from '../popUp/editPopUp/editPopUp';
+import { Banner } from '../../banner/banner';
+import { PersonalData } from '../../personalData/personalData';
+import { AppointmentData, Appointment } from '../../appointmentData/appointmentData';
+import { AppointmentPopUp } from '../../popUp/appointmentPopUp/appointmentPopUp';
+import { EditPopUp } from '../../popUp/editPopUp/editPopUp';
 import { useHistory } from 'react-router-dom';
-import { api } from '../../utils/api/api';
+import { api } from '../../../utils/api/api';
 import axios from 'axios';
 
 export type Patient = {
@@ -102,7 +102,6 @@ export const CrudPatient = (props: Props) => {
         <Dialog open={openEdit}>
             <EditPopUp onClick={handleCloseEdit} onClickClose={onClickEditClose} />
         </Dialog>
-
     </Box>
     );
 }

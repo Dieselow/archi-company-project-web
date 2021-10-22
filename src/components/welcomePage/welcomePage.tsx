@@ -5,8 +5,8 @@ import { Title } from '../title/title';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { LoginPatient } from '../loginPatient/loginPatient';
 import { UserLogin } from '../userLogin/userLogin';
-import { CrudPatient } from '../crudPatient/crudPatient';
-import { Patient } from '../crudPatient/crudPatient';
+import { CrudPatient } from '../crud/crudPatient/crudPatient';
+import { Patient } from '../crud/crudPatient/crudPatient';
 
 const patient: Patient = {
   firstname: 'Toto',
