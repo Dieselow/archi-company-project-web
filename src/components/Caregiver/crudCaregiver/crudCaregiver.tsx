@@ -7,7 +7,7 @@ import { CaregiverData } from '../caregiverData/caregiverData';
 import {PatientData,Patient } from '../caregiverPatientData/caregiverPatientData';
 import { CaregiverAppointmentData, Appointment } from '../caregiverAppointementData/caregiverAppointmentData';
 import { titleButton } from '../../../utils/customButton/customButtonHelper';
-import { AppointmentPopUp } from '../caregiverAppointmentPopUp/caregiverAppointmentPopUp';
+import { InformationPopUp } from '../caregiverInformationPopUp/caregiverInformationPopUp';
 
 import {} from '../../crudSecretary/crudSecretary';
 import axios from 'axios';
@@ -29,7 +29,14 @@ export const Patientlist: any[] =[
     {name: 'Joe mayo',}
 ]
 
-
+const caregiver: Caregiver={
+    firstname: 'John',
+    lastname: 'House',
+    adress: '779 Rue Huard',
+    phoneNumber: '45314528795',
+    email: 'John@usa.fr',
+    employmentdate: '08-10-1998',
+}
 const patients : Patient[]= [
     {
         firstname:'Jack',
@@ -61,7 +68,7 @@ type Props = {
     caregiver: Caregiver
 }
 
-const onClick = (variable: any) => {
+const onClick = () => {
     console.log('on click !');
 }
 
@@ -94,6 +101,9 @@ export const CrudCaregiver = (props: Props) => {
 
         <Box className={classes.background}>
             <CustomButton text={'My info'} onClick={onClickCustom} style={titleButton}/>
+            <Dialog open={open} onClose={handleClose}>
+                <InformationPopUp onClick={onClickCustom} caregiver={caregiver}/>
+            </Dialog>
             <Box className={classes.content}>
                 <Box className={classes.appointements}>
                     <CaregiverAppointmentData appointments={appointments}/>
@@ -103,11 +113,8 @@ export const CrudCaregiver = (props: Props) => {
                 </Box>
             </Box>
         </Box>
-        <CustomButton text={'My info'} onClick={callWelcome} style={titleButton}/>
         <Banner onClick={onClick} textButton={'Inventory'} />
-        <Dialog open={open} onClose={handleClose}>
-            <AppointmentPopUp onClick={handleClose}/>
-        </Dialog>
+        
     </Box>
     );
 }

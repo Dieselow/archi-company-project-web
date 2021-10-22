@@ -1,40 +1,84 @@
 import React from 'react';
 import { Button, Typography, Box } from '@material-ui/core';
+import { CustomForm } from '../../customForm/customForm';
 import { useStyles } from './caregiverData.style';
 import { CustomButton } from '../../customButton/customButton';
 import { button } from '../../../utils/customButton/customButtonHelper';
 import { Caregiver } from '../crudCaregiver/crudCaregiver';
+import { formPopUp } from '../../../utils/customForm/customFormHelper';
+
 
 type Props = {
-    onClick: () => void;
-    caregiver: Caregiver;
+    onClick: (value: any) => void;
 }
 
-export const CaregiverData = (props: Props) => {
-    const caregiver = props.caregiver;
-    const styleProps = {
-    }
-    const classes = useStyles(styleProps);
+export type Appointment = {
+    employmentdate: string;
+    lastname: string;
+    email: string;
+    address: string;
+    phonenumber: string;
 
-    return (<Box >
-        <Box className={classes.box}>
-        <Typography className={classes.titleTypography}>
-            My info
-        </Typography>
-        <CustomButton text={'Edit'} onClick={props.onClick} style={button}/>
+}
+
+    
+    export const CaregiverData = (props: Props) => {
+        const [employmentdate, setEmploymentDate] = React.useState<string>('');
+        const [lastname, setLastName] = React.useState<string>('');
+        const [email, setEmail] = React.useState<string>('');
+        const [address, setAddress] = React.useState<string>();
+        const [phonenumber, setPhonenumber] = React.useState<string>();
+
+        const styleProps = {
+        }
+
+     
+
+    
+    
+    
+        const classes = useStyles(styleProps);
+    
+        const onChangeEmail = (email: string) => {
+            console.log(email);
+            setEmail(email);
+        }
+    
+        const onChangeLastName = (lastname: string) => {
+            console.log(lastname);
+            setLastName(lastname);
+        }
+    
+        const onChangePhoneNumber = (phonenumber: string) => {
+            console.log(phonenumber);
+            setPhonenumber(phonenumber);
+        }
+        const onChangeAddress = (address: string) => {
+            console.log(address);
+            setAddress(address);
+        }
+        return (<Box className={classes.box}>
+    
+            <Typography className={classes.typography}>
+                Edit your info:
+            </Typography>
+    
+            <CustomForm text={'Last name'} style={formPopUp} onChange={onChangeLastName} formType={'textfield'} />
+
+            <CustomForm text={'Enter your new email'} style={formPopUp} onChange={onChangeEmail} formType={'textfield'} />
+
+            <CustomForm text={'Enter your new phone number'} style={formPopUp} onChange={onChangePhoneNumber} formType={'textfield'} />
+    
+            <CustomForm text={'Enter your new Address'} style={formPopUp} onChange={onChangeAddress} formType={'textfield'} />
+    
+            <CustomButton text='Create' onClick={() => props.onClick(
+                {
+                    lastname: lastname,
+                    email: email,
+                    address: address,
+                    phonenumber : phonenumber,
+                }
+            )} style={button} />
         </Box>
-        <Typography className={classes.typography}>
-            address : {caregiver.adress}
-        </Typography>
-        <Typography className={classes.typography}>
-            phone number : {caregiver.phoneNumber}
-        </Typography>
-        <Typography className={classes.typography}>
-            email : {caregiver.email}
-        </Typography>
-        <Typography className={classes.typography}>
-            Employment Date : {caregiver.employmentdate}
-        </Typography>
-    </Box>
-    );
-}
+        );
+    }
