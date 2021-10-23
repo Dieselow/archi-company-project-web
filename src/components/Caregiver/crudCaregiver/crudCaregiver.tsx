@@ -5,7 +5,6 @@ import { Banner } from '../../banner/banner';
 import { CustomButton } from '../../customButton/customButton';
 import { CaregiverData } from '../caregiverData/caregiverData';
 import {PatientData,Patient } from '../caregiverPatientData/caregiverPatientData';
-import { CaregiverAppointmentData, Appointment } from '../caregiverAppointementData/caregiverAppointmentData';
 import { titleButton } from '../../../utils/customButton/customButtonHelper';
 import { InformationPopUp } from '../caregiverInformationPopUp/caregiverInformationPopUp';
 
@@ -52,18 +51,6 @@ const patients : Patient[]= [
 ]
 
 
-const appointments : Appointment[] = [
-    {
-        date : 'Lundi',
-        data: 'M Doe, Lumbago',
-        hasPrescription: true,
-    },
-    {
-        date : 'Mardi',
-        data: 'Mme Ludwig, Fièvre',
-        hasPrescription: false,
-    }
-]
 
 type Props = {
     caregiver: Caregiver
@@ -106,15 +93,12 @@ export const CrudCaregiver = (props: Props) => {
                 <InformationPopUp onClick={onClickCustom} caregiver={caregiver}/>
             </Dialog>
             <Box className={classes.content}>
-                <Box className={classes.appointements}>
-                    <CaregiverAppointmentData appointments={appointments}/>
-                </Box>
                 <Box className={classes.caregiverData}>
                     <PatientData patients={patients}/>
                 </Box>
             </Box>
         </Box>
-        <Banner onClick={onClick} textButton={'Inventory'} />
+        <Banner onClick={onClick} textButton={'Delete Account'} />
         
     </Box>
     );

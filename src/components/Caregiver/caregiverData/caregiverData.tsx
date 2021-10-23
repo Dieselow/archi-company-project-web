@@ -4,7 +4,6 @@ import { CustomForm } from '../../customForm/customForm';
 import { useStyles } from './caregiverData.style';
 import { CustomButton } from '../../customButton/customButton';
 import { button } from '../../../utils/customButton/customButtonHelper';
-import { Caregiver } from '../crudCaregiver/crudCaregiver';
 import { formPopUp } from '../../../utils/customForm/customFormHelper';
 
 

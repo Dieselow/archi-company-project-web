@@ -24,8 +24,11 @@ const getAllEquipments = () => {
 export const EquipmentData = (props: Props) => {
     const [open, setOpen] = React.useState(false);
 
-    const onClickAdd = () => {
-
+    const onClickAdd = (value: any) => {
+        console.log(value)
+        
+    }
+    const onClick = () => {
         setOpen(true);
     }
     const handleClose = (value: string) => {
@@ -41,7 +44,7 @@ export const EquipmentData = (props: Props) => {
         <Typography className={classes.typography}>Equipment List</Typography>
         
         <Box>
-        <CustomButton text={'Add Equipment'} onClick={onClickAdd} style={button}/>
+        <CustomButton text={'Add Equipment'} onClick={onClick} style={button}/>
         <Dialog open={open} onClose={handleClose}>
                 <AddEquipmentPopUp onClick={onClickAdd} />
             </Dialog>

@@ -8,9 +8,9 @@ import { CustomForm } from '../../customForm/customForm';
 import { subButton } from '../../../utils/customButton/customButtonHelper';
 import { formPopUp } from '../../../utils/customForm/customFormHelper';
 import { UserType } from '../../userLogin/userLogin';
-import {Caregiver } from '../crudCaregiver/crudCaregiver';
 import { titleButton } from '../../../utils/customButton/customButtonHelper';
 import { CaregiverData } from '../caregiverData/caregiverData';
+import { Caregiver } from '../crudCaregiver/crudCaregiver';
 type Props = {
     caregiver: Caregiver;
     onClick: (value: any) => void;

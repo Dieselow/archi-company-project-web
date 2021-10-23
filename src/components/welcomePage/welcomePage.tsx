@@ -7,11 +7,12 @@ import { LoginPatient } from '../loginPatient/loginPatient';
 import { UserLogin } from '../userLogin/userLogin';
 import { CrudPatient } from '../crudPatient/crudPatient';
 import { Patient } from '../crudPatient/crudPatient';
-import {Caregiver} from '../Caregiver/crudCaregiver/crudCaregiver';
-import {CrudCaregiver} from '../Caregiver/crudCaregiver/crudCaregiver';
-import { CrudSecretary, Secretary } from '../Secretary/crudSecretary/crudSecretary';
 
+import { Caregiver, CrudCaregiver } from '../Caregiver/crudCaregiver/crudCaregiver';
+
+import { CrudSecretary, Secretary } from '../Secretary/crudSecretary/crudSecretary';
 const patient : Patient = {
+  
   firstname : 'Toto',
   lastname : 'Doe',
   adress: '779 rue huard',
@@ -28,8 +29,8 @@ const caregiver : Caregiver = {
 }
 
 const secretary : Secretary = {
-  firstname : 'Edward',
-  lastname : 'House',
+  firstname : 'Ella',
+  lastname : 'Lopez',
   adress: '3 rue De Gaulle',
   phoneNumber: '012399',
   email: 'DrHouse@gmail.com',

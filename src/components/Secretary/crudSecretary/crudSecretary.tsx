@@ -10,6 +10,7 @@ import { titleButton } from '../../../utils/customButton/customButtonHelper';
 import { AppointmentPopUp } from '../../appointmentPopUp/appointmentPopUp';
 import { InformationPopUp } from '../secretaryInformationPopUp/secretaryInformationPopUp';
 import { EquipmentData, Equipment } from '../secretaryEquipmentData/secretaryEquipmentData';
+import { User } from '../userItem/userItem';
 
 export type Secretary = {
     firstname: string;
@@ -20,13 +21,7 @@ export type Secretary = {
     employmentdate: string;
 }
 
-export type User= {
-    firstname: string;
-    lastname: string;
-    adress: string;
-    phoneNumber: string;
-    email: string;
-}
+
 const secretary: Secretary={
     firstname: 'Ella',
     lastname: 'Lopez',
@@ -48,8 +43,23 @@ const equipmentlist : Equipment[] = [
     }
 ]
 
+
+
 const usersrequests : User[] = [
-    
+    {
+    firstname: 'Jack',
+    lastname: 'Black',
+    adress: 'Rue d Austerlitz',
+    phoneNumber: '1234',
+    email: 'a@a.a',
+    },
+    {
+        firstname: 'Jo',
+        lastname: 'White',
+        adress: 'Rue de l ecole',
+        phoneNumber: '4321',
+        email: 'b@b.b',
+    }
 ]
 
 const ongoingtickets : Ticket[] = [
@@ -64,7 +74,7 @@ const ongoingtickets : Ticket[] = [
 ]
 
 type Props = {
-    secretary: Secretary
+    secretary: Secretary;
 }
 
 const onClick = (variable: any) => {
@@ -105,10 +115,6 @@ export const CrudSecretary = (props: Props) => {
                 </Box>
             </Box>
         </Box>
-        <Banner onClick={onClick} textButton={'Inventory'} />
-        <Dialog open={open} onClose={handleClose}>
-            <AppointmentPopUp onClick={handleClose}/>
-        </Dialog>
     </Box>
     );
 }

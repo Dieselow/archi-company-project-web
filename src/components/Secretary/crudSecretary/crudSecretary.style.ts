@@ -32,7 +32,7 @@ export const useStyles = makeStyles(thme =>
     },
     users: {
         width: '30%',
-        margin: 10
+        margin: 10,
     },
     tickets: {
         width: '40%',
