@@ -1,13 +1,13 @@
 import React from 'react';
 import { Button, Typography, Box, Dialog } from '@material-ui/core';
 import { useStyles } from './crudSecretary.style';
-import { Banner } from '../banner/banner';
-import { CustomButton } from '../customButton/customButton';
-import { TicketData, Ticket } from '../ticketData/ticketData';
+import { Banner } from '../../banner/banner';
+import { CustomButton } from '../../customButton/customButton';
+import { TicketData, Ticket } from '../../ticketData/ticketData';
 import { AppointmentData, Appointment } from '../secretaryAppointmentData/secretaryAppointmentData';
-import { titleButton } from '../../utils/customButton/customButtonHelper';
-import { AppointmentPopUp } from '../appointmentPopUp/appointmentPopUp';
-
+import { titleButton } from '../../../utils/customButton/customButtonHelper';
+import { AppointmentPopUp } from '../../appointmentPopUp/appointmentPopUp';
+import { InformationPopUp } from '../secretaryInformationPopUp/secretaryInformationPopUp';
 
 
 export type Secretary = {
@@ -19,6 +19,14 @@ export type Secretary = {
     employmentdate: string;
 }
 
+const secretary: Secretary={
+    firstname: 'Ella',
+    lastname: 'Lopez',
+    adress: '779 Bourbon St',
+    phoneNumber: '45314528795',
+    email: 'Ellop@nola.us',
+    employmentdate: '10-10-1998',
+}
 const appointmentsrequests : Appointment[] = [
     {
         date : 'Lundi',
@@ -66,7 +74,10 @@ export const CrudSecretary = (props: Props) => {
         <Banner onClick={onClick} textTypography={'Hello ' + props.secretary.firstname +'.'} textButton={'Log out' } />
 
         <Box className={classes.background}>
-            <CustomButton text={'My infos'} onClick={onClickCustom} style={titleButton}/>
+        <CustomButton text={'My info'} onClick={onClickCustom} style={titleButton}/>
+            <Dialog open={open} onClose={handleClose}>
+                <InformationPopUp onClick={onClickCustom} secretary={secretary}/>
+            </Dialog>
             <Box className={classes.content}>
                 <Box className={classes.appointements}>
                     <AppointmentData appointments={appointmentsrequests}/>

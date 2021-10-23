@@ -9,7 +9,7 @@ import { CrudPatient } from '../crudPatient/crudPatient';
 import { Patient } from '../crudPatient/crudPatient';
 import {Caregiver} from '../Caregiver/crudCaregiver/crudCaregiver';
 import {CrudCaregiver} from '../Caregiver/crudCaregiver/crudCaregiver';
-import { CrudSecretary, Secretary } from '../crudSecretary/crudSecretary';
+import { CrudSecretary, Secretary } from '../Secretary/crudSecretary/crudSecretary';
 
 const patient : Patient = {
   firstname : 'Toto',

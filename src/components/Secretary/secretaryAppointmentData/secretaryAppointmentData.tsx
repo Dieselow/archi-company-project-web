@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Typography, Box } from '@material-ui/core';
 import { useStyles } from './secretaryAppointmentData.style';
-import { CustomButton } from '../customButton/customButton';
+import { CustomButton } from '../../customButton/customButton';
 import { AppointmentItem } from '../secretaryAppointmentItem/secretaryAppointmentItem';
-import { button } from '../../utils/customButton/customButtonHelper';
+import { button } from '../../../utils/customButton/customButtonHelper';
 
 export type Appointment = {
     date: string;
