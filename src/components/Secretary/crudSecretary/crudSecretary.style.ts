@@ -26,8 +26,12 @@ export const useStyles = makeStyles(thme =>
         margin: 10,
         borderRadius: 10,
     },
-    appointements: {
-        width: '60%',
+    equipments: {
+        width: '30%',
+        margin: 10
+    },
+    users: {
+        width: '30%',
         margin: 10
     },
     tickets: {

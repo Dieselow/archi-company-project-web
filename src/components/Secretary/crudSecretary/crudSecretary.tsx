@@ -5,10 +5,11 @@ import { Banner } from '../../banner/banner';
 import { CustomButton } from '../../customButton/customButton';
 import { TicketData, Ticket } from '../../ticketData/ticketData';
 import { AppointmentData, Appointment } from '../secretaryAppointmentData/secretaryAppointmentData';
+import { UserData } from '../userData/userData';
 import { titleButton } from '../../../utils/customButton/customButtonHelper';
 import { AppointmentPopUp } from '../../appointmentPopUp/appointmentPopUp';
 import { InformationPopUp } from '../secretaryInformationPopUp/secretaryInformationPopUp';
-
+import { EquipmentData, Equipment } from '../secretaryEquipmentData/secretaryEquipmentData';
 
 export type Secretary = {
     firstname: string;
@@ -19,6 +20,13 @@ export type Secretary = {
     employmentdate: string;
 }
 
+export type User= {
+    firstname: string;
+    lastname: string;
+    adress: string;
+    phoneNumber: string;
+    email: string;
+}
 const secretary: Secretary={
     firstname: 'Ella',
     lastname: 'Lopez',
@@ -27,16 +35,23 @@ const secretary: Secretary={
     email: 'Ellop@nola.us',
     employmentdate: '10-10-1998',
 }
-const appointmentsrequests : Appointment[] = [
+const equipmentlist : Equipment[] = [
     {
-        date : 'Lundi',
-        data: 'M Doe, Lumbago, with Dr River',
+        name : 'Scanner',
+        installationDate: '10-10-2018',
+        id: '1',
     },
     {
-        date : 'Mardi',
-        data: 'Mme Ludwig, Fièvre, with Dr Menard',
+        name : 'Brancard',
+        installationDate: '01-02-2021',
+        id:'2',
     }
 ]
+
+const usersrequests : User[] = [
+    
+]
+
 const ongoingtickets : Ticket[] = [
     {
         name : 'Order 10254',
@@ -79,8 +94,11 @@ export const CrudSecretary = (props: Props) => {
                 <InformationPopUp onClick={onClickCustom} secretary={secretary}/>
             </Dialog>
             <Box className={classes.content}>
-                <Box className={classes.appointements}>
-                    <AppointmentData appointments={appointmentsrequests}/>
+                <Box className={classes.users}>
+                    <UserData users={usersrequests}/>
+                </Box>
+                <Box className={classes.equipments}>
+                    <EquipmentData equipments={equipmentlist}/>
                 </Box>
                 <Box className={classes.tickets}>
                     <TicketData tickets={ongoingtickets}/>
