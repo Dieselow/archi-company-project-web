@@ -11,8 +11,9 @@ import { UserType } from '../../userLogin/userLogin';
 import { titleButton } from '../../../utils/customButton/customButtonHelper';
 import { CaregiverData } from '../caregiverData/caregiverData';
 import { Caregiver } from '../crudCaregiver/crudCaregiver';
+import { Details, details } from '../../login/login';
 type Props = {
-    caregiver: Caregiver;
+    caregiver: Details;
     onClick: (value: any) => void;
 }
 
@@ -48,8 +49,8 @@ export const InformationPopUp = (props: Props) => {
     return (<Box className={classes.box}>
 
         <Typography className={classes.typography}>
-        First name: {props.caregiver.firstname} <br/>
-        Last name: {props.caregiver.lastname} <br/>
+        First name: {props.caregiver.firstName} <br/>
+        Last name: {props.caregiver.lastName} <br/>
         Email: {props.caregiver.email} <br/>
         Phone Number: {props.caregiver.phoneNumber} <br/>
         Employed since: {props.caregiver.employmentdate}  <br/>

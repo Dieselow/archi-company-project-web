@@ -4,26 +4,27 @@ import { useStyles } from './crudManager.style';
 import { UserType } from '../../userLogin/userLogin';
 import { CrudPatient } from '../crudPatient/crudPatient';
 import { details } from '../../login/login';
+import { CrudCaregiver } from '../../Caregiver/crudCaregiver/crudCaregiver';
+import { CrudSecretary } from '../../Secretary/crudSecretary/crudSecretary';
 
 type Props = {
-    userType: UserType;    
+    userType: UserType;
 }
 
-export const CustomForm = (props: Props) => {
+export const CrudManager = (props: Props) => {
     const classes = useStyles();
-
     const renderSwitch = () => {
         switch (props.userType) {
             case 'patient':
-                return <CrudPatient/>
+                return <CrudPatient />
                 break;
 
             case 'caregiver':
-                return <h1>crud caregiver</h1>
+                return <CrudCaregiver />
                 break;
 
             case 'secretary':
-                return <h1>crud secretary</h1>
+                return <CrudSecretary />
                 break;
         }
     }

@@ -32,6 +32,7 @@ export type Details = {
     roles: Role[];
     username: string;
     primaryDoctor?: string;
+    employmentdate?: string;
 }
 export var bearerToken = '';
 export var details : Details = {
@@ -47,6 +48,7 @@ export var details : Details = {
     roles : [],
     username: '',
     primaryDoctor: '',
+    employmentdate: '',
 }
 
 export const Login = (props: Props) => {
@@ -82,11 +84,7 @@ export const Login = (props: Props) => {
                     details = response.data;
                     details.password = password;
                     console.log(details);
-                    switch (details.roles[0].name) {
-                        case 'PATIENT':
-                            history.push('/crud/patient');
-                            break;
-                    }
+                    history.push('/crud');
                 }).catch((reason: any) => {
                     console.log(reason);
                 })

@@ -7,8 +7,7 @@ import { CaregiverData } from '../caregiverData/caregiverData';
 import {PatientData,Patient } from '../caregiverPatientData/caregiverPatientData';
 import { titleButton } from '../../../utils/customButton/customButtonHelper';
 import { InformationPopUp } from '../caregiverInformationPopUp/caregiverInformationPopUp';
-
-
+import { Details, details } from '../../login/login';
 
 import {api} from '../../../utils/api/api';
 import axios from 'axios';
@@ -29,14 +28,6 @@ export const Patientlist: any[] =[
     {name: 'Joe mayo',}
 ]
 
-const caregiver: Caregiver={
-    firstname: 'John',
-    lastname: 'House',
-    adress: '779 Rue Huard',
-    phoneNumber: '45314528795',
-    email: 'John@usa.fr',
-    employmentdate: '08-10-1998',
-}
 const patients : Patient[]= [
     {
         firstname:'Jack',
@@ -53,7 +44,6 @@ const patients : Patient[]= [
 
 
 type Props = {
-    caregiver: Caregiver
 }
 
 const onClick = () => {
@@ -85,12 +75,12 @@ export const CrudCaregiver = (props: Props) => {
 
     }
     return (<Box className={classes.box}>
-        <Banner onClick={onClick} textTypography={'Hello ' + props.caregiver.firstname +'.'} textButton={'Log out' } />
+        <Banner onClick={onClick} textTypography={'Hello ' + details.firstName +'.'} textButton={'Log out' } />
 
         <Box className={classes.background}>
             <CustomButton text={'My info'} onClick={onClickCustom} style={titleButton}/>
             <Dialog open={open} onClose={handleClose}>
-                <InformationPopUp onClick={onClickCustom} caregiver={caregiver}/>
+                <InformationPopUp onClick={onClickCustom} caregiver={details}/>
             </Dialog>
             <Box className={classes.content}>
                 <Box className={classes.caregiverData}>

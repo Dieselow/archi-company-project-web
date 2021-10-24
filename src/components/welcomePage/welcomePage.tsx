@@ -4,29 +4,11 @@ import { useStyles } from './welcomePage.style';
 import { Title } from '../title/title';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { LoginPatient } from '../loginPatient/loginPatient';
-import { UserLogin } from '../userLogin/userLogin';
+import { UserLogin, UserType } from '../userLogin/userLogin';
 import { CrudPatient } from '../crud/crudPatient/crudPatient';
-
+import { CrudManager} from '../crud/crudManager/crudManager';
 import { Caregiver, CrudCaregiver } from '../Caregiver/crudCaregiver/crudCaregiver';
-
-import { CrudSecretary, Secretary } from '../Secretary/crudSecretary/crudSecretary';
-const caregiver : Caregiver = {
-  firstname : 'Edward',
-  lastname : 'House',
-  adress: '3 rue De Gaulle',
-  phoneNumber: '012399',
-  email: 'DrHouse@gmail.com',
-  employmentdate: '08/10/1998'
-}
-
-const secretary : Secretary = {
-  firstname : 'Ella',
-  lastname : 'Lopez',
-  adress: '3 rue De Gaulle',
-  phoneNumber: '012399',
-  email: 'DrHouse@gmail.com',
-  employmentdate: '08/10/1998'
-}
+import { CrudSecretary } from '../Secretary/crudSecretary/crudSecretary';
 
 const onChange=() => {
 
@@ -37,10 +19,12 @@ const isPossible = true;
 
 export const WelcomePage = (props: Props) => {
   const [isPossible, setIsPossible] = React.useState<boolean>(false);
+  const [type, setType] = React.useState<UserType>('patient');
   const classes = useStyles();
 
-  const onChange = () => {
+  const onChange = (userType: UserType) => {
     setIsPossible(true);
+    setType(userType);
   }
 
   return (
@@ -52,24 +36,18 @@ export const WelcomePage = (props: Props) => {
           <LoginPatient />
         </Route>
         <Route path='/caregiver'>
-          <UserLogin onChange={onChange} type={'caregiver'} />
+          <UserLogin onChange={() => onChange('caregiver')} type={'caregiver'} />
         </Route>
         <Route path='/secretary'>
-          <UserLogin onChange={onChange} type={'secretary'} />
+          <UserLogin onChange={() => onChange('secretary')} type={'secretary'} />
         </Route>
         <Route path='/login'>
-          <UserLogin onChange={onChange} type={'patient'} />
+          <UserLogin onChange={() => onChange('patient')} type={'patient'} />
         </Route>
         {isPossible &&
-          <Route path='/crud/patient'>
-            <CrudPatient/>
+          <Route path='/crud'>
+            <CrudManager userType={type}/>
           </Route>}
-          <Route path='/crud/secretary'>
-            <CrudSecretary secretary={secretary}/>
-          </Route>
-          <Route path='/crud/caregiver'>
-            <CrudCaregiver caregiver={caregiver}/>
-          </Route>
       </Switch>
     </Router>
   );

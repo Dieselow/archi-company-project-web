@@ -10,25 +10,8 @@ import { titleButton } from '../../../utils/customButton/customButtonHelper';
 import { InformationPopUp } from '../secretaryInformationPopUp/secretaryInformationPopUp';
 import { EquipmentData, Equipment } from '../secretaryEquipmentData/secretaryEquipmentData';
 import { User } from '../userItem/userItem';
+import { Details, details } from '../../login/login';
 
-export type Secretary = {
-    firstname: string;
-    lastname: string;
-    adress: string;
-    phoneNumber: string;
-    email: string;
-    employmentdate: string;
-}
-
-
-const secretary: Secretary={
-    firstname: 'Ella',
-    lastname: 'Lopez',
-    adress: '779 Bourbon St',
-    phoneNumber: '45314528795',
-    email: 'Ellop@nola.us',
-    employmentdate: '10-10-1998',
-}
 const equipmentlist : Equipment[] = [
     {
         name : 'Scanner',
@@ -79,7 +62,6 @@ const ongoingtickets : Ticket[] = [
 ]
 
 type Props = {
-    secretary: Secretary;
 }
 
 const onClick = (variable: any) => {
@@ -101,12 +83,12 @@ export const CrudSecretary = (props: Props) => {
         setOpen(false);
     }
     return (<Box className={classes.box}>
-        <Banner onClick={onClick} textTypography={'Hello ' + props.secretary.firstname +'.'} textButton={'Log out' } />
+        <Banner onClick={onClick} textTypography={'Hello ' + details.firstName +'.'} textButton={'Log out' } />
 
         <Box className={classes.background}>
         <CustomButton text={'My info'} onClick={onClickCustom} style={titleButton}/>
             <Dialog open={open} onClose={handleClose}>
-                <InformationPopUp onClick={onClickCustom} secretary={secretary}/>
+                <InformationPopUp onClick={onClickCustom} secretary={details}/>
             </Dialog>
             <Box className={classes.content}>
                 <Box className={classes.users}>

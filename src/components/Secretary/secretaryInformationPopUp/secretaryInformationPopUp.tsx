@@ -8,15 +8,16 @@ import { CustomForm } from '../../customForm/customForm';
 import { subButton } from '../../../utils/customButton/customButtonHelper';
 import { formPopUp } from '../../../utils/customForm/customFormHelper';
 import { UserType } from '../../userLogin/userLogin';
-import { Secretary } from '../crudSecretary/crudSecretary';
 import { titleButton } from '../../../utils/customButton/customButtonHelper';
 import { SecretaryData } from '../secretaryData/secretaryData';
+import { Details, details } from '../../login/login';
+
 type Props = {
-    secretary: Secretary;
+    secretary: Details;
     onClick: (value: any) => void;
 }
 
-const getSecretaryData = (secretary: Secretary) => {
+const getSecretaryData = (secretary: Details) => {
 
 }
 
@@ -48,8 +49,8 @@ export const InformationPopUp = (props: Props) => {
     return (<Box className={classes.box}>
 
         <Typography className={classes.typography}>
-        First name: {props.secretary.firstname} <br/>
-        Last name: {props.secretary.lastname} <br/>
+        First name: {props.secretary.firstName} <br/>
+        Last name: {props.secretary.lastName} <br/>
         Email: {props.secretary.email} <br/>
         Phone Number: {props.secretary.phoneNumber} <br/>
         Employed since: {props.secretary.employmentdate}  <br/>

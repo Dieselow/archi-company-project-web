@@ -3,9 +3,8 @@ import { Button, Typography, Box } from '@material-ui/core';
 import { CustomForm } from '../../customForm/customForm';
 import { useStyles } from './secretaryData.style';
 import { CustomButton } from '../../customButton/customButton';
-import { button } from '../../../utils/customButton/customButtonHelper';
-import { Secretary } from '../crudSecretary/crudSecretary';
 import { formPopUp } from '../../../utils/customForm/customFormHelper';
+import { button } from '../../../utils/customButton/customButtonHelper';
 
 
 type Props = {
