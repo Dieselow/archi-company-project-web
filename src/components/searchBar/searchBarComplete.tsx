@@ -24,7 +24,6 @@ const SearchBarComplete = () => {
     const [isLoading, setLoading] = React.useState(true);
     function RenderResults () {
         if(filteredPosts.length > 0 && searchQuery != '' && !isLoading) {
-            console.log("Afficher valeurs : " + filteredPosts.length);
             return (
                 <div className={classes.dropdown}>
                     {filteredPosts.map((post) => (
@@ -49,7 +48,6 @@ const SearchBarComplete = () => {
     }).then((response: any) => {
         filteredPosts = response.data;
         setLoading(false);
-        console.log("Read " + filteredPosts.length);  
     });
 
     return (

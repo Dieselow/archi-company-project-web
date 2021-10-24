@@ -33,6 +33,8 @@ export type Details = {
     username: string;
     primaryDoctor?: string;
     employmentdate?: string;
+    licenceNumber? : string;
+    patients?: Details[],
 }
 export var bearerToken = '';
 export var details : Details = {
@@ -49,6 +51,8 @@ export var details : Details = {
     username: '',
     primaryDoctor: '',
     employmentdate: '',
+    licenceNumber: '',
+    patients : [],
 }
 
 export const Login = (props: Props) => {
