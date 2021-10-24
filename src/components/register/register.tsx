@@ -85,6 +85,8 @@ export const Register = (props: Props) => {
     }
 
     const onClick = () => {
+        console.log(getRegisterBody());
+        console.log(getRegister(props.type));
         axios.post(getRegister(props.type), getRegisterBody())
         .then((response: any) => {
             console.log(response);

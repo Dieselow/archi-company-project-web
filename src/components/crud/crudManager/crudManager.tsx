@@ -3,11 +3,10 @@ import { Box } from '@material-ui/core';
 import { useStyles } from './crudManager.style';
 import { UserType } from '../../userLogin/userLogin';
 import { CrudPatient } from '../crudPatient/crudPatient';
-import { Patient } from '../crudPatient/crudPatient';
+import { details } from '../../login/login';
 
 type Props = {
-    userType: UserType;
-    user: Patient;
+    userType: UserType;    
 }
 
 export const CustomForm = (props: Props) => {
@@ -16,7 +15,7 @@ export const CustomForm = (props: Props) => {
     const renderSwitch = () => {
         switch (props.userType) {
             case 'patient':
-                return <CrudPatient patient={props.user}/>
+                return <CrudPatient/>
                 break;
 
             case 'caregiver':

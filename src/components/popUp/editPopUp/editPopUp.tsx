@@ -24,10 +24,8 @@ export type ListForm = {
 
 export const EditPopUp = (props: Props) => {
     const [address, setAddres] = React.useState<string>('');
-    const [employment, setEmployment] = React.useState<string>('');
-    const [birth, setBirth] = React.useState<string>('');
-    const [iban, setIban] = React.useState<string>('');
-    const [salary, setSalary] = React.useState<string>('');
+    const [phone, setPhone] = React.useState<string>('');
+    const [email, setEmail] = React.useState<string>('');
     const styleProps = {
     }
 
@@ -38,25 +36,16 @@ export const EditPopUp = (props: Props) => {
         setAddres(date);
     }
 
-    const onChangeEmployment = (name: string) => {
-        console.log(name);
-        setEmployment(name);
+    const onChangePhone = (phone: string) => {
+        console.log(phone);
+        setPhone(phone);
     }
 
-    const onChangeBirth = (doctor: string) => {
-        console.log(doctor);
-        setBirth(doctor);
+    const onChangeEmail = (email: string) => {
+        console.log(email);
+        setEmail(email);
     }
-
-    const onChangeIban = (room: string) => {
-        console.log(room);
-        setIban(room);
-    }
-
-    const onChangeSalary = (salary: string) => {
-        console.log(salary);
-        setSalary(salary);
-    }
+    
     return (<Box className={classes.box}>
 
         <Typography className={classes.typography}>
@@ -65,20 +54,11 @@ export const EditPopUp = (props: Props) => {
 
         <CustomForm text={'Address'} style={formPopUp} onChange={onChangeAddress} formType={'textfield'} />
 
-        <CustomForm text={'Employment date'} style={formPopUp} onChange={onChangeEmployment} formType={'date'} />
-
-        <CustomForm text={'Birth date'} style={formPopUp} onChange={onChangeBirth} formType={'date'} />
-
-        <CustomForm text={'IBAN'} style={formPopUp} onChange={onChangeIban} formType={'textfield'}/>
-
-        <CustomForm text={'Salary'} style={formPopUp} onChange={onChangeSalary} formType={'textfield'}/>
+        <CustomForm text={'Phone number'} style={formPopUp} onChange={onChangePhone} formType={'textfield'} />
 
         <CustomButton text='Edit' onClick={() => props.onClick({
             address:address,
-            employment:employment,
-            birth:birth,
-            iban:iban,
-            salary:salary,
+            phone:phone,
         })} style={button} />
 
         <CustomButton text='Close' onClick={props.onClickClose} style={button} />

@@ -3,7 +3,7 @@ import { Box, Typography, TextField, Button } from '@material-ui/core';
 import { useStyles } from './login.style';
 import { CustomButton } from '../customButton/customButton';
 import { button } from '../../utils/customButton/customButtonHelper';
-import { api } from '../../utils/api/api';
+import { api, getDetails} from '../../utils/api/api';
 import axios from 'axios';
 import { CustomForm } from '../customForm/customForm';
 import { form } from '../../utils/customForm/customFormHelper';
@@ -14,8 +14,40 @@ type Props = {
     type: UserType;
     onChange: () => void;
 }
-
+export type Role = {
+    name: string;
+    autority: string;
+    id: number;
+}
+export type Details = {
+    address: string;
+    dateOfBirth: string;
+    email: string;
+    firstName: string;
+    healthFile: any;
+    id: number;
+    lastName: string;
+    password: string;
+    phoneNumber: string;
+    roles: Role[];
+    username: string;
+    primaryDoctor?: string;
+}
 export var bearerToken = '';
+export var details : Details = {
+    address: '',
+    dateOfBirth: '',
+    email: '',
+    firstName: '',
+    healthFile: '',
+    id : 0,
+    lastName: '',
+    password: '',
+    phoneNumber: '',
+    roles : [],
+    username: '',
+    primaryDoctor: '',
+}
 
 export const Login = (props: Props) => {
     const [email, setEmail] = React.useState<string>('');
@@ -34,11 +66,6 @@ export const Login = (props: Props) => {
             props.onChange();
             bearerToken = response.data.token;
             console.log(bearerToken);
-            switch (props.type) {
-                case 'patient':
-                    history.push('/crud/patient');
-                    break;
-            }
         }).catch((reason: any) => {
             alert(reason);
         }).then(() => {
@@ -46,13 +73,20 @@ export const Login = (props: Props) => {
                 headers: { Authorization: `Bearer ${bearerToken}` }
             });
             console.log(bearerToken);
-            axios.get(api.details,
+            axios.get(getDetails(props.type),
                 {
                     headers: {
                         Authorization: `Bearer ${bearerToken}`
                     }
                 }).then((response: any) => {
-                    console.log(response);
+                    details = response.data;
+                    details.password = password;
+                    console.log(details);
+                    switch (details.roles[0].name) {
+                        case 'PATIENT':
+                            history.push('/crud/patient');
+                            break;
+                    }
                 }).catch((reason: any) => {
                     console.log(reason);
                 })

@@ -7,17 +7,11 @@ import { AppointmentData, Appointment } from '../../appointmentData/appointmentD
 import { AppointmentPopUp } from '../../popUp/appointmentPopUp/appointmentPopUp';
 import { EditPopUp } from '../../popUp/editPopUp/editPopUp';
 import { useHistory } from 'react-router-dom';
-import { api } from '../../../utils/api/api';
-import axios from 'axios';
+import { api, getUpdate } from '../../../utils/api/api';
+import { bearerToken } from '../../login/login';
+import { Details, details } from '../../login/login';
 
-export type Patient = {
-    firstname: string;
-    lastname: string;
-    adress: string;
-    phoneNumber: string;
-    email: string;
-    id: number;
-}
+import axios from 'axios';
 
 const appointments: Appointment[] = [
     {
@@ -31,12 +25,12 @@ const appointments: Appointment[] = [
 ]
 
 type Props = {
-    patient: Patient
 }
 
 
 export const CrudPatient = (props: Props) => {
-    const [openAppointment, setOpenAppointment] = React.useState(false);
+    console.log(details);
+    console.log(details.firstName);
     const [openEdit, setEdit] = React.useState(false);
     const history = useHistory();
     const styleProps = {
@@ -45,27 +39,24 @@ export const CrudPatient = (props: Props) => {
 
     const onClickDelete = () => {
         console.log('Delete'); //TODO API DELETE CALL
-        axios.post(api.delete + props.patient.id.toString()).
-        then((response: any) => {
-            alert(props.patient.firstname + ' deleted');
-            console.log(response);
-            history.push('/');
-        }).catch((reason: any) => {
-            alert(reason);
-        });
+        console.log(details.id);
+        console.log(api.delete.patient + details.id.toString());
+        axios.delete(api.delete.patient + details.id.toString(),
+            {
+                headers: {
+                    Authorization: `Bearer ${bearerToken}`
+                }
+            }).
+            then((response: any) => {
+                alert(details.firstName + ' deleted');
+                console.log(response);
+                history.push('/');
+            }).catch((reason: any) => {
+                alert(reason);
+            });
     }
     const onClickLogOut = () => {
         history.push('/');
-    }
-    const onClickAppointment = () => {
-        setOpenAppointment(true);
-    }
-    const onClickAppointmentClose = () => {
-        setOpenAppointment(false);
-    }
-    const handleCloseAppointment = (value: Appointment) => {
-        console.log(value);
-        setOpenAppointment(false);
     }
 
     const onClickEdit = () => {
@@ -73,31 +64,69 @@ export const CrudPatient = (props: Props) => {
     }
     const onClickEditClose = () => {
         setEdit(false);
+
     }
     const handleCloseEdit = (value: any) => {
         console.log(value);
+        details.address = value.address;
+        details.phoneNumber = value.phone;
+        console.log(getUpdate('patient') + details.id.toString());
+        console.log(bearerToken);
+        console.log(
+            {
+                "id": details.id,
+                "username": details.username,
+                "firstName": details.firstName,
+                "lastName": details.lastName,
+                "password": details.password,
+                "email": details.email,
+                "dateOfBirth": details.dateOfBirth,
+                "address": details.address,
+                "phoneNumber": details.phoneNumber,
+                "primaryDoctor": details.primaryDoctor,
+                "roles": details.roles,
+            })
+        axios.put(getUpdate('patient') + details.id.toString(),
+            {
+                "id": details.id,
+                "username": details.username,
+                "firstName": details.firstName,
+                "lastName": details.lastName,
+                "password": details.password,
+                "email": details.email,
+                "dateOfBirth": details.dateOfBirth,
+                "address": details.address,
+                "phoneNumber": details.phoneNumber,
+                "primaryDoctor": details.primaryDoctor,
+                "roles": details.roles,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${bearerToken}`
+                }
+            }).
+            then((response: any) => {
+                alert(details.firstName + ' updated');
+                console.log(response);
+            }).catch((reason: any) => {
+                alert(reason);
+            });
+
         setEdit(false);
     }
 
     return (<Box className={classes.box}>
-        <Banner onClick={onClickLogOut} textTypography={'Hello ' + props.patient.firstname + '.'} textButton={'Log out'} />
+        <Banner onClick={onClickLogOut} textTypography={'Hello ' + details.firstName + '.'} textButton={'Log out'} />
 
         <Box className={classes.background}>
             {/* <CustomButton text={'My health file'} onClick={onClickCustom} style={titleButton}/> */}
             <Box className={classes.content}>
-                <Box className={classes.appointements}>
-                    <AppointmentData appointments={appointments} onClick={onClickAppointment} />
-                </Box>
                 <Box className={classes.personalData}>
-                    <PersonalData onClick={onClickEdit} patient={props.patient} />
+                    <PersonalData onClick={onClickEdit} patient={details} />
                 </Box>
             </Box>
         </Box>
         <Banner onClick={onClickDelete} textButton={'Delete account'} />
-
-        <Dialog open={openAppointment}>
-            <AppointmentPopUp onClick={handleCloseAppointment} onClickClose={onClickAppointmentClose} />
-        </Dialog>
 
         <Dialog open={openEdit}>
             <EditPopUp onClick={handleCloseEdit} onClickClose={onClickEditClose} />

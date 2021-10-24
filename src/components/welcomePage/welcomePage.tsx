@@ -6,16 +6,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { LoginPatient } from '../loginPatient/loginPatient';
 import { UserLogin } from '../userLogin/userLogin';
 import { CrudPatient } from '../crud/crudPatient/crudPatient';
-import { Patient } from '../crud/crudPatient/crudPatient';
-
-const patient: Patient = {
-  firstname: 'Toto',
-  lastname: 'Doe',
-  adress: '779 rue huard',
-  phoneNumber: '0999',
-  email: 'toto@gmail.com',
-  id: 1,
-}
 
 type Props = {
 }
@@ -48,7 +38,7 @@ export const WelcomePage = (props: Props) => {
         </Route>
         {isPossible &&
           <Route path='/crud/patient'>
-            <CrudPatient patient={patient} />
+            <CrudPatient/>
           </Route>}
       </Switch>
     </Router>
