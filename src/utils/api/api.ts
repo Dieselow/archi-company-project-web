@@ -26,7 +26,9 @@ export const api = {
         patient: base + '/patients/update/:id?id=',
         caregiver: base + '/caregivers/update/:id?id=',
         secretary: base + '/secretaries/update/:id?id=',
-    }
+    },
+    search : base + '/search/:request?request=',
+    getUserType : base + "/users/get/:token"
 
 }
 
