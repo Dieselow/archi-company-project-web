@@ -1,14 +1,11 @@
 import React from 'react';
 import { Button, Typography, Box } from '@material-ui/core';
 import { useStyles } from './ticketData.style';
-import { CustomButton } from '../customButton/customButton';
-import { TicketItem } from '../ticketItem/ticketItem';
-import { button } from '../../utils/customButton/customButtonHelper';
+import { CustomButton } from '../../customButton/customButton';
+import { button } from '../../../utils/customButton/customButtonHelper';
+import { Ticket, TicketItem } from '../ticketItem/ticketItem';
 
-export type Ticket = {
-    name: string;
-    data: string;
-}
+
 
 type Props = {
     tickets : Ticket[]

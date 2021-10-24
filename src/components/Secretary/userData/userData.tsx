@@ -3,25 +3,16 @@ import { Button, Typography, Box, Dialog, useScrollTrigger } from '@material-ui/
 import { useStyles } from './userData.style';
 import { Banner } from '../../banner/banner';
 import { CustomButton } from '../../customButton/customButton';
-import { TicketData, Ticket } from '../../ticketData/ticketData';
+import { TicketData } from '../ticketData/ticketData';
+import { Ticket } from '../ticketItem/ticketItem';
 import { AppointmentData, Appointment } from '../secretaryAppointmentData/secretaryAppointmentData';
 import { titleButton } from '../../../utils/customButton/customButtonHelper';
 import { AppointmentPopUp } from '../../appointmentPopUp/appointmentPopUp';
 import { InformationPopUp } from '../secretaryInformationPopUp/secretaryInformationPopUp';
 import { Secretary } from '../crudSecretary/crudSecretary';
 import { button } from '../../../utils/customButton/customButtonHelper';
-import { UserItem } from '../userItem/userItem';
+import { UserItem, User } from '../userItem/userItem';
 
-
-
-
-export type User= {
-    firstname: string;
-    lastname: string;
-    adress: string;
-    phoneNumber: string;
-    email: string;
-}
 
 const getAllUsers= {
 
@@ -56,7 +47,7 @@ const onClickCreate = () => {
     
     
         return (<Box className={classes.box}>
-            <Typography className={classes.typography}>User list</Typography>
+            <Typography className={classes.typography}>Patient list</Typography>
             <Box>
                 {props.users.map(x => <UserItem user={x}/>)}
             </Box>

@@ -5,11 +5,14 @@ import { CustomButton } from '../../customButton/customButton';
 import { button } from '../../../utils/customButton/customButtonHelper';
 
 export type User= {
-    firstname: string;
-    lastname: string;
-    adress: string;
-    phoneNumber: string;
-    email: string;
+    username: string,
+	firstName: string,
+	lastName: string,
+	password: string,
+	email: string,
+	dateOfBirth : string,
+	address: string,
+	phoneNumber: string,
 }
 
 type Props = {
@@ -30,8 +33,8 @@ export const UserItem = (props: Props) => {
 
     return (<Box className={classes.box}>
         <Typography className={classes.typography}>
-            {props.user.lastname}, 
-            {props.user.firstname}
+            {props.user.lastName}, 
+            {props.user.firstName}
         </Typography>
         <CustomButton text={'Edit'} onClick={onClickUpdate} style={button}/>
         <CustomButton text={'Delete'} onClick={onClickDelete} style={button}/>

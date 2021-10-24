@@ -3,8 +3,8 @@ import { Button, Typography, Box, Dialog } from '@material-ui/core';
 import { useStyles } from './crudSecretary.style';
 import { Banner } from '../../banner/banner';
 import { CustomButton } from '../../customButton/customButton';
-import { TicketData, Ticket } from '../../ticketData/ticketData';
-import { AppointmentData, Appointment } from '../secretaryAppointmentData/secretaryAppointmentData';
+import { TicketData } from '../ticketData/ticketData';
+import { Ticket } from '../ticketItem/ticketItem';
 import { UserData } from '../userData/userData';
 import { titleButton } from '../../../utils/customButton/customButtonHelper';
 import { AppointmentPopUp } from '../../appointmentPopUp/appointmentPopUp';
@@ -47,29 +47,35 @@ const equipmentlist : Equipment[] = [
 
 const usersrequests : User[] = [
     {
-    firstname: 'Jack',
-    lastname: 'Black',
-    adress: 'Rue d Austerlitz',
+    firstName: 'Jack',
+    lastName: 'Black',
+    address: 'Rue d Austerlitz',
     phoneNumber: '1234',
     email: 'a@a.a',
+    dateOfBirth: '11465156',
+    password: 'a',
+    username: 'a'
     },
     {
-        firstname: 'Jo',
-        lastname: 'White',
-        adress: 'Rue de l ecole',
+        firstName: 'Jo',
+        lastName: 'White',
+        address: 'Rue de l ecole',
         phoneNumber: '4321',
         email: 'b@b.b',
+        dateOfBirth: '09 04 1869',
+        password: 'b',
+        username: 'b'
     }
 ]
 
 const ongoingtickets : Ticket[] = [
     {
-        name : 'Order 10254',
-        data: '2 compresses, 5 ciseaux, 3 seringues',
+        requestDate : 'Order 10254',
+        consumables: '2 compresses, 5 ciseaux, 3 seringues',
     },
     {
-        name : 'Order 2118',
-        data: '10 dolipranes',
+        requestDate : 'Order 21181',
+        consumables: '10 dolipranes',
     }
 ]
 

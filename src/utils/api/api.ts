@@ -11,16 +11,37 @@ export const api = {
     },
     login: base + '/auth/login',
     welcome: base + '/welcome',
-    deleteEquipment: base + '/rooms/equipments/delete/:id?id=',
-    addEquipment: base + '/rooms/equipments/add/:id?id=',
+    Equipment: base + '/rooms/equipments/',
+    Consumable: base+ '/consumable',
+    healthFile: base + '/healthfile/'
+
+}
+
+export const CreateHealthFile= (healthFile: Equipment) =>{
+    return api.healthFile+'update/:id?id='+healthFile.id;
+}
+
+export const UpdateHealthFile= (healthFile: Equipment) =>{
+    return api.healthFile+'create/:id?id='+healthFile.id;
+}
+export const DeleteHealthFile= (healthFile: Equipment) =>{
+    return api.healthFile+'delete/:id?id='+healthFile.id;
+}
+
+export const DeleteConsumableId= (consumable: Equipment) =>{
+    return api.Consumable+'/delete/:id?id='+consumable.id;
+}
+
+export const AddConsumableId= (consumable: Equipment) =>{
+    return api.Consumable+consumable.id;
 }
 
 export const deleteEquipmentId= (equipment: Equipment) =>{
-    return api.deleteEquipment+equipment.id;
+    return api.Equipment+'delete/:id?id='+equipment.id;
 }
 
 export const addEquipmentId= (equippment: Equipment) =>{
-    return api.addEquipment+equippment.id;
+    return api.Equipment+'add/:id?id='+equippment.id;
 }
 
 

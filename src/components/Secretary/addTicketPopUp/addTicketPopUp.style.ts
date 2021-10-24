@@ -6,7 +6,7 @@ export const useStyles = makeStyles(thme =>
         alignItems: 'center',
         justifyContent: 'center',
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         margin: 10,
         backgroundColor : '#037682',
         borderRadius: 10
