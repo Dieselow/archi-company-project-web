@@ -89,11 +89,11 @@ export const ConsumableItem = (props: Props) => {
         <Typography className={classes.typography}>
             Treshold: {props.consumable.threshold}
         </Typography>
-        <CustomButton text={'Edit'} onClick={onClickOpenUpdate} style={button}/>
+         <CustomButton text={'Edit'} onClick={onClickOpenUpdate} style={button}/>
             <Dialog open={open} onClose={handleClose}>
                 <EditConsumablePopUp onClick={onClickUpdate} />
-            </Dialog>
-        <CustomButton text={'Delete'} onClick={onClickDelete} style={button}/>
+            </Dialog> 
+         <CustomButton text={'Delete'} onClick={onClickDelete} style={button}/> 
 
     </Box>
     );

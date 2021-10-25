@@ -18,8 +18,8 @@ type Props = {
 
     
     export const AddConsumablePopUp = (props: Props) => {
-        const [installationdate, setInstallationDate] = React.useState<string>('');
-        const [name, setName] = React.useState<string>('');
+        const [quantity, setQuantity] = React.useState<string>('');
+        const [treshold, setTreshold] = React.useState<string>('');
         const [id, setId] = React.useState<string>('');
         
         const styleProps = {
@@ -32,9 +32,9 @@ type Props = {
     
         const classes = useStyles(styleProps);
     
-        const onChangeName = (name: string) => {
-            console.log(name);
-            setName(name);
+        const onChangeQuantity = (quantity: string) => {
+            console.log(quantity);
+            setQuantity(quantity);
         }
 
         const onChangeId = (Id: string) => {
@@ -42,9 +42,9 @@ type Props = {
             setId(Id);
         }
     
-        const onChangeInstallationData = (installationDate: string) => {
-            console.log(installationDate);
-            setInstallationDate(installationDate);
+        const onChangeTreshold = (treshold: string) => {
+            console.log(treshold);
+            setTreshold(treshold);
         }
 
         
@@ -52,20 +52,22 @@ type Props = {
         return (<Box className={classes.box}>
     
             <Typography className={classes.typography}>
-               Add an equipment:
+               Add a consumable:
             </Typography>
     
-            <CustomForm text={'Name'} style={formPopUp} onChange={onChangeName} formType={'textfield'} />
+            <CustomForm text={'Quantity'} style={formPopUp} onChange={onChangeQuantity} formType={'textfield'} />
 
-            <CustomForm text={'Enter the installation date'} style={formPopUp} onChange={onChangeInstallationData} formType={'textfield'} />
+            <CustomForm text={'Treshold'} style={formPopUp} onChange={onChangeTreshold} formType={'textfield'} />
 
             <CustomForm text={'Enter the Id'} style={formPopUp} onChange={onChangeId} formType={'textfield'} />
     
             <CustomButton text='Create' onClick={() => props.onClick(
                 {
-                    name: name,
-                    installationdate: installationdate,
-                    id: id,
+                    quantity: quantity,
+	                threshold: treshold,
+	                consumableType: {
+	                    id: id
+	                }
                 }
             )} style={button} />
         </Box>
