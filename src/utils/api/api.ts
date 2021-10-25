@@ -9,6 +9,8 @@ export const api = {
         caregiver: base + '/caregivers/auth/register',
         secretary: base + '/secretaries/auth/register',
     },
+    doctorPatient : base + '/view/patients',
+    patients: base + '/patients',
     login: base + '/auth/login',
     welcome: base + '/welcome',
     Rooms: base + '/rooms',
