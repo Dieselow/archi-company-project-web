@@ -70,8 +70,8 @@ export const UserItem = (props: Props) => {
                 }).catch((reason: any) => {
                     console.log(reason);
                 });
-
     }
+    
     const classes = useStyles(styleProps);
 
     return (<Box className={classes.box}>
@@ -83,7 +83,6 @@ export const UserItem = (props: Props) => {
             <Dialog open={open} onClose={handleClose}>
                 <EditUserPopUp onClick={onClickUpdate} />
             </Dialog>
-
         <CustomButton text={'Delete'} onClick={onClickDelete} style={button}/>
     </Box>
     );

@@ -36,10 +36,7 @@ export const HealthFilePopUp = (props: Props) => {
     const styleProps = {
     }
 
-
-
     const classes = useStyles(styleProps);
-
 
     const onChangeName = (name: string) => {
         console.log(name);

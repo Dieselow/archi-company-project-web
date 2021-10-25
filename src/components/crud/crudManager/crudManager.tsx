@@ -14,6 +14,7 @@ type Props = {
 export const CrudManager = (props: Props) => {
     const classes = useStyles();
     const renderSwitch = () => {
+        console.log(props.userType);
         switch (props.userType) {
             case 'patient':
                 return <CrudPatient />
