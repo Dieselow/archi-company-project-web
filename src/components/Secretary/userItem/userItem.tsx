@@ -1,11 +1,12 @@
 import React from 'react';
-import { Button, Typography, Box } from '@material-ui/core';
+import { Button, Typography, Box, Dialog } from '@material-ui/core';
 import { useStyles } from './userItem.style';
 import { CustomButton } from '../../customButton/customButton';
 import { button } from '../../../utils/customButton/customButtonHelper';
 import { api, getDetails} from '../../../utils/api/api';
 import axios from 'axios';
 import { bearerToken } from '../../login/login';
+import { EditUserPopUp } from '../editUserPopUp/editUserPopUp';
 
 export type User= {
     username: string,
@@ -26,9 +27,7 @@ const onClickDelete = () => {
 
 }
 
-const onClickUpdate = () => {
 
-}
 
 var details : User = {
     address: '',
@@ -45,8 +44,20 @@ var userlist : User[];
 
 
 export const UserItem = (props: Props) => {
+    const [open, setOpen] = React.useState(false);
     const styleProps = {
     }
+
+    const onClickUpdate = () => {
+        console.log('on click !');
+        setOpen(true);
+    }
+
+    const handleClose = (value: string) => {
+        console.log(value);
+        setOpen(false);
+    }
+
     const getAllPatients = () => {
         axios.get(api.getpatient,
                 {
@@ -69,6 +80,10 @@ export const UserItem = (props: Props) => {
             {props.user.firstName}
         </Typography>
         <CustomButton text={'Edit'} onClick={onClickUpdate} style={button}/>
+            <Dialog open={open} onClose={handleClose}>
+                <EditUserPopUp onClick={onClickUpdate} />
+            </Dialog>
+
         <CustomButton text={'Delete'} onClick={onClickDelete} style={button}/>
     </Box>
     );
