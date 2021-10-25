@@ -35,6 +35,7 @@ export type Details = {
     employmentdate?: string;
 }
 export var bearerToken = '';
+export var patients: Details[] = [];
 export var details : Details = {
     address: '',
     dateOfBirth: '',

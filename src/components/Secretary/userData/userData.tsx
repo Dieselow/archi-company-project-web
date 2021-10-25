@@ -6,21 +6,6 @@ import { Details, bearerToken } from '../../login/login';
 import { api } from '../../../utils/api/api';
 import axios from 'axios';
 
-var patients: Details[] = [];
-
-const getAllUsers = () => {
-    axios.get(api.patients, {
-        headers: {
-            Authorization: `Bearer ${bearerToken}`
-        }
-    }).then((response: any) => {
-        console.log(response.data);
-        patients = response.data;
-    }).catch((reason: any) => {
-        console.log(reason);
-    })
-}
-
 type Props = {
 }
 
@@ -31,16 +16,29 @@ const onClick = (variable: any) => {
 const onClickCreate = () => {
 
 }
-getAllUsers();
-
 
 export const UserData = (props: Props) => {
-
+    const [patients, setPatients] = React.useState<Details[]>([]);
     const [open, setOpen] = React.useState(false);
     const styleProps = {
     }
     const classes = useStyles(styleProps);
-    console.log(patients);
+
+    const getAllUsers = () => {
+        console.log('get all users');
+        axios.get(api.patients, {
+            headers: {
+                Authorization: `Bearer ${bearerToken}`
+            }
+        }).then((response: any) => {
+            console.log(response.data);
+            setPatients(response.data);
+            console.log(patients);
+            console.log('working')
+        }).catch((reason: any) => {
+            console.log(reason);
+        })
+    }
     const onClickCustom = () => {
         console.log('on click !');
         setOpen(true);
@@ -48,6 +46,10 @@ export const UserData = (props: Props) => {
     const handleClose = (value: string) => {
         console.log(value);
         setOpen(false);
+    }
+    console.log(patients);
+    if (patients.length === 0){
+        getAllUsers();
     }
 
     return (<Box className={classes.box}>

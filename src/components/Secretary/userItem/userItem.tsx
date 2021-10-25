@@ -32,6 +32,7 @@ var userlist : User[];
 
 
 export const UserItem = (props: Props) => {
+    console.log('UserItem')
     const [open, setOpen] = React.useState(false);
     const styleProps = {
     }
@@ -45,7 +46,6 @@ export const UserItem = (props: Props) => {
         console.log(value);
         setOpen(false);
     }
-
 
     const onClickUpdate = (value: any) => {
         details.address=value.address;

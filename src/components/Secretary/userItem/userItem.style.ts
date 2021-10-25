@@ -17,7 +17,6 @@ export const useStyles = makeStyles(thme =>
         margin: 10,
         fontFamily: 'Monaco',
         fontWeight: 'bold',
-        maxWidth: 100,
     },
     titleTypography: {
         fontSize: 30,
