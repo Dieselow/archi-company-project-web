@@ -11,18 +11,7 @@ import { InformationPopUp } from '../secretaryInformationPopUp/secretaryInformat
 import { EquipmentData, Equipment } from '../secretaryEquipmentData/secretaryEquipmentData';
 import { Details, details } from '../../login/login';
 
-const equipmentlist : Equipment[] = [
-    {
-        name : 'Scanner',
-        installationDate: '10-10-2018',
-        id: '1',
-    },
-    {
-        name : 'Brancard',
-        installationDate: '01-02-2021',
-        id:'2',
-    }
-]
+const equipmentlist : Equipment[] = []
 
 const ongoingtickets : Ticket[] = [
     {

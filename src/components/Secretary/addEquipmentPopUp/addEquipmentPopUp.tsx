@@ -4,7 +4,7 @@ import { CustomForm } from '../../customForm/customForm';
 import { useStyles } from './addEquipmentPopUp.style';
 import { CustomButton } from '../../customButton/customButton';
 import { button } from '../../../utils/customButton/customButtonHelper';
-import { Equipment } from '../secretaryEquipmentItem/secretaryEquipmentItem';
+import { Equipment } from '../secretaryEquipmentData/secretaryEquipmentData';
 import { formPopUp } from '../../../utils/customForm/customFormHelper';
 
 

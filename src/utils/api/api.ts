@@ -1,5 +1,4 @@
 import { UserType } from "../../components/userLogin/userLogin";
-import { Equipment } from '../../components/Secretary/secretaryEquipmentItem/secretaryEquipmentItem';
 
 const base = 'http://localhost:3001/api/v1';
 
