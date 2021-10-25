@@ -15,6 +15,9 @@ export const api = {
     welcome: base + '/welcome',
     Rooms: base + '/rooms',
     getpatient: base + '/patients',
+    rooms : {
+        rooms : base + '/rooms',
+    },
     delete: {
         patient: base + '/patients/delete/:id?id=',
     },

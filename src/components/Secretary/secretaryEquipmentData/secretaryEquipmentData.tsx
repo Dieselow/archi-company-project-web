@@ -9,8 +9,6 @@ import { api, getDetails } from '../../../utils/api/api';
 import axios from 'axios';
 import { bearerToken, Details, details } from '../../login/login';
 
-
-
 export type Equipment = {
     equipmentType:
     {
@@ -21,7 +19,7 @@ export type Equipment = {
 }
 
 var equipment: Equipment = {
-    equipmentType : {
+    equipmentType: {
         name: '',
         id: 0
     },
@@ -48,8 +46,21 @@ const getAllEquipments = () => {
         });
 }
 
+const gellAllRooms = () => {
+    console.log('rooms');
+    axios.get(api.rooms.rooms,
+        {
+            headers: {
+                Authorization: `Bearer ${bearerToken}`
+            }
+        }).then((response: any) => {
+            console.log(response);
+        }).catch((reason: any) => {
+            console.log(reason);
+        });
+}
 
-
+gellAllRooms();
 
 export const EquipmentData = (props: Props) => {
     const [open, setOpen] = React.useState(false);
@@ -57,11 +68,10 @@ export const EquipmentData = (props: Props) => {
     const onClickAdd = () => {
         console.log('on click')
         setOpen(true);
-
     }
 
     const postCreate = (equipment: Equipment) => {
-        axios.post(api.equipment.create+equipment.equipmentType.id, equipment,
+        axios.post(api.equipment.create + equipment.equipmentType.id, equipment,
             {
                 headers: {
                     Authorization: `Bearer ${bearerToken}`
