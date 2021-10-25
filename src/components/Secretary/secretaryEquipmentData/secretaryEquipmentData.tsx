@@ -10,10 +10,11 @@ import axios from 'axios';
 import { bearerToken, Details, details } from '../../login/login';
 
 export type Equipment = {
+    id?: number
     equipmentType:
     {
         name: string,
-        id: number
+        id?: number
     },
     installationDate: string
 }
@@ -70,8 +71,8 @@ export const EquipmentData = (props: Props) => {
         setOpen(true);
     }
 
-    const postCreate = (equipment: Equipment) => {
-        axios.post(api.equipment.create + equipment.equipmentType.id, equipment,
+    const postCreate = (equipment: Equipment, roomId: String) => {
+        axios.post(api.equipment.create + roomId, equipment,
             {
                 headers: {
                     Authorization: `Bearer ${bearerToken}`
@@ -87,9 +88,9 @@ export const EquipmentData = (props: Props) => {
         console.log(value);
         console.log(equipment);
         equipment.equipmentType.name = value.equipmentType.name;
-        equipment.equipmentType.id = value.equipmentType.id;
+        equipment.equipmentType.id = undefined;
         equipment.installationDate = value.installationDate;
-        postCreate(equipment);
+        postCreate(equipment,value.equipmentType.id);
         console.log('Created equipment');
         setOpen(true);
     }

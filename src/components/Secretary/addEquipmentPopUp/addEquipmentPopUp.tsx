@@ -66,7 +66,7 @@ type Props = {
 
             <CustomForm text={'Enter the installation date'} style={formPopUp} onChange={onChangeInstallationData} formType={'textfield'} />
 
-            <CustomForm text={'Enter the Id'} style={formPopUp} onChange={onChangeId} formType={'textfield'} />
+            <CustomForm text={'Enter the Room Id'} style={formPopUp} onChange={onChangeId} formType={'textfield'} />
     
             <CustomButton text='Create' onClick={() => props.onClick(
                 {

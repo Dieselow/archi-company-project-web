@@ -36,8 +36,10 @@ export const EquipmentItem = (props: Props) => {
     const onClickDelete = () => {
         console.log('Delete'); 
         console.log(props.equipment.equipmentType.id);
-        console.log(api.equipment.delete + props.equipment.equipmentType.id.toString());
-        axios.delete(api.equipment.delete + props.equipment.equipmentType.id.toString(),
+        // @ts-ignore
+        console.log(api.equipment.delete + props.equipment.id.toString());
+        // @ts-ignore
+        axios.delete(api.equipment.delete + props.equipment.id.toString(),
             {
                 headers: {
                     Authorization: `Bearer ${bearerToken}`
@@ -57,6 +59,7 @@ export const EquipmentItem = (props: Props) => {
         props.equipment.installationDate=date.toString();
 
     }
+
     return (<Box className={classes.box}>
         <Typography className={classes.typography}>
             {props.equipment.equipmentType.name}, Installed on:
