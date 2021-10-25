@@ -13,9 +13,6 @@ type Props = {
     equipment: Equipment
 }
 
-const onClickDelete = () => {
-
-}
 
 let date: Date = new Date();
 
@@ -34,6 +31,24 @@ export const EquipmentItem = (props: Props) => {
                 }).catch((reason: any) => {
                     console.log(reason);
                 });
+    }
+
+    const onClickDelete = () => {
+        console.log('Delete'); 
+        console.log(props.equipment.equipmentType.id);
+        console.log(api.equipment.delete + props.equipment.equipmentType.id.toString());
+        axios.delete(api.equipment.delete + props.equipment.equipmentType.id.toString(),
+            {
+                headers: {
+                    Authorization: `Bearer ${bearerToken}`
+                }
+            }).
+            then((response: any) => {
+                alert(details.firstName + ' deleted');
+                console.log(response);
+            }).catch((reason: any) => {
+                alert(reason);
+            });
     }
 
 

@@ -42,7 +42,7 @@ export const EditUserPopUp = (props: Props) => {
                         Authorization: `Bearer ${bearerToken}`
                     }
                 }).then((response: any) => {
-                    console.log('Updated at: '+response.data.Updated);
+                    console.log('Updated at: '+response.data);
                 }).catch((reason: any) => {
                     console.log(reason);
                 });
@@ -62,7 +62,6 @@ export const EditUserPopUp = (props: Props) => {
                 {
                     address: address,
                     primaryDoctor: primaryDoctor,
-                    
                 }
             )} style={button} />
         </Box>

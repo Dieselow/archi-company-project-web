@@ -19,6 +19,8 @@ name: string,
 installationDate:Date
 }
 
+var equipment: Equipment
+
 var equipments : Equipment[]
 
 type Props = { equipments: Equipment[]
@@ -39,14 +41,36 @@ const getAllEquipments = () => {
 }
 
 
+
+
 export const EquipmentData = (props: Props) => {
     const [open, setOpen] = React.useState(false);
 
-    const onClickAdd = (value: any) => {
-        console.log(value)
+    const onClickAdd = () => {
+        console.log('on click')
+        setOpen(true);
         
     }
-    const onClickCreate = () => {
+
+    const postCreate= (equipment: Equipment) => {
+        axios.post(api.equipment.create, equipment,
+            {
+                headers: {
+                    Authorization: `Bearer ${bearerToken}`
+                }
+            }).then((response: any) => {
+                console.log('Created at: '+response.data);
+            }).catch((reason: any) => {
+                console.log(reason);
+            });
+    }
+
+    const onClickCreate = (value: any) => {
+        equipment.equipmentType.name=value.equipmentType.name;
+        equipment.equipmentType.id=value.equipmentType.id;
+        equipment.installationDate=value.installationDate;
+        postCreate(equipment);
+        console.log('Created equipment');
         setOpen(true);
     }
     const handleClose = (value: string) => {
@@ -62,9 +86,9 @@ export const EquipmentData = (props: Props) => {
         <Typography className={classes.typography}>Equipment List</Typography>
         
         <Box>
-        <CustomButton text={'Add Equipment'} onClick={onClickCreate} style={button}/>
+        <CustomButton text={'Add Equipment'} onClick={onClickAdd} style={button}/>
         <Dialog open={open} onClose={handleClose}>
-                <AddEquipmentPopUp onClick={onClickAdd} />
+                <AddEquipmentPopUp onClick={onClickCreate} />
             </Dialog>
             {equipments.map(x => <EquipmentItem equipment={x}/>)}
         </Box>
