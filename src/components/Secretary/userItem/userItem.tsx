@@ -54,7 +54,7 @@ export const UserItem = (props: Props) => {
 
 
     const onClickDelete = () => {
-        console.log('Delete'); //TODO API DELETE CALL
+        console.log('Delete'); 
         console.log(details.id);
         console.log(api.delete.patient + details.id.toString());
         axios.delete(api.delete.patient + details.id.toString(),
