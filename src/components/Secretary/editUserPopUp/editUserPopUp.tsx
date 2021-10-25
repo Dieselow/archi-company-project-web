@@ -9,10 +9,12 @@ import { api, getDetails} from '../../../utils/api/api';
 import axios from 'axios';
 import { bearerToken, Details, details } from '../../login/login';
 import { User } from '../userItem/userItem';
+import { ListForm } from '../../popUp/appointmentPopUp/appointmentPopUp';
 
 
 type Props = {
     onClick: (value: any) => void;
+    list:ListForm[];
 }
 
 export {}
@@ -56,7 +58,7 @@ export const EditUserPopUp = (props: Props) => {
     
             <CustomForm text={'Address'} style={formPopUp} onChange={onChangeAddress} formType={'textfield'} />
 
-            <CustomForm text={'Primary Doctor'} style={formPopUp} onChange={onChangePrimaryDoctor} formType={'list'} />
+            <CustomForm text={'Primary Doctor'} style={formPopUp} onChange={onChangePrimaryDoctor} formType={'list'} list={props.list}/>
     
             <CustomButton text='Create' onClick={() => props.onClick(
                 {

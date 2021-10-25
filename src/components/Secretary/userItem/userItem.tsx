@@ -7,6 +7,7 @@ import { api, getDetails} from '../../../utils/api/api';
 import axios from 'axios';
 import { bearerToken, Details, details } from '../../login/login';
 import { EditUserPopUp } from '../editUserPopUp/editUserPopUp';
+import { ListForm } from '../../popUp/appointmentPopUp/appointmentPopUp';
 
 export type User= {
     username: string,
@@ -20,12 +21,13 @@ export type User= {
 }
 
 type Props = {
-    user: User
+    user: User,
+    list: ListForm[]
 }
 
-
-
 var userlist : User[];
+
+
 
 
 export const UserItem = (props: Props) => {
@@ -71,20 +73,6 @@ export const UserItem = (props: Props) => {
             });
     }
 
-    const getAllPatients = () => {
-        axios.get(api.getpatient,
-                {
-                    headers: {
-                        Authorization: `Bearer ${bearerToken}`
-                    }
-                }).then((response: any) => {
-                    userlist = response.data;
-                    console.log(details);
-                }).catch((reason: any) => {
-                    console.log(reason);
-                });
-    }
-
     const postUpdate= (patient: Details) => {
         axios.put(api.update.patient+details.id, patient,
             {
@@ -107,7 +95,7 @@ export const UserItem = (props: Props) => {
         </Typography>
         <CustomButton text={'Edit'} onClick={onClickOpenUpdate} style={button}/>
             <Dialog open={open} onClose={handleClose}>
-                <EditUserPopUp onClick={onClickUpdate} />
+                <EditUserPopUp list={props.list} onClick={onClickUpdate} />
             </Dialog>
         <CustomButton text={'Delete'} onClick={onClickDelete} style={button}/>
     </Box>
