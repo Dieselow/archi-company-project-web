@@ -6,11 +6,14 @@ import { PersonalData } from '../../personalData/personalData';
 import { AppointmentData, Appointment } from '../../appointmentData/appointmentData';
 import { AppointmentPopUp } from '../../popUp/appointmentPopUp/appointmentPopUp';
 import { EditPopUp } from '../../popUp/editPopUp/editPopUp';
+import { HealthFilePopUp } from '../../popUp/healthFilePopUp/healthFilePopUp';
 import { useHistory } from 'react-router-dom';
 import { api, getUpdate } from '../../../utils/api/api';
 import { bearerToken } from '../../login/login';
 import { Details, details } from '../../login/login';
-
+import { CustomButton } from '../../customButton/customButton';
+import { titleButton } from '../../../utils/customButton/customButtonHelper';
+import { HealthFile } from '../../popUp/healthFilePopUp/healthFilePopUp';
 import axios from 'axios';
 
 const appointments: Appointment[] = [
@@ -32,6 +35,7 @@ export const CrudPatient = (props: Props) => {
     console.log(details);
     console.log(details.firstName);
     const [openEdit, setEdit] = React.useState(false);
+    const [openHealthFile, setOpenHealthFile] = React.useState(false);
     const history = useHistory();
     const styleProps = {
     }
@@ -64,7 +68,12 @@ export const CrudPatient = (props: Props) => {
     }
     const onClickEditClose = () => {
         setEdit(false);
-
+    }
+    const onClickHealthFileClose = () => {
+        setOpenHealthFile(false);
+    }
+    const onClickHealthFile = () => {
+        setOpenHealthFile(true);
     }
     const handleCloseEdit = (value: any) => {
         console.log(value);
@@ -119,17 +128,20 @@ export const CrudPatient = (props: Props) => {
         <Banner onClick={onClickLogOut} textTypography={'Hello ' + details.firstName + '.'} textButton={'Log out'} />
 
         <Box className={classes.background}>
-            {/* <CustomButton text={'My health file'} onClick={onClickCustom} style={titleButton}/> */}
+            <CustomButton text={'My health file'} onClick={onClickHealthFile} style={titleButton} />
             <Box className={classes.content}>
                 <Box className={classes.personalData}>
                     <PersonalData onClick={onClickEdit} patient={details} />
                 </Box>
             </Box>
         </Box>
-        <Banner onClick={onClickDelete} textButton={'Delete account'} />
 
         <Dialog open={openEdit}>
             <EditPopUp onClick={handleCloseEdit} onClickClose={onClickEditClose} />
+        </Dialog>
+
+        <Dialog open={openHealthFile}>
+            <HealthFilePopUp onClickClose={onClickHealthFileClose} />
         </Dialog>
     </Box>
     );
