@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Box, Typography, TextField, Button, Switch } from '@material-ui/core';
 import { Register } from '../register/register';
-import { bearerToken, Details, Login, details } from '../login/login';
+import { bearerToken, Details, Login } from '../login/login';
 import { CustomButton } from '../customButton/customButton';
 import { subButton } from '../../utils/customButton/customButtonHelper';
 import { UserType } from '../userLogin/userLogin';
-import { useStyles } from './userinfo.style';
+import { useStyles } from './roomInfo.style';
 import { Banner } from '../banner/banner';
 import axios from 'axios';
 import { api } from '../../utils/api/api';
@@ -16,22 +16,35 @@ import { useHistory } from 'react-router-dom';
 
 
 type Props = {
-    userType : UserType;
+}
+type EquipmentType = {
+    id : number,
+    name : string,
+}
+
+type Equipment = {
+    id : number,
+    installationDate : Date,
+    equipmentType : EquipmentType
+}
+
+type Room = {
+    id : number,
+    name: string,
+    equipments : Array<Equipment>
 }
 
 
 
-    
 
 
 
 
-export const UserInfo = (props: Props) => {
+export const RoomInfo = (props: Props) => {
 
     const styleProps = {
     }
     const classes = useStyles(styleProps);
-
     const [bearerType, setBearerType] = React.useState('');
 
     let history = useHistory();
@@ -48,19 +61,10 @@ export const UserInfo = (props: Props) => {
         setBearerType(response.data);
     });
 
-    
-    const [infos, setInfos] = React.useState<Details>({
-        firstName : "loading",
-        address: '',
-        dateOfBirth: '',
-        email: '',
-        healthFile: '',
+    const [infos, setInfos] = React.useState<Room>({
         id : 0,
-        lastName: '',
-        password: '',
-        phoneNumber: '',
-        roles : [],
-        username: ''});
+        name: 'Loading',
+        equipments : []});
 
     const [fetched, setFetched] = React.useState(false);
     
@@ -76,39 +80,26 @@ export const UserInfo = (props: Props) => {
         }).then((response: any) => {
             setFetched(true);
             setInfos(response.data);
-            console.log("Read " +infos.firstName);
+            console.log("Read " +infos.name);
         });
-        
     }
     console.log("CREATE");
-    console.log("created " +infos.firstName);
-    
-    function RenderAdditionalInfo() {
-        switch(props.userType){
-            case 'caregiver':
-                return (<div><Typography className={classes.typography}>
-                            licenceNumber : {infos.licenceNumber}
-                        </Typography>
-                        {infos.patients != null ? infos.patients.map(patient => 
-                        (<Typography className={classes.typography}>
-                            Patient : {patient.firstName + " " + patient.lastName}
-                         </Typography>)) : null}
-                        </div>); 
-            default:
-                return null;
-
-        }
-    }
+    console.log("created " +infos.name);
 
     return (
         <Box className={classes.box}>
-        <Banner onClick={HandleRoute} textTypography={'Info from ' + infos.firstName + " " + infos.lastName + '.'} textButton={'Main Menu' } searchBar={true} />
+        <Banner onClick={HandleRoute} textTypography={'Info from ' + infos.name + '.'} textButton={'Main Menu' } searchBar={true} />
 
         <Box className={classes.background}>
             <Box className={classes.content}>
                 <Box className={classes.personalData}>
-                    <PersonalData patient={infos} />
-                    {RenderAdditionalInfo()}
+                        <Typography className={classes.typography}>
+                           Equipments
+                        </Typography>
+                        {infos.equipments != null ? infos.equipments.map(equipment => 
+                        (<Typography className={classes.typography}>
+                            Equipement : {equipment.equipmentType.name + " Installed on " + equipment.installationDate.toString()}
+                         </Typography>)) : null}
                 </Box>
             </Box>
         </Box>

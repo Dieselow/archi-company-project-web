@@ -11,6 +11,7 @@ import { Caregiver, CrudCaregiver } from '../Caregiver/crudCaregiver/crudCaregiv
 import { CrudSecretary } from '../Secretary/crudSecretary/crudSecretary';
 import { UserInfo } from '../userInfo/userInfo';
 import { updateFunctionDeclaration } from 'typescript';
+import { RoomInfo } from '../roomInfo/roomInfo';
 
 
 const onChange=() => {
@@ -39,6 +40,7 @@ export const WelcomePage = (props: Props) => {
           <UserInfo userType ='caregiver' />
         </Route>
         <Route path='/patient/view/:id' render={(props) => <UserInfo userType ='patient' key={Math.random()} />}/>
+        <Route path='/room/view/:id' render={(props) => <RoomInfo key={Math.random()} />}/>
         <Route path='/secretary/view/:id' render={(props) => <UserInfo userType ='secretary' key={Math.random()} />}/>
         <Route path='/caregiver/view/:id' render={(props) => <UserInfo userType ='caregiver' key={Math.random()} />}/>
         <Route exact path='/'>
