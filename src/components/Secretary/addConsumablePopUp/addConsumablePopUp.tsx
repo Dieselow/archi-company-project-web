@@ -47,18 +47,7 @@ type Props = {
             setInstallationDate(installationDate);
         }
 
-        const postCreate= (consumable: Consumable) => {
-            axios.post(api.consumable.create+ consumable.consumableType.id, consumable,
-                {
-                    headers: {
-                        Authorization: `Bearer ${bearerToken}`
-                    }
-                }).then((response: any) => {
-                    console.log('Created at: '+response.data);
-                }).catch((reason: any) => {
-                    console.log(reason);
-                });
-        }
+        
     
         return (<Box className={classes.box}>
     

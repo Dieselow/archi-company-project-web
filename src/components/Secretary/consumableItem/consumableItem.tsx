@@ -9,10 +9,10 @@ import { bearerToken, Details, details } from '../../login/login';
 import { EditConsumablePopUp } from '../editConsumablePopUp/editConsumablePopUp';
 
 export type Consumable = {
-	quantity: number,
-	threshold: number,
+	quantity: string,
+	threshold: string,
 	consumableType: {
-	id: number
+	id: string
 	}
 }
 

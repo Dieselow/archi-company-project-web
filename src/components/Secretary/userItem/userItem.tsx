@@ -5,7 +5,7 @@ import { CustomButton } from '../../customButton/customButton';
 import { button } from '../../../utils/customButton/customButtonHelper';
 import { api, getDetails} from '../../../utils/api/api';
 import axios from 'axios';
-import { bearerToken, Details, details, patients } from '../../login/login';
+import { bearerToken, Details, details } from '../../login/login';
 import { EditUserPopUp } from '../editUserPopUp/editUserPopUp';
 import { ListForm } from '../../popUp/appointmentPopUp/appointmentPopUp';
 
