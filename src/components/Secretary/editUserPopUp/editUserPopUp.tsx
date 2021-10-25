@@ -5,6 +5,10 @@ import { useStyles } from './editUserPopUp.style';
 import { CustomButton } from '../../customButton/customButton';
 import { button } from '../../../utils/customButton/customButtonHelper';
 import { formPopUp } from '../../../utils/customForm/customFormHelper';
+import { api, getDetails} from '../../../utils/api/api';
+import axios from 'axios';
+import { bearerToken, Details, details } from '../../login/login';
+import { User } from '../userItem/userItem';
 
 
 type Props = {
@@ -14,7 +18,7 @@ type Props = {
 export {}
 export const EditUserPopUp = (props: Props) => {
         const [address, setAddress] = React.useState<string>('');
-        const [username, setUsername] = React.useState<string>('');
+        const [primaryDoctor, setPrimaryDoctor] = React.useState<string>('');
         
         const styleProps = {
         }
@@ -26,9 +30,22 @@ export const EditUserPopUp = (props: Props) => {
             setAddress(address);
         }
     
-        const onChangeUsername = (username: string) => {
-            console.log(username);
-            setUsername(username);
+        const onChangePrimaryDoctor= (primaryDoctor: string) => {
+            console.log(primaryDoctor);
+            setPrimaryDoctor(primaryDoctor);
+        }
+
+        const postUpdate= (patient: Details) => {
+            axios.put(api.update.patient, patient,
+                {
+                    headers: {
+                        Authorization: `Bearer ${bearerToken}`
+                    }
+                }).then((response: any) => {
+                    console.log('Updated at: '+response.data.Updated);
+                }).catch((reason: any) => {
+                    console.log(reason);
+                });
         }
     
         return (<Box className={classes.box}>
@@ -39,12 +56,13 @@ export const EditUserPopUp = (props: Props) => {
     
             <CustomForm text={'Address'} style={formPopUp} onChange={onChangeAddress} formType={'textfield'} />
 
-            <CustomForm text={'Username'} style={formPopUp} onChange={onChangeUsername} formType={'textfield'} />
+            <CustomForm text={'Primary Doctor'} style={formPopUp} onChange={onChangePrimaryDoctor} formType={'list'} />
     
             <CustomButton text='Create' onClick={() => props.onClick(
                 {
                     address: address,
-                    username: username,
+                    primaryDoctor: primaryDoctor,
+                    
                 }
             )} style={button} />
         </Box>

@@ -5,19 +5,37 @@ import { CustomButton } from '../../customButton/customButton';
 import { EquipmentItem } from '../secretaryEquipmentItem/secretaryEquipmentItem';
 import { button } from '../../../utils/customButton/customButtonHelper';
 import { AddEquipmentPopUp } from '../addEquipmentPopUp/addEquipmentPopUp';
+import { api, getDetails} from '../../../utils/api/api';
+import axios from 'axios';
+import { bearerToken, Details, details } from '../../login/login';
 
-export type Equipment = {
-    name: string;
-    installationDate: string;
-    id: string;
+
+
+export type Equipment = { equipmentType : 
+{
+name: string,
+   id: number
+   },
+installationDate:Date
 }
 
-type Props = {
-    equipments : Equipment[]
+var equipments : Equipment[]
+
+type Props = { equipments: Equipment[]
 }
 
 const getAllEquipments = () => {
-
+    axios.get(api.equipment.view,
+            {
+                headers: {
+                    Authorization: `Bearer ${bearerToken}`
+                }
+            }).then((response: any) => {
+                console.log(details);
+                equipments=response.data;
+            }).catch((reason: any) => {
+                console.log(reason);
+            });
 }
 
 
@@ -28,7 +46,7 @@ export const EquipmentData = (props: Props) => {
         console.log(value)
         
     }
-    const onClick = () => {
+    const onClickCreate = () => {
         setOpen(true);
     }
     const handleClose = (value: string) => {
@@ -44,11 +62,11 @@ export const EquipmentData = (props: Props) => {
         <Typography className={classes.typography}>Equipment List</Typography>
         
         <Box>
-        <CustomButton text={'Add Equipment'} onClick={onClick} style={button}/>
+        <CustomButton text={'Add Equipment'} onClick={onClickCreate} style={button}/>
         <Dialog open={open} onClose={handleClose}>
                 <AddEquipmentPopUp onClick={onClickAdd} />
             </Dialog>
-            {props.equipments.map(x => <EquipmentItem equipment={x}/>)}
+            {equipments.map(x => <EquipmentItem equipment={x}/>)}
         </Box>
     </Box>
     );
