@@ -11,8 +11,11 @@ export const api = {
     },
     login: base + '/auth/login',
     welcome: base + '/welcome',
+    Rooms: base + '/rooms',
     Equipment: base + '/rooms/equipments/',
+    EquipmentType: base + '/rooms/equipments/type',
     Consumable: base + '/consumable',
+    ConsumableType: base + '/consumableType',
     healthFile: base + '/healthfile/',
     delete: {
         patient: base + '/patients/:id?id='
@@ -30,31 +33,62 @@ export const api = {
 
 }
 
+// export const GetRoombyId = (room: Room) => {
+//     return api.Rooms + '/view/:id?id=' + healthFile.id;
+// }
 export const CreateHealthFile = (healthFile: Equipment) => {
-    return api.healthFile + 'update/:id?id=' + healthFile.id;
+    return api.healthFile + 'create/:id?id=' + healthFile.id;
 }
 
 export const UpdateHealthFile = (healthFile: Equipment) => {
-    return api.healthFile + 'create/:id?id=' + healthFile.id;
+    return api.healthFile + 'update/:id?id=' + healthFile.id;
 }
 export const DeleteHealthFile = (healthFile: Equipment) => {
     return api.healthFile + 'delete/:id?id=' + healthFile.id;
+}
+
+export const GetHealthFile = (healthFile: Equipment) => {
+    return api.healthFile + 'view/:id?id=' + healthFile.id;
+}
+
+export const DeleteConsumableTypeId = (consumable: Equipment) => {
+    return api.ConsumableType + '/delete/:id?id=' + consumable.id;
+}
+
+export const UpdateConsumableTypeId = (consumable: Equipment) => {
+    return api.ConsumableType + 'update/:id?id='+ consumable.id;
 }
 
 export const DeleteConsumableId = (consumable: Equipment) => {
     return api.Consumable + '/delete/:id?id=' + consumable.id;
 }
 
-export const AddConsumableId = (consumable: Equipment) => {
-    return api.Consumable + consumable.id;
+export const UpdateConsumableId = (consumable: Equipment) => {
+    return api.Consumable + +'update/:id?id='+ consumable.id;
 }
 
-export const deleteEquipmentId = (equipment: Equipment) => {
+export const DeleteEquipmentId = (equipment: Equipment) => {
     return api.Equipment + 'delete/:id?id=' + equipment.id;
 }
 
-export const addEquipmentId = (equippment: Equipment) => {
-    return api.Equipment + 'add/:id?id=' + equippment.id;
+export const UpdateEquipmentId = (equipment: Equipment) => {
+    return api.Equipment + 'update/:id?id=' + equipment.id;
+}
+
+export const AddEquipmentId = (equipment: Equipment) => {
+    return api.Equipment + 'add/:id?id=' + equipment.id;
+}
+
+export const DeleteEquipmentTypeId = (equipment: Equipment) => {
+    return api.EquipmentType + '/delete/:id?id=' + equipment.id;
+}
+
+export const UpdateEquipmentTypeId = () => {
+    return api.EquipmentType + '/update';
+}
+
+export const AddEquipmentTypeId = () => {
+    return api.EquipmentType + '/add';
 }
 
 
