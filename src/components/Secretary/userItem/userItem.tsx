@@ -3,6 +3,9 @@ import { Button, Typography, Box } from '@material-ui/core';
 import { useStyles } from './userItem.style';
 import { CustomButton } from '../../customButton/customButton';
 import { button } from '../../../utils/customButton/customButtonHelper';
+import { api, getDetails} from '../../../utils/api/api';
+import axios from 'axios';
+import { bearerToken } from '../../login/login';
 
 export type User= {
     username: string,
@@ -26,8 +29,37 @@ const onClickDelete = () => {
 const onClickUpdate = () => {
 
 }
+
+var details : User = {
+    address: '',
+    dateOfBirth: '',
+    email: '',
+    firstName: '',
+    lastName: '',
+    password: '',
+    phoneNumber: '',
+    username: '',
+}
+
+var userlist : User[];
+
+
 export const UserItem = (props: Props) => {
     const styleProps = {
+    }
+    const getAllPatients = () => {
+        axios.get(api.getpatient,
+                {
+                    headers: {
+                        Authorization: `Bearer ${bearerToken}`
+                    }
+                }).then((response: any) => {
+                    userlist = response.data;
+                    console.log(details);
+                }).catch((reason: any) => {
+                    console.log(reason);
+                });
+
     }
     const classes = useStyles(styleProps);
 

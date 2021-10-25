@@ -12,6 +12,7 @@ export const api = {
     login: base + '/auth/login',
     welcome: base + '/welcome',
     Rooms: base + '/rooms',
+    getpatient: base + '/patients',
     delete: {
         patient: base + '/patients/delete/:id?id=',
     },
