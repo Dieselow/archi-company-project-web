@@ -10,6 +10,7 @@ export const api = {
     },
     doctorPatient : base + '/view/patients',
     patients: base + '/patients',
+    caregivers: base + '/caregivers',
     login: base + '/auth/login',
     welcome: base + '/welcome',
     Rooms: base + '/rooms',
