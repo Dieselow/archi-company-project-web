@@ -5,7 +5,7 @@ import { CustomButton } from '../../customButton/customButton';
 import { button } from '../../../utils/customButton/customButtonHelper';
 import { api, getDetails} from '../../../utils/api/api';
 import axios from 'axios';
-import { bearerToken } from '../../login/login';
+import { bearerToken, Details, details } from '../../login/login';
 import { EditUserPopUp } from '../editUserPopUp/editUserPopUp';
 
 export type User= {
@@ -28,18 +28,6 @@ const onClickDelete = () => {
 }
 
 
-
-var details : User = {
-    address: '',
-    dateOfBirth: '',
-    email: '',
-    firstName: '',
-    lastName: '',
-    password: '',
-    phoneNumber: '',
-    username: '',
-}
-
 var userlist : User[];
 
 
@@ -48,7 +36,7 @@ export const UserItem = (props: Props) => {
     const styleProps = {
     }
 
-    const onClickUpdate = () => {
+    const onClickOpenUpdate = () => {
         console.log('on click !');
         setOpen(true);
     }
@@ -58,6 +46,14 @@ export const UserItem = (props: Props) => {
         setOpen(false);
     }
 
+
+    const onClickUpdate = (value: any) => {
+        details.address=value.address;
+        details.primaryDoctor=value.primaryDoctor;
+        postUpdate(details);
+        console.log('on click !');
+        setOpen(true);
+    }
     const getAllPatients = () => {
         axios.get(api.getpatient,
                 {
@@ -71,7 +67,20 @@ export const UserItem = (props: Props) => {
                     console.log(reason);
                 });
     }
-    
+
+    const postUpdate= (patient: Details) => {
+        axios.put(api.update.patient+details.id, patient,
+            {
+                headers: {
+                    Authorization: `Bearer ${bearerToken}`
+                }
+            }).then((response: any) => {
+                console.log('Updated at: '+response.data.Updated);
+            }).catch((reason: any) => {
+                console.log(reason);
+            });
+    }
+
     const classes = useStyles(styleProps);
 
     return (<Box className={classes.box}>
@@ -79,7 +88,7 @@ export const UserItem = (props: Props) => {
             {props.user.lastName}, 
             {props.user.firstName}
         </Typography>
-        <CustomButton text={'Edit'} onClick={onClickUpdate} style={button}/>
+        <CustomButton text={'Edit'} onClick={onClickOpenUpdate} style={button}/>
             <Dialog open={open} onClose={handleClose}>
                 <EditUserPopUp onClick={onClickUpdate} />
             </Dialog>
