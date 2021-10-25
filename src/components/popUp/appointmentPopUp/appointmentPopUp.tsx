@@ -31,6 +31,7 @@ export type Appointment = {
 
 export type ListForm = {
     value: string;
+    id:string;
 }
 
 export const AppointmentPopUp = (props: Props) => {
@@ -43,13 +44,17 @@ export const AppointmentPopUp = (props: Props) => {
 
     const rooms: ListForm[] = [
         {
-            value: 'room 1'
+            value: 'room 1',
+            id: 'room 1',
+
         },
         {
-            value: 'room 2'
+            value: 'room 2',
+            id: 'room 1',
         },
         {
-            value: 'room 3'
+            value: 'room 3',
+            id: 'room 1',
         },
     ]
 
