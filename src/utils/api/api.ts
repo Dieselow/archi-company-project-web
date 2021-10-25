@@ -13,9 +13,8 @@ export const api = {
     welcome: base + '/welcome',
     Equipment: base + '/rooms/equipments/',
     Consumable: base + '/consumable',
-    healthFile: base + '/healthfile/',
     delete: {
-        patient: base + '/patients/:id?id='
+        patient: base + '/patients/delete/:id?id=',
     },
     details: {
         patient: base + '/patients/view/details',
@@ -26,19 +25,22 @@ export const api = {
         patient: base + '/patients/update/:id?id=',
         caregiver: base + '/caregivers/update/:id?id=',
         secretary: base + '/secretaries/update/:id?id=',
+    },
+    healthfile : { 
+        view : base + '/healthfile/view/:id?id=',
+        create : base + '/healthfile/create/:id?id=35'
     }
-
 }
 
 export const CreateHealthFile = (healthFile: Equipment) => {
-    return api.healthFile + 'update/:id?id=' + healthFile.id;
+    return api.healthfile + healthFile.id;
 }
 
 export const UpdateHealthFile = (healthFile: Equipment) => {
-    return api.healthFile + 'create/:id?id=' + healthFile.id;
+    return api.healthfile + healthFile.id;
 }
 export const DeleteHealthFile = (healthFile: Equipment) => {
-    return api.healthFile + 'delete/:id?id=' + healthFile.id;
+    return api.healthfile + healthFile.id;
 }
 
 export const DeleteConsumableId = (consumable: Equipment) => {
