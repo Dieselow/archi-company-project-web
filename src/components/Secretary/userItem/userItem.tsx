@@ -6,20 +6,10 @@ import { button } from '../../../utils/customButton/customButtonHelper';
 import { api, getDetails} from '../../../utils/api/api';
 import axios from 'axios';
 import { bearerToken } from '../../login/login';
-
-export type User= {
-    username: string,
-	firstName: string,
-	lastName: string,
-	password: string,
-	email: string,
-	dateOfBirth : string,
-	address: string,
-	phoneNumber: string,
-}
+import { Details } from '../../login/login';
 
 type Props = {
-    user: User
+    user: Details
 }
 
 const onClickDelete = () => {
@@ -30,36 +20,10 @@ const onClickUpdate = () => {
 
 }
 
-var details : User = {
-    address: '',
-    dateOfBirth: '',
-    email: '',
-    firstName: '',
-    lastName: '',
-    password: '',
-    phoneNumber: '',
-    username: '',
-}
-
-var userlist : User[];
-
 
 export const UserItem = (props: Props) => {
+    console.log('users :' + props.user);
     const styleProps = {
-    }
-    const getAllPatients = () => {
-        axios.get(api.getpatient,
-                {
-                    headers: {
-                        Authorization: `Bearer ${bearerToken}`
-                    }
-                }).then((response: any) => {
-                    userlist = response.data;
-                    console.log(details);
-                }).catch((reason: any) => {
-                    console.log(reason);
-                });
-
     }
     const classes = useStyles(styleProps);
 
