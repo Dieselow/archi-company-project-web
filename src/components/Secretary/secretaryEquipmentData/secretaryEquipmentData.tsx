@@ -5,39 +5,47 @@ import { CustomButton } from '../../customButton/customButton';
 import { EquipmentItem } from '../secretaryEquipmentItem/secretaryEquipmentItem';
 import { button } from '../../../utils/customButton/customButtonHelper';
 import { AddEquipmentPopUp } from '../addEquipmentPopUp/addEquipmentPopUp';
-import { api, getDetails} from '../../../utils/api/api';
+import { api, getDetails } from '../../../utils/api/api';
 import axios from 'axios';
 import { bearerToken, Details, details } from '../../login/login';
 
 
 
-export type Equipment = { equipmentType : 
-{
-name: string,
-   id: number
-   },
-installationDate:Date
+export type Equipment = {
+    equipmentType:
+    {
+        name: string,
+        id: number
+    },
+    installationDate: string
 }
 
-var equipment: Equipment
+var equipment: Equipment = {
+    equipmentType : {
+        name: '',
+        id: 0
+    },
+    installationDate: ''
+}
 
-var equipments : Equipment[]
+var equipments: Equipment[]
 
-type Props = { equipments: Equipment[]
+type Props = {
+    equipments: Equipment[]
 }
 
 const getAllEquipments = () => {
     axios.get(api.equipment.view,
-            {
-                headers: {
-                    Authorization: `Bearer ${bearerToken}`
-                }
-            }).then((response: any) => {
-                console.log(details);
-                equipments=response.data;
-            }).catch((reason: any) => {
-                console.log(reason);
-            });
+        {
+            headers: {
+                Authorization: `Bearer ${bearerToken}`
+            }
+        }).then((response: any) => {
+            console.log(details);
+            equipments = response.data;
+        }).catch((reason: any) => {
+            console.log(reason);
+        });
 }
 
 
@@ -49,26 +57,28 @@ export const EquipmentData = (props: Props) => {
     const onClickAdd = () => {
         console.log('on click')
         setOpen(true);
-        
+
     }
 
-    const postCreate= (equipment: Equipment) => {
-        axios.post(api.equipment.create, equipment,
+    const postCreate = (equipment: Equipment) => {
+        axios.post(api.equipment.create+equipment.equipmentType.id, equipment,
             {
                 headers: {
                     Authorization: `Bearer ${bearerToken}`
                 }
             }).then((response: any) => {
-                console.log('Created at: '+response.data);
+                console.log('Created at: ' + response.data);
             }).catch((reason: any) => {
                 console.log(reason);
             });
     }
 
     const onClickCreate = (value: any) => {
-        equipment.equipmentType.name=value.equipmentType.name;
-        equipment.equipmentType.id=value.equipmentType.id;
-        equipment.installationDate=value.installationDate;
+        console.log(value);
+        console.log(equipment);
+        equipment.equipmentType.name = value.equipmentType.name;
+        equipment.equipmentType.id = value.equipmentType.id;
+        equipment.installationDate = value.installationDate;
         postCreate(equipment);
         console.log('Created equipment');
         setOpen(true);
@@ -77,17 +87,17 @@ export const EquipmentData = (props: Props) => {
         console.log(value);
         setOpen(false);
     }
-    
+
     const styleProps = {
     }
     const classes = useStyles(styleProps);
 
     return (<Box className={classes.box}>
         <Typography className={classes.typography}>Equipment List</Typography>
-        
+
         <Box>
-        <CustomButton text={'Add Equipment'} onClick={onClickAdd} style={button}/>
-        <Dialog open={open} onClose={handleClose}>
+            <CustomButton text={'Add Equipment'} onClick={onClickAdd} style={button} />
+            <Dialog open={open} onClose={handleClose}>
                 <AddEquipmentPopUp onClick={onClickCreate} />
             </Dialog>
             {/* {equipments.map(x => <EquipmentItem equipment={x}/>)} */}

@@ -23,11 +23,7 @@ type Props = {
         const [id, setId] = React.useState<string>('');
         
         const styleProps = {
-        }
-
-     
-
-    
+        }  
     
     
         const classes = useStyles(styleProps);
@@ -74,9 +70,11 @@ type Props = {
     
             <CustomButton text='Create' onClick={() => props.onClick(
                 {
-                    name: name,
-                    installationdate: installationdate,
-                    id: id,
+                    equipmentType : {
+                        name: name,
+                        id: id
+                    },
+                    installationDate: installationdate,
                 }
             )} style={button} />
         </Box>
