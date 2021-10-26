@@ -47,7 +47,7 @@ const getAllEquipments = () => {
         });
 }
 
-const gellAllRooms = () => {
+const getAllRooms = () => {
     console.log('rooms');
     axios.get(api.rooms.rooms,
         {
@@ -60,12 +60,12 @@ const gellAllRooms = () => {
             console.log(reason);
         });
 }
-
-gellAllRooms();
-getAllEquipments();
+var requestMadeForEquipments = 0;
+var requestMadeForRooms = 0;
 
 export const EquipmentData = (props: Props) => {
     const [open, setOpen] = React.useState(false);
+
 
     const onClickAdd = () => {
         console.log('on click')
@@ -104,6 +104,13 @@ export const EquipmentData = (props: Props) => {
     }
     const classes = useStyles(styleProps);
 
+    if (requestMadeForEquipments == 0){
+        getAllEquipments();
+    }
+
+    if (requestMadeForRooms == 0){
+        getAllRooms();
+    }
     return (<Box className={classes.box}>
         <Typography className={classes.typography}>Equipment List <br/></Typography>
 
