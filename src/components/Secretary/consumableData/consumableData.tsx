@@ -101,7 +101,7 @@ export const ConsumableData = (props: Props) => {
             <Dialog open={open} onClose={handleClose}>
                 <AddConsumablePopUp onClick={onClickCreate} />
             </Dialog>
-            {consumables.map(x => <ConsumableItem consumable={x} />)}
+            {consumables?.map(x => <ConsumableItem consumable={x} />)}
         </Box>
     </Box>
     );

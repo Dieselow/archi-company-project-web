@@ -82,7 +82,7 @@ export const ConsumableItem = (props: Props) => {
     }
 
     return (<Box className={classes.box}>
-
+        
         <Typography className={classes.typography}>
             Current Quantity: {props.consumable.quantity}
         </Typography>
