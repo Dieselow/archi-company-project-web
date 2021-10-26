@@ -73,7 +73,7 @@ export const PatientItem = (props: Props) => {
                 }
             }).then((response: any) => {
                 console.log(response);
-                setHealthFile(props.patient.healthFile);
+                setHealthFile(response.data);
             }).catch((reason: any) => {
                 console.log(reason);
             })
