@@ -1,5 +1,4 @@
 import { UserType } from "../../components/userLogin/userLogin";
-import { Equipment } from '../../components/Secretary/secretaryEquipmentItem/secretaryEquipmentItem';
 
 const base = 'http://localhost:3001/api/v1';
 
@@ -9,12 +8,16 @@ export const api = {
         caregiver: base + '/caregivers/auth/register',
         secretary: base + '/secretaries/auth/register',
     },
-    doctorPatient : base + '/view/patients',
+    doctorPatient : base + '/caregivers/view/patients',
     patients: base + '/patients',
+    caregivers: base + '/caregivers',
     login: base + '/auth/login',
     welcome: base + '/welcome',
     Rooms: base + '/rooms',
     getpatient: base + '/patients',
+    rooms : {
+        rooms : base + '/rooms',
+    },
     delete: {
         patient: base + '/patients/delete/:id?id=',
     },
@@ -30,7 +33,8 @@ export const api = {
     },
   
     search : base + '/search/:request?request=',
-    getUserType : base + '/users/get/:token',
+    getUserType : base + "/users/get/:token",
+
     healthfile : { 
         view : base + '/healthfile/view/:id?id=',
         create : base + '/healthfile/create/:id?id=',
@@ -54,7 +58,7 @@ export const api = {
     equipment : { 
         view : base + '/rooms/equipments',
         create : base + '/rooms/equipments/add/:id?id=',
-        update: base + '/rooms/equipments/update/:id?id=',
+        update: base + '/rooms/equipments/update',
         delete: base + '/rooms/equipments/delete/:id?id=',
     },
     equipmentType : { 

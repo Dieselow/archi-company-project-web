@@ -10,6 +10,7 @@ import { InformationPopUp } from '../caregiverInformationPopUp/caregiverInformat
 import { Details, details, bearerToken } from '../../login/login';
 import { api } from '../../../utils/api/api';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 export type Caregiver = {
     firstname: string;
@@ -24,40 +25,25 @@ export const Patientlist: any[] = [
     { name: 'Jack river', },
     { name: 'Joe mayo', }
 ]
-
-var patients: Details[] = [
-]
-
-
-
 type Props = {
 }
 
-const getPatients = () => {
-    axios.get(api.patients, {
-        headers: {
-            Authorization: `Bearer ${bearerToken}`
-        }
-    }).then((response:any) => {
-        console.log(response);
-        patients = response;
-    }).catch((reason:any) => {
-        console.log(reason);
-    })
-}
-
-const onClick = () => {
-    console.log('on click !');
-}
 
 export const CrudCaregiver = (props: Props) => {
     const [open, setOpen] = React.useState(false);
-    getPatients();
     const styleProps = {
     }
-    const classes = useStyles(styleProps);
+    const classes = useStyles(styleProps);  
+    const [bearerType, setBearerType] = React.useState('');
+
+    let history = useHistory();
+
+    const onClick = () => {
+        history.push('/caregiver');
+    }
 
 
+    
     const onClickCustom = () => {
         console.log('on click !');
         setOpen(true);
@@ -67,28 +53,18 @@ export const CrudCaregiver = (props: Props) => {
         setOpen(false);
     }
 
-    const callWelcome = () => {
-        axios.get(api.welcome).then((response: any) => {
-            console.log(response);
-
-        }).catch((reason: any) => {
-            console.log(reason);
-        });
-
-    }
-
     return (<Box className={classes.box}>
 
         <Banner onClick={onClick} textTypography={'Hello Doctor ' + details.firstName + '.'} textButton={'Log out'}  searchBar= {true} />
 
         <Box className={classes.background}>
-            <CustomButton text={'My info'} onClick={onClickCustom} style={titleButton} />
+            {/* <CustomButton text={'My info'} onClick={onClickCustom} style={titleButton} /> */}
             <Dialog open={open} onClose={handleClose}>
                 <InformationPopUp onClick={onClickCustom} caregiver={details} />
             </Dialog>
             <Box className={classes.content}>
                 <Box className={classes.caregiverData}>
-                    <PatientData id={details.id} patients={patients} />
+                    <PatientData id={details.id} patients={details.patients || []} />
                 </Box>
             </Box>
         </Box>

@@ -5,16 +5,23 @@ import { useStyles } from './editUserPopUp.style';
 import { CustomButton } from '../../customButton/customButton';
 import { button } from '../../../utils/customButton/customButtonHelper';
 import { formPopUp } from '../../../utils/customForm/customFormHelper';
+import { api, getDetails} from '../../../utils/api/api';
+import axios from 'axios';
+import { bearerToken, Details, details } from '../../login/login';
+import { User } from '../userItem/userItem';
+import { ListForm } from '../../popUp/appointmentPopUp/appointmentPopUp';
 
 
 type Props = {
     onClick: (value: any) => void;
+    list:ListForm[];
+    details:Details;
 }
 
 export {}
 export const EditUserPopUp = (props: Props) => {
         const [address, setAddress] = React.useState<string>('');
-        const [username, setUsername] = React.useState<string>('');
+        const [primaryDoctor, setPrimaryDoctor] = React.useState<string>('');
         
         const styleProps = {
         }
@@ -26,9 +33,9 @@ export const EditUserPopUp = (props: Props) => {
             setAddress(address);
         }
     
-        const onChangeUsername = (username: string) => {
-            console.log(username);
-            setUsername(username);
+        const onChangePrimaryDoctor= (primaryDoctor: string) => {
+            console.log(primaryDoctor);
+            setPrimaryDoctor(primaryDoctor);
         }
     
         return (<Box className={classes.box}>
@@ -37,14 +44,14 @@ export const EditUserPopUp = (props: Props) => {
                Edit user:
             </Typography>
     
-            <CustomForm text={'Address'} style={formPopUp} onChange={onChangeAddress} formType={'textfield'} />
+            <CustomForm text={'Address'} style={formPopUp} onChange={onChangeAddress} formType={'textfield'} default={props.details.address}/>
 
-            <CustomForm text={'Username'} style={formPopUp} onChange={onChangeUsername} formType={'textfield'} />
+            <CustomForm text={'Primary Doctor'} style={formPopUp} onChange={onChangePrimaryDoctor} formType={'list'} list={props.list} default={props.details.primaryDoctor}/>
     
             <CustomButton text='Create' onClick={() => props.onClick(
                 {
                     address: address,
-                    username: username,
+                    primaryDoctor: primaryDoctor,
                 }
             )} style={button} />
         </Box>

@@ -20,3 +20,10 @@ export const titleButton : Style = {
     fontSize: 25,
     margin : 5,
 }
+
+export const listButton : Style = {
+    backgroundColor : '#02525b',
+    color : 'white',
+    fontSize: 18,
+    margin : 2,
+}

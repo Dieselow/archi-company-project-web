@@ -18,6 +18,7 @@ import axios from 'axios';
 
 type Props = {
     onClickClose: () => void;
+    healthFile : HealthFile;
 }
 
 export type HealthFile = {
@@ -30,53 +31,29 @@ export type ListForm = {
     value: string;
 }
 
-const getHealthFile = () => {
-    var healthFile: HealthFile = {
-        emergencyContact: '',
-        medications: '',
-        chronicConditions: '',
-    }
-    axios.get(api.healthfile.view + details.id,
-        {
-            headers: {
-                Authorization: `Bearer ${bearerToken}`
-            }
-        }).then((response: any) => {
-            console.log(response);
-            healthFile.emergencyContact = response.emergencyContact;
-            healthFile.medications = response.medications;
-            healthFile.chronicConditions = response.chronicConditions;
-        }).catch((reason: any) => {
-            console.log(reason);
-        })
-    return healthFile;
-}
-
-const healthFile = getHealthFile();
 
 export const HealthFilePopUp = (props: Props) => {
     const styleProps = {
     }
-
     const classes = useStyles(styleProps);
 
     return (<Box className={classes.box}>
 
-        <Typography className={classes.typography}>
+        {/* <Typography className={classes.typography}>
             HealthFile
         </Typography>
 
         <Typography className={classes.typographyLight}>
-            Emergency contact : {healthFile.emergencyContact}
+            Emergency contact : {props?.healthFile?.emergencyContact}
         </Typography>
 
         <Typography className={classes.typographyLight}>
-            medications : {healthFile.medications}
+            medications : {props?.healthFile?.medications}
         </Typography>
 
         <Typography className={classes.typographyLight}>
-            Chronic conditions : {healthFile.chronicConditions}
-        </Typography>
+            Chronic conditions : {props?.healthFile?.chronicConditions}
+        </Typography> */}
 
         <CustomButton text='Close' onClick={props.onClickClose} style={button} />
 

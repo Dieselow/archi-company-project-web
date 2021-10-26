@@ -128,7 +128,7 @@ export const CrudPatient = (props: Props) => {
         <Banner onClick={onClickLogOut} textTypography={'Hello ' + details.firstName + '.'} textButton={'Log out'} />
 
         <Box className={classes.background}>
-            <CustomButton text={'My health file'} onClick={onClickHealthFile} style={titleButton} />
+            {/* <CustomButton text={'My health file'} onClick={onClickHealthFile} style={titleButton} /> */}
             <Box className={classes.content}>
                 <Box className={classes.personalData}>
                     <PersonalData onClick={onClickEdit} patient={details} />
@@ -141,7 +141,7 @@ export const CrudPatient = (props: Props) => {
         </Dialog>
 
         <Dialog open={openHealthFile}>
-            <HealthFilePopUp onClickClose={onClickHealthFileClose} />
+            <HealthFilePopUp onClickClose={onClickHealthFileClose} healthFile={details.healthFile}/>
         </Dialog>
     </Box>
     );

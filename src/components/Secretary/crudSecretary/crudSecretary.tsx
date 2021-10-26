@@ -3,50 +3,33 @@ import { Button, Typography, Box, Dialog } from '@material-ui/core';
 import { useStyles } from './crudSecretary.style';
 import { Banner } from '../../banner/banner';
 import { CustomButton } from '../../customButton/customButton';
-import { TicketData } from '../ticketData/ticketData';
-import { Ticket } from '../ticketItem/ticketItem';
+import { ConsumableData } from '../consumableData/consumableData';
+import { Consumable } from '../consumableItem/consumableItem';
 import { UserData } from '../userData/userData';
 import { titleButton } from '../../../utils/customButton/customButtonHelper';
 import { InformationPopUp } from '../secretaryInformationPopUp/secretaryInformationPopUp';
 import { EquipmentData, Equipment } from '../secretaryEquipmentData/secretaryEquipmentData';
 import { Details, details } from '../../login/login';
-
-const equipmentlist : Equipment[] = [
-    {
-        name : 'Scanner',
-        installationDate: '10-10-2018',
-        id: '1',
-    },
-    {
-        name : 'Brancard',
-        installationDate: '01-02-2021',
-        id:'2',
-    }
-]
-
-const ongoingtickets : Ticket[] = [
-    {
-        requestDate : 'Order 10254',
-        consumables: '2 compresses, 5 ciseaux, 3 seringues',
-    },
-    {
-        requestDate : 'Order 21181',
-        consumables: '10 dolipranes',
-    }
-]
+import { useHistory } from 'react-router-dom';
 
 type Props = {
 }
 
-const onClick = (variable: any) => {
-    console.log('on click !');
-}
+
+    
+
+
 
 export const CrudSecretary = (props: Props) => {
   const [open, setOpen] = React.useState(false);
     const styleProps = {
     }
     const classes = useStyles(styleProps);
+    let history = useHistory();
+    const onClick = () => {
+        
+        history.push('/'+ 'secretary');
+    }
 
     const onClickCustom = () => {
         console.log('on click !');
@@ -69,10 +52,10 @@ export const CrudSecretary = (props: Props) => {
                     <UserData/>
                 </Box>
                 <Box className={classes.equipments}>
-                    <EquipmentData equipments={equipmentlist}/>
+                    <EquipmentData/>
                 </Box>
                 <Box className={classes.tickets}>
-                    <TicketData tickets={ongoingtickets}/>
+                    <ConsumableData/>
                 </Box>
             </Box>
         </Box>

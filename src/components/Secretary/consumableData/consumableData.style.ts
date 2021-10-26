@@ -20,5 +20,9 @@ export const useStyles = makeStyles(thme =>
         fontFamily: 'Monaco',
         fontWeight: 'bold'
     },
+    list: {
+        maxHeight: 300,
+        overflow: 'auto'
+    }
 })
 );

@@ -36,7 +36,9 @@ export type Details = {
     licenceNumber? : string;
     patients?: Details[],
 }
-export var bearerToken = '';
+
+export var bearerToken = localStorage.getItem("BearerToken");
+export var patients: Details[] = [];
 export var details : Details = {
     address: '',
     dateOfBirth: '',
@@ -71,6 +73,9 @@ export const Login = (props: Props) => {
             console.log(response);
             props.onChange();
             bearerToken = response.data.token;
+            if (bearerToken != null) {
+                localStorage.setItem("BearerToken", bearerToken)
+            }
             console.log(bearerToken);
         }).catch((reason: any) => {
             alert(reason);
@@ -112,9 +117,9 @@ export const Login = (props: Props) => {
 
             <CustomForm text={'Email'} style={form} onChange={onChangeEmail} formType={'textfield'} />
 
-            <CustomForm text={'Password'} style={form} onChange={onChangePassword} formType={'textfield'} />
+            <CustomForm text={'Password'} style={form} onChange={onChangePassword} formType={'textfield'} isPassword={true}/>
 
-            <CustomButton text='Login' onClick={onClick} style={button} />
+            <CustomButton text='Login' onClick={onClick} style={button}/>
         </Box>
     );
 }

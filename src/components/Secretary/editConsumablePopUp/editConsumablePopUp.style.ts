@@ -1,12 +1,14 @@
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
+export{}
+
 export const useStyles = makeStyles(thme =>
 ({
     box: {
-        alignItems: 'left',
-        justifyContent: 'left',
+        alignItems: 'center',
+        justifyContent: 'center',
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         margin: 10,
         backgroundColor : '#037682',
         borderRadius: 10

@@ -10,7 +10,8 @@ export const useStyles = makeStyles(thme =>
         flexDirection: 'column',
         margin: 0,
         backgroundColor: '#037682',
-        borderRadius: 30,        
+        borderRadius: 30, 
+        minWidth: 500,       
     },
     typography: {
         fontSize: 30,
