@@ -12,11 +12,12 @@ export const useStyles = makeStyles(thme =>
         borderRadius: 10
     },
     typography: {
-        fontSize: 20,
+        fontSize: 18,
         color: 'white',
         margin: 10,
         fontFamily: 'Monaco',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        maxWidth: 100,
     },
     titleTypography: {
         fontSize: 30,

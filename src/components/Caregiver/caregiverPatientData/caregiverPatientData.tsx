@@ -4,6 +4,7 @@ import { useStyles } from './caregiverPatientData.style';
 import { CustomButton } from '../../customButton/customButton';
 import { PatientItem } from '../caregiverPatientItem/caregiverPatientItem';
 import { button } from '../../../utils/customButton/customButtonHelper';
+import { Details, details } from '../../login/login';
 
 export type Patient = {
     firstname: string;
@@ -12,7 +13,8 @@ export type Patient = {
 }
 
 type Props = {
-    patients : Patient[]
+    patients : Details[],
+    id : number,
 }
 
 const onClickCreate = () => {
@@ -27,7 +29,7 @@ export const PatientData = (props: Props) => {
     return (<Box className={classes.box}>
         <Typography className={classes.typography}>Patient List</Typography>
         <Box>
-            {props.patients.map(x => <PatientItem patient={x}/>)}
+            {props.patients.map(x => <PatientItem id={props.id} patient={x}/>)}
         </Box>
     </Box>
     );

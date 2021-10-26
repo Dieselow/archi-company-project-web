@@ -4,15 +4,12 @@ import { useStyles } from './crudCaregiver.style';
 import { Banner } from '../../banner/banner';
 import { CustomButton } from '../../customButton/customButton';
 import { CaregiverData } from '../caregiverData/caregiverData';
-import {PatientData,Patient } from '../caregiverPatientData/caregiverPatientData';
+import { PatientData, Patient } from '../caregiverPatientData/caregiverPatientData';
 import { titleButton } from '../../../utils/customButton/customButtonHelper';
 import { InformationPopUp } from '../caregiverInformationPopUp/caregiverInformationPopUp';
-import { Details, details } from '../../login/login';
-
-import {api} from '../../../utils/api/api';
+import { Details, details, bearerToken } from '../../login/login';
+import { api } from '../../../utils/api/api';
 import axios from 'axios';
-
-
 
 export type Caregiver = {
     firstname: string;
@@ -23,22 +20,12 @@ export type Caregiver = {
     employmentdate: string;
 }
 
-export const Patientlist: any[] =[
-    {name: 'Jack river',},
-    {name: 'Joe mayo',}
+export const Patientlist: any[] = [
+    { name: 'Jack river', },
+    { name: 'Joe mayo', }
 ]
 
-const patients : Patient[]= [
-    {
-        firstname:'Jack',
-        lastname: 'Morgan',
-        healthfile: 'Broken knee-August 2007',
-    },
-    {
-        firstname:'Arthur',
-        lastname: 'Biden',
-        healthfile: 'flu - Autumn 2012',
-    }
+var patients: Details[] = [
 ]
 
 
@@ -46,15 +33,30 @@ const patients : Patient[]= [
 type Props = {
 }
 
+const getPatients = () => {
+    axios.get(api.patients, {
+        headers: {
+            Authorization: `Bearer ${bearerToken}`
+        }
+    }).then((response:any) => {
+        console.log(response);
+        patients = response;
+    }).catch((reason:any) => {
+        console.log(reason);
+    })
+}
+
 const onClick = () => {
     console.log('on click !');
 }
 
 export const CrudCaregiver = (props: Props) => {
-  const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
+    getPatients();
     const styleProps = {
     }
     const classes = useStyles(styleProps);
+
 
     const onClickCustom = () => {
         console.log('on click !');
@@ -65,31 +67,33 @@ export const CrudCaregiver = (props: Props) => {
         setOpen(false);
     }
 
-    const callWelcome = () =>{
-        axios.get(api.welcome).then((response: any)=>{
+    const callWelcome = () => {
+        axios.get(api.welcome).then((response: any) => {
             console.log(response);
 
-        }).catch((reason: any)=>{
+        }).catch((reason: any) => {
             console.log(reason);
         });
 
     }
+
     return (<Box className={classes.box}>
-        <Banner onClick={onClick} textTypography={'Hello ' + details.firstName +'.'} textButton={'Log out' } searchBar= {true} />
+
+        <Banner onClick={onClick} textTypography={'Hello Doctor ' + details.firstName + '.'} textButton={'Log out'}  searchBar= {true} />
 
         <Box className={classes.background}>
-            <CustomButton text={'My info'} onClick={onClickCustom} style={titleButton}/>
+            <CustomButton text={'My info'} onClick={onClickCustom} style={titleButton} />
             <Dialog open={open} onClose={handleClose}>
-                <InformationPopUp onClick={onClickCustom} caregiver={details}/>
+                <InformationPopUp onClick={onClickCustom} caregiver={details} />
             </Dialog>
             <Box className={classes.content}>
                 <Box className={classes.caregiverData}>
-                    <PatientData patients={patients}/>
+                    <PatientData id={details.id} patients={patients} />
                 </Box>
             </Box>
         </Box>
         <Banner onClick={onClick} textButton={'Delete Account'} />
-        
+
     </Box>
     );
 }
