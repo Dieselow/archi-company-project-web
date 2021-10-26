@@ -97,7 +97,7 @@ export const EquipmentData = (props: Props) => {
             <Dialog open={open} onClose={handleClose}>
                 <AddEquipmentPopUp onClick={onClickCreate} />
             </Dialog>
-            {equipments?.map(x => <EquipmentItem equipment={x} />)}
+            {equipments?.map(x => <EquipmentItem equipment={x} equipments={equipments} setEquipments={setEquipments}/>)}
         </Box>
     </Box>
     );

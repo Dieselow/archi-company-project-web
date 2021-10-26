@@ -12,7 +12,6 @@ import { AddConsumablePopUp } from '../addConsumablePopUp/addConsumablePopUp';
 
 
 type Props = {
-
 }
 
 var consumable: Consumable = {
@@ -101,7 +100,7 @@ export const ConsumableData = (props: Props) => {
             <Dialog open={open} onClose={handleClose}>
                 <AddConsumablePopUp onClick={onClickCreate} />
             </Dialog>
-            {consumables?.map(x => <ConsumableItem consumable={x} />)}
+            {consumables?.map(x => <ConsumableItem consumable={x} consumables={consumables} setConsumables={setConsumables}/>)}
         </Box>
     </Box>
     );

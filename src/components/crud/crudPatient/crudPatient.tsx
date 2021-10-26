@@ -40,25 +40,6 @@ export const CrudPatient = (props: Props) => {
     const styleProps = {
     }
     const classes = useStyles(styleProps);
-
-    const onClickDelete = () => {
-        console.log('Delete'); //TODO API DELETE CALL
-        console.log(details.id);
-        console.log(api.delete.patient + details.id.toString());
-        axios.delete(api.delete.patient + details.id.toString(),
-            {
-                headers: {
-                    Authorization: `Bearer ${bearerToken}`
-                }
-            }).
-            then((response: any) => {
-                alert(details.firstName + ' deleted');
-                console.log(response);
-                history.push('/');
-            }).catch((reason: any) => {
-                alert(reason);
-            });
-    }
     const onClickLogOut = () => {
         history.push('/');
     }

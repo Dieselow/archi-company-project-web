@@ -10,7 +10,9 @@ import { bearerToken, Details, details } from '../../login/login';
 import { Equipment } from '../secretaryEquipmentData/secretaryEquipmentData';
 
 type Props = {
-    equipment: Equipment
+    equipment: Equipment,
+    equipments: Equipment[],
+    setEquipments : any,
 }
 
 
@@ -34,6 +36,10 @@ export const EquipmentItem = (props: Props) => {
                 }
             }).
             then((response: any) => {
+                var tmp = props.equipments;
+                console.log(tmp)
+                tmp = tmp.filter(x => x.id !== props.equipment.id);
+                props.setEquipments(tmp);
                 console.log(response);
             }).catch((reason: any) => {
                 alert(reason);

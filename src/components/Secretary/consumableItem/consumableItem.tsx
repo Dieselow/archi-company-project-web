@@ -17,24 +17,9 @@ export type Consumable = {
 }
 
 type Props = {
+    consumables: Consumable[],
+    setConsumables : any,
     consumable: Consumable
-}
-
-const onClickDelete = () => {
-    console.log('Delete'); 
-        console.log(api.consumable.delete + details.id.toString());
-        axios.delete(api.consumable.delete + details.id.toString(),
-            {
-                headers: {
-                    Authorization: `Bearer ${bearerToken}`
-                }
-            }).
-            then((response: any) => {
-                alert(details.firstName + ' deleted');
-                console.log(response);
-            }).catch((reason: any) => {
-                alert(reason);
-            });
 }
 
 export const ConsumableItem = (props: Props) => {
@@ -52,6 +37,27 @@ export const ConsumableItem = (props: Props) => {
     const handleClose = (value: string) => {
         console.log(value);
         setOpen(false);
+    }
+
+    const onClickDelete = () => {
+        console.log(props.consumable)
+        console.log('Delete'); 
+            console.log(api.consumable.delete + details.id.toString());
+            axios.delete(api.consumable.delete + details.id.toString(),
+                {
+                    headers: {
+                        Authorization: `Bearer ${bearerToken}`
+                    }
+                }).
+                then((response: any) => {
+                    alert(details.firstName + ' deleted');
+                    var tmp = props.consumables;
+                    tmp = tmp.filter(x => x.consumableType?.id !== props.consumable.consumableType?.id);
+                    props.setConsumables(tmp);
+                    console.log(response);
+                }).catch((reason: any) => {
+                    alert(reason);
+                });
     }
 
     const postUpdate= (consumable: Consumable) => {
