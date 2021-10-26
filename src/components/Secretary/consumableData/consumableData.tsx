@@ -74,8 +74,11 @@ export const ConsumableData = (props: Props) => {
     }
 
     const onClickCreate = (value: any) => {
+        const tmp = consumables;
         consumable.threshold = value.treshold;
         consumable.quantity = value.quantity;
+        tmp.push(consumable);
+        setConsumables(tmp);
         postCreate(consumable);
         console.log('on click !');
         setOpen(true);

@@ -72,6 +72,9 @@ export const EquipmentData = (props: Props) => {
         equipment.equipmentType.name = value.equipmentType.name;
         equipment.equipmentType.id = undefined;
         equipment.installationDate = value.installationDate;
+        const tmp = equipments;
+        tmp.push(equipment);
+        setEquipments(tmp);
         postCreate(equipment, value.equipmentType.id);
         console.log('Created equipment');
         setOpen(true);
