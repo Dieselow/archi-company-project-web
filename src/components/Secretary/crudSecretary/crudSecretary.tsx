@@ -9,7 +9,6 @@ import { UserData } from '../userData/userData';
 import { titleButton } from '../../../utils/customButton/customButtonHelper';
 import { InformationPopUp } from '../secretaryInformationPopUp/secretaryInformationPopUp';
 import { EquipmentData, Equipment } from '../secretaryEquipmentData/secretaryEquipmentData';
-import { User } from '../userItem/userItem';
 import { Details, details } from '../../login/login';
 
 const equipmentlist : Equipment[] = [
@@ -22,31 +21,6 @@ const equipmentlist : Equipment[] = [
         name : 'Brancard',
         installationDate: '01-02-2021',
         id:'2',
-    }
-]
-
-
-
-const usersrequests : User[] = [
-    {
-    firstName: 'Jack',
-    lastName: 'Black',
-    address: 'Rue d Austerlitz',
-    phoneNumber: '1234',
-    email: 'a@a.a',
-    dateOfBirth: '11465156',
-    password: 'a',
-    username: 'a'
-    },
-    {
-        firstName: 'Jo',
-        lastName: 'White',
-        address: 'Rue de l ecole',
-        phoneNumber: '4321',
-        email: 'b@b.b',
-        dateOfBirth: '09 04 1869',
-        password: 'b',
-        username: 'b'
     }
 ]
 
@@ -92,7 +66,7 @@ export const CrudSecretary = (props: Props) => {
             </Dialog>
             <Box className={classes.content}>
                 <Box className={classes.users}>
-                    <UserData users={usersrequests}/>
+                    <UserData/>
                 </Box>
                 <Box className={classes.equipments}>
                     <EquipmentData equipments={equipmentlist}/>

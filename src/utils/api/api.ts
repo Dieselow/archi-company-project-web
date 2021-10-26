@@ -9,13 +9,14 @@ export const api = {
         caregiver: base + '/caregivers/auth/register',
         secretary: base + '/secretaries/auth/register',
     },
+    doctorPatient : base + '/view/patients',
+    patients: base + '/patients',
     login: base + '/auth/login',
     welcome: base + '/welcome',
-    Equipment: base + '/rooms/equipments/',
-    Consumable: base + '/consumable',
-    healthFile: base + '/healthfile/',
+    Rooms: base + '/rooms',
+    getpatient: base + '/patients',
     delete: {
-        patient: base + '/patients/:id?id='
+        patient: base + '/patients/delete/:id?id=',
     },
     details: {
         patient: base + '/patients/view/details',
@@ -27,37 +28,48 @@ export const api = {
         caregiver: base + '/caregivers/update/:id?id=',
         secretary: base + '/secretaries/update/:id?id=',
     },
+  
     search : base + '/search/:request?request=',
     getUserType : base + "/users/get/:token",
 
+    healthfile : { 
+        view : base + '/healthfile/view/:id?id=',
+        create : base + '/healthfile/create/:id?id=',
+        update: base + '/healthfile/update/:id?id=',
+        delete: base + '/healthfile/delete/:id?id=',
+    },
+    consumable : { 
+        viewall : base + '/consumable',
+        create : base + '/consumable',
+        update: base + '/consumable/update/:id?id=',
+        delete: base + '/consumable/delete/:id?id=',
+        viewspecific: base + '/consumable/view/:id?id=',
+    },
+    consumableType : { 
+        viewall : base + '/consumableType',
+        create : base + '/consumableType',
+        update: base + '/consumableType/update/:id?id=',
+        delete: base + '/consumableType/delete/:id?id=',
+        viewspecific: base + '/consumableType/view/:id?id=',
+    },
+    equipment : { 
+        view : base + '/rooms/equipments',
+        create : base + '/rooms/equipments/add/:id?id=',
+        update: base + '/rooms/equipments/update/:id?id=',
+        delete: base + '/rooms/equipments/delete/:id?id=',
+    },
+    equipmentType : { 
+        view : base + '/rooms/equipments/type',
+        create : base + '/rooms/equipments/type/add',
+        update: base + '/rooms/equipments/type/update',
+        delete: base + '/rooms/equipments/type/delete/:id?id=',
+    }
 }
 
-export const CreateHealthFile = (healthFile: Equipment) => {
-    return api.healthFile + 'update/:id?id=' + healthFile.id;
-}
+// export const GetRoombyId = (room: Room) => {
+//     return api.Rooms + '/view/:id?id=' + healthFile.id;
+// }
 
-export const UpdateHealthFile = (healthFile: Equipment) => {
-    return api.healthFile + 'create/:id?id=' + healthFile.id;
-}
-export const DeleteHealthFile = (healthFile: Equipment) => {
-    return api.healthFile + 'delete/:id?id=' + healthFile.id;
-}
-
-export const DeleteConsumableId = (consumable: Equipment) => {
-    return api.Consumable + '/delete/:id?id=' + consumable.id;
-}
-
-export const AddConsumableId = (consumable: Equipment) => {
-    return api.Consumable + consumable.id;
-}
-
-export const deleteEquipmentId = (equipment: Equipment) => {
-    return api.Equipment + 'delete/:id?id=' + equipment.id;
-}
-
-export const addEquipmentId = (equippment: Equipment) => {
-    return api.Equipment + 'add/:id?id=' + equippment.id;
-}
 
 
 export const getRegister = (type: UserType) => {

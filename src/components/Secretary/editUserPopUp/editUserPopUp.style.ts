@@ -1,5 +1,7 @@
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
+export{}
+
 export const useStyles = makeStyles(thme =>
 ({
     box: {
@@ -25,9 +27,5 @@ export const useStyles = makeStyles(thme =>
         fontFamily: 'Monaco',
         fontWeight: 'bold'
     },
-    list : {
-        maxHeight: 200, 
-        overflow: 'auto'
-    }
 })
 );

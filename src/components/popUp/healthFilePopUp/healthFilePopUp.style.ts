@@ -7,27 +7,21 @@ export const useStyles = makeStyles(thme =>
         justifyContent: 'center',
         display: 'flex',
         flexDirection: 'column',
-        margin: 10,
-        backgroundColor : '#037682',
-        borderRadius: 10
+        margin: 2,
     },
     typography: {
         fontSize: 20,
-        color: 'white',
-        margin: 10,
-        fontFamily: 'Monaco',
-        fontWeight: 'bold'
-    },
-    titleTypography: {
-        fontSize: 30,
-        color: 'white',
+        color: 'black',
         padding: 10,
         fontFamily: 'Monaco',
         fontWeight: 'bold'
     },
-    list : {
-        maxHeight: 200, 
-        overflow: 'auto'
-    }
+    typographyLight: {
+        fontSize: 16,
+        color: 'black',
+        padding: 8,
+        fontFamily: 'Monaco',
+    },
 })
 );
+

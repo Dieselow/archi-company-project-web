@@ -1,8 +1,12 @@
 import React from 'react';
-import { Button, Typography, Box } from '@material-ui/core';
+import { Button, Typography, Box, Dialog } from '@material-ui/core';
 import { useStyles } from './userItem.style';
 import { CustomButton } from '../../customButton/customButton';
 import { button } from '../../../utils/customButton/customButtonHelper';
+import { api, getDetails} from '../../../utils/api/api';
+import axios from 'axios';
+import { bearerToken, Details, details } from '../../login/login';
+import { EditUserPopUp } from '../editUserPopUp/editUserPopUp';
 
 export type User= {
     username: string,
@@ -23,12 +27,60 @@ const onClickDelete = () => {
 
 }
 
-const onClickUpdate = () => {
 
-}
+var userlist : User[];
+
+
 export const UserItem = (props: Props) => {
+    const [open, setOpen] = React.useState(false);
     const styleProps = {
     }
+
+    const onClickOpenUpdate = () => {
+        console.log('on click !');
+        setOpen(true);
+    }
+
+    const handleClose = (value: string) => {
+        console.log(value);
+        setOpen(false);
+    }
+
+
+    const onClickUpdate = (value: any) => {
+        details.address=value.address;
+        details.primaryDoctor=value.primaryDoctor;
+        postUpdate(details);
+        console.log('on click !');
+        setOpen(true);
+    }
+    const getAllPatients = () => {
+        axios.get(api.getpatient,
+                {
+                    headers: {
+                        Authorization: `Bearer ${bearerToken}`
+                    }
+                }).then((response: any) => {
+                    userlist = response.data;
+                    console.log(details);
+                }).catch((reason: any) => {
+                    console.log(reason);
+                });
+    }
+
+    const postUpdate= (patient: Details) => {
+        axios.put(api.update.patient+details.id, patient,
+            {
+                headers: {
+                    Authorization: `Bearer ${bearerToken}`
+                }
+            }).then((response: any) => {
+                console.log('Updated at: '+response.data.Updated);
+            }).catch((reason: any) => {
+                console.log(reason);
+            });
+    }
+
     const classes = useStyles(styleProps);
 
     return (<Box className={classes.box}>
@@ -36,7 +88,10 @@ export const UserItem = (props: Props) => {
             {props.user.lastName}, 
             {props.user.firstName}
         </Typography>
-        <CustomButton text={'Edit'} onClick={onClickUpdate} style={button}/>
+        <CustomButton text={'Edit'} onClick={onClickOpenUpdate} style={button}/>
+            <Dialog open={open} onClose={handleClose}>
+                <EditUserPopUp onClick={onClickUpdate} />
+            </Dialog>
         <CustomButton text={'Delete'} onClick={onClickDelete} style={button}/>
     </Box>
     );
