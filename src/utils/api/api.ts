@@ -30,8 +30,7 @@ export const api = {
     },
   
     search : base + '/search/:request?request=',
-    getUserType : base + "/users/get/:token"
-
+    getUserType : base + '/users/get/:token',
     healthfile : { 
         view : base + '/healthfile/view/:id?id=',
         create : base + '/healthfile/create/:id?id=',
