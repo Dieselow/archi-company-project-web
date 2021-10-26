@@ -37,7 +37,7 @@ export type Details = {
     patients?: Details[],
 }
 
-export var bearerToken = '';
+export var bearerToken = localStorage.getItem("BearerToken");
 export var patients: Details[] = [];
 export var details : Details = {
     address: '',
@@ -73,6 +73,9 @@ export const Login = (props: Props) => {
             console.log(response);
             props.onChange();
             bearerToken = response.data.token;
+            if (bearerToken != null) {
+                localStorage.setItem("BearerToken", bearerToken)
+            }
             console.log(bearerToken);
         }).catch((reason: any) => {
             alert(reason);
