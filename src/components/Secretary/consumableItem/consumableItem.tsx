@@ -50,7 +50,7 @@ export const ConsumableItem = (props: Props) => {
                     }
                 }).
                 then((response: any) => {
-                    alert(details.firstName + ' deleted');
+                    alert('consumable deleted');
                     var tmp = props.consumables;
                     tmp = tmp.filter(x => x.consumableType?.id !== props.consumable.consumableType?.id);
                     props.setConsumables(tmp);
