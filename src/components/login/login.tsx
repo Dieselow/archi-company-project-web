@@ -112,9 +112,9 @@ export const Login = (props: Props) => {
 
             <CustomForm text={'Email'} style={form} onChange={onChangeEmail} formType={'textfield'} />
 
-            <CustomForm text={'Password'} style={form} onChange={onChangePassword} formType={'textfield'} />
+            <CustomForm text={'Password'} style={form} onChange={onChangePassword} formType={'textfield'} isPassword={true}/>
 
-            <CustomButton text='Login' onClick={onClick} style={button} />
+            <CustomButton text='Login' onClick={onClick} style={button}/>
         </Box>
     );
 }

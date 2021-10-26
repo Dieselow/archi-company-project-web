@@ -23,33 +23,29 @@ var consumable: Consumable = {
     },
 }
 
-var consumables: Consumable[];
-
-const getAllConsumables = () => {
-    axios.get(api.consumable.viewall,
-        {
-            headers: {
-                Authorization: `Bearer ${bearerToken}`
-            }
-        }).then((response: any) => {
-            consumables=response.data;
-            console.log(response.data);
-        }).catch((reason: any) => {
-            console.log(reason);
-        });
-}
-
-getAllConsumables();
-
 export const ConsumableData = (props: Props) => {
     const [open, setOpen] = React.useState(false);
-
+    const [consumables, setConsumables] = React.useState<Consumable[]>([]);
 
     const styleProps = {
     }
     const classes = useStyles(styleProps);
 
-    
+    const getAllConsumables = () => {
+        axios.get(api.consumable.viewall,
+            {
+                headers: {
+                    Authorization: `Bearer ${bearerToken}`
+                }
+            }).then((response: any) => {
+                setConsumables(response.data);
+                console.log(response.data);
+            }).catch((reason: any) => {
+                console.log(reason);
+            });
+    }
+
+
     const postCreate = (consumable: Consumable) => {
         axios.post(api.consumableType.create, {
             name: 'te2s1t',
@@ -65,7 +61,7 @@ export const ConsumableData = (props: Props) => {
             consumable.consumableType.id = response.data.id;
         }).catch((reason: any) => {
             console.log(reason);
-        });        
+        });
         axios.post(api.consumable.create, consumable,
             {
                 headers: {
@@ -93,10 +89,14 @@ export const ConsumableData = (props: Props) => {
         setOpen(false);
     }
 
+    if (consumables?.length === 0) {
+        getAllConsumables();
+    }
+
 
     return (<Box className={classes.box}>
         <Typography className={classes.typography}>Current consumable stock:</Typography>
-        <Box>
+        <Box className={classes.list}>
             <CustomButton text={'Create a new consumable'} onClick={onClickCreateOpen} style={button} />
             <Dialog open={open} onClose={handleClose}>
                 <AddConsumablePopUp onClick={onClickCreate} />

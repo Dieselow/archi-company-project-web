@@ -10,14 +10,6 @@ import { ListForm } from '../../popUp/appointmentPopUp/appointmentPopUp';
 type Props = {
 }
 
-const onClick = (variable: any) => {
-    console.log('on click !');
-}
-
-const onClickCreate = () => {
-
-}
-
 export const UserData = (props: Props) => {
     const [patients, setPatients] = React.useState<Details[]>([]);
     const [caregivers, setCaregivers] = React.useState<ListForm[]>([]);
@@ -34,7 +26,6 @@ export const UserData = (props: Props) => {
             }
         }).then((response: any) => {
             setPatients(response.data);
-            console.log(patients);
         }).catch((reason: any) => {
             console.log(reason);
         })
@@ -46,32 +37,21 @@ export const UserData = (props: Props) => {
                 Authorization: `Bearer ${bearerToken}`
             }
         }).then((response: any) => {
-            console.log(response.data);
             const data = response.data;
             var tmp : ListForm[]= [];
             data.map((x:Details) => tmp.push({
                 value: x.lastName,
                 id : x.id.toString(),
             }))
-            console.log(tmp);
             if ( tmp != null)
             {
                 setCaregivers(tmp);
             }
-            console.log(caregivers);
         }).catch((reason: any) => {
             console.log(reason);
         })
     }
-    const onClickCustom = () => {
-        console.log('on click !');
-        setOpen(true);
-    }
-    const handleClose = (value: string) => {
-        console.log(value);
-        setOpen(false);
-    }
-    console.log(patients);
+
     if (patients.length === 0){
         getAllUsers();
     }

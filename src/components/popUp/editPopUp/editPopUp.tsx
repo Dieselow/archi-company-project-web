@@ -5,6 +5,7 @@ import { CustomButton } from '../../customButton/customButton';
 import { button } from '../../../utils/customButton/customButtonHelper';
 import { CustomForm } from '../../customForm/customForm';
 import { formPopUp } from '../../../utils/customForm/customFormHelper';
+import { Details, details } from '../../login/login';
 
 type Props = {
     onClick: (value: any) => void;
@@ -52,9 +53,9 @@ export const EditPopUp = (props: Props) => {
             My info
         </Typography>
 
-        <CustomForm text={'Address'} style={formPopUp} onChange={onChangeAddress} formType={'textfield'} />
+        <CustomForm text={'Address'} style={formPopUp} onChange={onChangeAddress} formType={'textfield'} default={details.address}/>
 
-        <CustomForm text={'Phone number'} style={formPopUp} onChange={onChangePhone} formType={'textfield'} />
+        <CustomForm text={'Phone number'} style={formPopUp} onChange={onChangePhone} formType={'textfield'} default={details.phoneNumber}/>
 
         <CustomButton text='Edit' onClick={() => props.onClick({
             address:address,

@@ -54,7 +54,7 @@ export const api = {
     equipment : { 
         view : base + '/rooms/equipments',
         create : base + '/rooms/equipments/add/:id?id=',
-        update: base + '/rooms/equipments/update/:id?id=',
+        update: base + '/rooms/equipments/update',
         delete: base + '/rooms/equipments/delete/:id?id=',
     },
     equipmentType : { 

@@ -11,10 +11,6 @@ import { InformationPopUp } from '../secretaryInformationPopUp/secretaryInformat
 import { EquipmentData, Equipment } from '../secretaryEquipmentData/secretaryEquipmentData';
 import { Details, details } from '../../login/login';
 
-const equipmentlist : Equipment[] = []
-
-const consumablelist : Consumable[] = []
-
 type Props = {
 }
 
@@ -49,7 +45,7 @@ export const CrudSecretary = (props: Props) => {
                     <UserData/>
                 </Box>
                 <Box className={classes.equipments}>
-                    <EquipmentData equipments={equipmentlist}/>
+                    <EquipmentData/>
                 </Box>
                 <Box className={classes.tickets}>
                     <ConsumableData/>

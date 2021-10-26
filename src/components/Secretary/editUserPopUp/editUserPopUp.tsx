@@ -15,6 +15,7 @@ import { ListForm } from '../../popUp/appointmentPopUp/appointmentPopUp';
 type Props = {
     onClick: (value: any) => void;
     list:ListForm[];
+    details:Details;
 }
 
 export {}
@@ -36,19 +37,6 @@ export const EditUserPopUp = (props: Props) => {
             console.log(primaryDoctor);
             setPrimaryDoctor(primaryDoctor);
         }
-
-        const postUpdate= (patient: Details) => {
-            axios.put(api.update.patient, patient,
-                {
-                    headers: {
-                        Authorization: `Bearer ${bearerToken}`
-                    }
-                }).then((response: any) => {
-                    console.log('Updated at: '+response.data);
-                }).catch((reason: any) => {
-                    console.log(reason);
-                });
-        }
     
         return (<Box className={classes.box}>
     
@@ -56,9 +44,9 @@ export const EditUserPopUp = (props: Props) => {
                Edit user:
             </Typography>
     
-            <CustomForm text={'Address'} style={formPopUp} onChange={onChangeAddress} formType={'textfield'} />
+            <CustomForm text={'Address'} style={formPopUp} onChange={onChangeAddress} formType={'textfield'} default={props.details.address}/>
 
-            <CustomForm text={'Primary Doctor'} style={formPopUp} onChange={onChangePrimaryDoctor} formType={'list'} list={props.list}/>
+            <CustomForm text={'Primary Doctor'} style={formPopUp} onChange={onChangePrimaryDoctor} formType={'list'} list={props.list} default={props.details.primaryDoctor}/>
     
             <CustomButton text='Create' onClick={() => props.onClick(
                 {

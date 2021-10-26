@@ -29,13 +29,8 @@ export type Appointment = {
         const [phonenumber, setPhonenumber] = React.useState<string>();
 
         const styleProps = {
-        }
+        } 
 
-     
-
-    
-    
-    
         const classes = useStyles(styleProps);
     
         const onChangeEmail = (email: string) => {

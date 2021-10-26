@@ -5,10 +5,12 @@ import { useStyles } from './secretaryData.style';
 import { CustomButton } from '../../customButton/customButton';
 import { formPopUp } from '../../../utils/customForm/customFormHelper';
 import { button } from '../../../utils/customButton/customButtonHelper';
+import { Details, details } from '../../login/login';
 
 
 type Props = {
     onClick: (value: any) => void;
+    secretary: Details;
 }
 
 export type Appointment = {
@@ -29,13 +31,8 @@ export type Appointment = {
         const [phonenumber, setPhonenumber] = React.useState<string>();
 
         const styleProps = {
-        }
+        }  
 
-     
-
-    
-    
-    
         const classes = useStyles(styleProps);
     
         const onChangeEmail = (email: string) => {
@@ -62,13 +59,16 @@ export type Appointment = {
                 Edit your info:
             </Typography>
     
-            <CustomForm text={'Last name'} style={formPopUp} onChange={onChangeLastName} formType={'textfield'} />
+            <CustomForm text={'Last name'} style={formPopUp} onChange={onChangeLastName} formType={'textfield'} default={props.secretary.lastName}/>
 
-            <CustomForm text={'Enter your new email'} style={formPopUp} onChange={onChangeEmail} formType={'textfield'} />
+            <CustomForm text={'Enter your new email'} style={formPopUp} onChange={onChangeEmail} formType={'textfield'} 
+            default={props.secretary.email}/>
 
-            <CustomForm text={'Enter your new phone number'} style={formPopUp} onChange={onChangePhoneNumber} formType={'textfield'} />
+            <CustomForm text={'Enter your new phone number'} style={formPopUp} onChange={onChangePhoneNumber} formType={'textfield'} 
+            default={props.secretary.phoneNumber}/>
     
-            <CustomForm text={'Enter your new Address'} style={formPopUp} onChange={onChangeAddress} formType={'textfield'} />
+            <CustomForm text={'Enter your new Address'} style={formPopUp} onChange={onChangeAddress} formType={'textfield'} 
+            default={props.secretary.address}/>
     
             <CustomButton text='Create' onClick={() => props.onClick(
                 {

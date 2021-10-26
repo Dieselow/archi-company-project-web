@@ -3,16 +3,16 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles(thme =>
 ({
     box: {
-        padding : 20,
+        padding: 20,
         display: 'flex',
         alignItems: 'left',
         justifyContent: 'left',
         flexDirection: 'column',
         margin: 0,
         backgroundColor: '#037682',
-        borderRadius: 30,  
-        maxHeight: 600, 
-        overflow: 'auto'      
+        borderRadius: 30,
+        maxHeight: 600,
+        overflow: 'auto'
     },
     typography: {
         fontSize: 30,
@@ -21,5 +21,9 @@ export const useStyles = makeStyles(thme =>
         fontFamily: 'Monaco',
         fontWeight: 'bold'
     },
+    list: {
+        maxHeight: 300,
+        overflow: 'auto'
+    }
 })
 );

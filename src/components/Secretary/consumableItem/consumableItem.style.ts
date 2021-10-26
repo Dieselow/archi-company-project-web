@@ -12,7 +12,7 @@ export const useStyles = makeStyles(thme =>
         borderRadius: 10
     },
     typography: {
-        fontSize: 20,
+        fontSize: 14,
         color: 'white',
         margin: 10,
         fontFamily: 'Monaco',

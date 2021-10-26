@@ -27,51 +27,32 @@ var equipment: Equipment = {
     installationDate: ''
 }
 
-var equipments: Equipment[]
-
 type Props = {
-    equipments: Equipment[]
 }
 
-const getAllEquipments = () => {
-    axios.get(api.equipment.view,
-        {
-            headers: {
-                Authorization: `Bearer ${bearerToken}`
-            }
-        }).then((response: any) => {
-            console.log(details);
-            equipments = response.data;
-        }).catch((reason: any) => {
-            console.log(reason);
-        });
-}
-
-const getAllRooms = () => {
-    console.log('rooms');
-    axios.get(api.rooms.rooms,
-        {
-            headers: {
-                Authorization: `Bearer ${bearerToken}`
-            }
-        }).then((response: any) => {
-            console.log(response);
-        }).catch((reason: any) => {
-            console.log(reason);
-        });
-}
 var requestMadeForEquipments = 0;
-var requestMadeForRooms = 0;
 
 export const EquipmentData = (props: Props) => {
     const [open, setOpen] = React.useState(false);
-
+    const [equipments, setEquipments] = React.useState<Equipment[]>([]);
 
     const onClickAdd = () => {
         console.log('on click')
         setOpen(true);
     }
 
+    const getAllEquipments = () => {
+        axios.get(api.equipment.view,
+            {
+                headers: {
+                    Authorization: `Bearer ${bearerToken}`
+                }
+            }).then((response: any) => {
+                setEquipments(response.data);
+            }).catch((reason: any) => {
+                console.log(reason);
+            });
+    }
     const postCreate = (equipment: Equipment, roomId: String) => {
         axios.post(api.equipment.create + roomId, equipment,
             {
@@ -91,7 +72,7 @@ export const EquipmentData = (props: Props) => {
         equipment.equipmentType.name = value.equipmentType.name;
         equipment.equipmentType.id = undefined;
         equipment.installationDate = value.installationDate;
-        postCreate(equipment,value.equipmentType.id);
+        postCreate(equipment, value.equipmentType.id);
         console.log('Created equipment');
         setOpen(true);
     }
@@ -104,22 +85,19 @@ export const EquipmentData = (props: Props) => {
     }
     const classes = useStyles(styleProps);
 
-    if (requestMadeForEquipments == 0){
+    if (equipments.length === 0){
         getAllEquipments();
     }
 
-    if (requestMadeForRooms == 0){
-        getAllRooms();
-    }
     return (<Box className={classes.box}>
-        <Typography className={classes.typography}>Equipment List <br/></Typography>
+        <Typography className={classes.typography}>Equipment List <br /></Typography>
 
-        <Box>
+        <Box className={classes.list}>
             <CustomButton text={'Add Equipment'} onClick={onClickAdd} style={button} />
             <Dialog open={open} onClose={handleClose}>
                 <AddEquipmentPopUp onClick={onClickCreate} />
-            </Dialog> 
-            {equipments?.map(x => <EquipmentItem equipment={x}/>)}
+            </Dialog>
+            {equipments?.map(x => <EquipmentItem equipment={x} />)}
         </Box>
     </Box>
     );

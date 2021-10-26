@@ -58,7 +58,7 @@ export const InformationPopUp = (props: Props) => {
         <CustomButton text='Edit' onClick={onClickCreate} style={button} />
         <Dialog open={open} onClose={handleClose}>
             <SecretaryData onClick={handleClose} 
-            />
+            secretary={props.secretary}/>
         </Dialog>
     </Box>
     );

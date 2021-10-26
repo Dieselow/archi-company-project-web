@@ -13,9 +13,9 @@ import { Consumable } from '../consumableItem/consumableItem';
 
 type Props = {
     onClick: (value: any) => void;
+    consumable:Consumable;
 }
 
-export {}
 export const EditConsumablePopUp = (props: Props) => {
         const [quantity, setQuantity] = React.useState<string>('');
         const [treshold, setTreshold] = React.useState<string>('');
@@ -51,12 +51,12 @@ export const EditConsumablePopUp = (props: Props) => {
         return (<Box className={classes.box}>
     
             <Typography className={classes.typography}>
-               Edit user:
+               Edit consumable:
             </Typography>
     
-            <CustomForm text={'Treshold:'} style={formPopUp} onChange={onChangeTreshold} formType={'textfield'} />
+            <CustomForm text={'Treshold:'} style={formPopUp} onChange={onChangeTreshold} formType={'textfield'} default={props.consumable.threshold}/>
 
-            <CustomForm text={'Quantity'} style={formPopUp} onChange={onChangeQuantity} formType={'textfield'} />
+            <CustomForm text={'Quantity'} style={formPopUp} onChange={onChangeQuantity} formType={'textfield'} default={props.consumable.quantity}/>
     
             <CustomButton text='Create' onClick={() => props.onClick(
                 {

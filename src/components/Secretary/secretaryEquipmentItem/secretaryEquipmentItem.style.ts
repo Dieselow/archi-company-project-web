@@ -10,7 +10,7 @@ export const useStyles = makeStyles(thme =>
         margin: 2,
     },
     typography: {
-        fontSize: 20,
+        fontSize: 14,
         color: 'white',
         padding: 10,
         fontFamily: 'Monaco',

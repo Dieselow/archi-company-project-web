@@ -21,13 +21,9 @@ const getCaregiverData = (caregiver: Caregiver) => {
 
 }
 
-
-
 export type ListForm = {
     value: string;
 }
-
-
 
 export const InformationPopUp = (props: Props) => {
     const styleProps = {

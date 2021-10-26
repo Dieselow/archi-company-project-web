@@ -33,7 +33,6 @@ var userlist : User[];
 
 
 export const UserItem = (props: Props) => {
-    console.log('UserItem')
     const [open, setOpen] = React.useState(false);
     const styleProps = {
     }
@@ -116,7 +115,7 @@ export const UserItem = (props: Props) => {
         </Typography>
         <CustomButton text={'Edit'} onClick={onClickOpenUpdate} style={button}/>
             <Dialog open={open} onClose={handleClose}>
-                <EditUserPopUp list={props.list} onClick={onClickUpdate} />
+                <EditUserPopUp list={props.list} onClick={onClickUpdate} details={props.user}/>
             </Dialog>
         <CustomButton text={'Delete'} onClick={onClickDelete} style={button}/>
     </Box>
