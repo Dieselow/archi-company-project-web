@@ -37,7 +37,7 @@ export const CrudSecretary = (props: Props) => {
         setOpen(false);
     }
     return (<Box className={classes.box}>
-        <Banner onClick={onClick} textTypography={'Hello ' + details.firstName +'.'} textButton={'Log out' } />
+        <Banner onClick={onClick} textTypography={'Hello ' + details.firstName +'.'} textButton={'Log out' } searchBar={true} />
 
         <Box className={classes.background}>
         <CustomButton text={'My info'} onClick={onClickCustom} style={titleButton}/>

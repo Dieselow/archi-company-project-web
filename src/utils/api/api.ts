@@ -31,6 +31,10 @@ export const api = {
         caregiver: base + '/caregivers/update/:id?id=',
         secretary: base + '/secretaries/update/:id?id=',
     },
+  
+    search : base + '/search/:request?request=',
+    getUserType : base + "/users/get/:token",
+
     healthfile : { 
         view : base + '/healthfile/view/:id?id=',
         create : base + '/healthfile/create/:id?id=',
