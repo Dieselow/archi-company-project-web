@@ -78,7 +78,8 @@ export const CrudCaregiver = (props: Props) => {
     }
 
     return (<Box className={classes.box}>
-        <Banner onClick={onClick} textTypography={'Hello Doctor ' + details.firstName + '.'} textButton={'Log out'} />
+
+        <Banner onClick={onClick} textTypography={'Hello Doctor ' + details.firstName + '.'} textButton={'Log out'}  searchBar= {true} />
 
         <Box className={classes.background}>
             <CustomButton text={'My info'} onClick={onClickCustom} style={titleButton} />
