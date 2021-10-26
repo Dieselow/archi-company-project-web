@@ -23,27 +23,33 @@ var consumable: Consumable = {
     },
 }
 
+var consumables: Consumable[];
+
+const getAllConsumables = () => {
+    axios.get(api.consumable.viewall,
+        {
+            headers: {
+                Authorization: `Bearer ${bearerToken}`
+            }
+        }).then((response: any) => {
+            consumables=response.data;
+            console.log(response.data);
+        }).catch((reason: any) => {
+            console.log(reason);
+        });
+}
+
+getAllConsumables();
 
 export const ConsumableData = (props: Props) => {
-    const [consumables, setConsumables] = React.useState<Consumable[]>([]);
     const [open, setOpen] = React.useState(false);
+
 
     const styleProps = {
     }
     const classes = useStyles(styleProps);
 
-    const getAllConsumables = () => {
-        axios.get(api.consumable.viewall,
-            {
-                headers: {
-                    Authorization: `Bearer ${bearerToken}`
-                }
-            }).then((response: any) => {
-                setConsumables(response.data);
-            }).catch((reason: any) => {
-                console.log(reason);
-            });
-    }
+    
     const postCreate = (consumable: Consumable) => {
         axios.post(api.consumableType.create, {
             name: 'te2s1t',
@@ -89,13 +95,13 @@ export const ConsumableData = (props: Props) => {
 
 
     return (<Box className={classes.box}>
-        <Typography className={classes.typography}>Ongoing Tickets</Typography>
+        <Typography className={classes.typography}>Current consumable stock:</Typography>
         <Box>
             <CustomButton text={'Create a new consumable'} onClick={onClickCreateOpen} style={button} />
             <Dialog open={open} onClose={handleClose}>
                 <AddConsumablePopUp onClick={onClickCreate} />
             </Dialog>
-            {consumables.map(x => <ConsumableItem consumable={x} />)}
+            {consumables?.map(x => <ConsumableItem consumable={x} />)}
         </Box>
     </Box>
     );

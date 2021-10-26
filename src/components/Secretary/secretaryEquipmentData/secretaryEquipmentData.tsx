@@ -62,6 +62,7 @@ const gellAllRooms = () => {
 }
 
 gellAllRooms();
+getAllEquipments();
 
 export const EquipmentData = (props: Props) => {
     const [open, setOpen] = React.useState(false);
@@ -104,14 +105,14 @@ export const EquipmentData = (props: Props) => {
     const classes = useStyles(styleProps);
 
     return (<Box className={classes.box}>
-        <Typography className={classes.typography}>Equipment List</Typography>
+        <Typography className={classes.typography}>Equipment List <br/></Typography>
 
         <Box>
             <CustomButton text={'Add Equipment'} onClick={onClickAdd} style={button} />
             <Dialog open={open} onClose={handleClose}>
                 <AddEquipmentPopUp onClick={onClickCreate} />
-            </Dialog>
-            {/* {equipments.map(x => <EquipmentItem equipment={x}/>)} */}
+            </Dialog> 
+            {equipments?.map(x => <EquipmentItem equipment={x}/>)}
         </Box>
     </Box>
     );

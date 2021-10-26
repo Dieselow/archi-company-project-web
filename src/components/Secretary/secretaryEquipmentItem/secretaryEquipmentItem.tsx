@@ -52,7 +52,7 @@ export const EquipmentItem = (props: Props) => {
                 alert(reason);
             });
     }
-
+    
 
     const classes = useStyles(styleProps);
     const onClickUpdate = (date: any) => {

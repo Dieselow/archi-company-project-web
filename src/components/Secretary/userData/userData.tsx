@@ -82,7 +82,7 @@ export const UserData = (props: Props) => {
     return (<Box className={classes.box}>
         <Typography className={classes.typography}>Patient list</Typography>
         <Box className={classes.list}>
-            {patients.map(x => <UserItem user={x} list={caregivers} listPatient={patients} setListPatients={setPatients}/>)}
+            {patients?.map(x => <UserItem user={x} list={caregivers} listPatient={patients} setListPatients={setPatients}/>)}
         </Box>
     </Box>
     );

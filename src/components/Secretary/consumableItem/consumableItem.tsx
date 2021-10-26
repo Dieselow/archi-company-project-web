@@ -82,18 +82,18 @@ export const ConsumableItem = (props: Props) => {
     }
 
     return (<Box className={classes.box}>
-
+        
         <Typography className={classes.typography}>
             Current Quantity: {props.consumable.quantity}
         </Typography>
         <Typography className={classes.typography}>
             Treshold: {props.consumable.threshold}
         </Typography>
-        <CustomButton text={'Edit'} onClick={onClickOpenUpdate} style={button}/>
+         <CustomButton text={'Edit'} onClick={onClickOpenUpdate} style={button}/>
             <Dialog open={open} onClose={handleClose}>
                 <EditConsumablePopUp onClick={onClickUpdate} />
-            </Dialog>
-        <CustomButton text={'Delete'} onClick={onClickDelete} style={button}/>
+            </Dialog> 
+         <CustomButton text={'Delete'} onClick={onClickDelete} style={button}/> 
 
     </Box>
     );
