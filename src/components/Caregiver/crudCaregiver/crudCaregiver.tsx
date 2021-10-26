@@ -10,6 +10,7 @@ import { InformationPopUp } from '../caregiverInformationPopUp/caregiverInformat
 import { Details, details, bearerToken } from '../../login/login';
 import { api } from '../../../utils/api/api';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 export type Caregiver = {
     firstname: string;
@@ -27,16 +28,22 @@ export const Patientlist: any[] = [
 type Props = {
 }
 
-const onClick = () => {
-    console.log('on click !');
-}
 
 export const CrudCaregiver = (props: Props) => {
     const [open, setOpen] = React.useState(false);
     const styleProps = {
     }
     const classes = useStyles(styleProps);  
+    const [bearerType, setBearerType] = React.useState('');
 
+    let history = useHistory();
+
+    const onClick = () => {
+        history.push('/caregiver');
+    }
+
+
+    
     const onClickCustom = () => {
         console.log('on click !');
         setOpen(true);
