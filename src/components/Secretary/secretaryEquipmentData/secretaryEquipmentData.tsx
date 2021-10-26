@@ -106,10 +106,12 @@ export const EquipmentData = (props: Props) => {
 
     if (requestMadeForEquipments == 0){
         getAllEquipments();
+        requestMadeForEquipments = 1;
     }
 
     if (requestMadeForRooms == 0){
         getAllRooms();
+        requestMadeForRooms = 1;
     }
     return (<Box className={classes.box}>
         <Typography className={classes.typography}>Equipment List <br/></Typography>
