@@ -91,7 +91,6 @@ export const Login = (props: Props) => {
                     }
                 }).then((response: any) => {
                     details = response.data;
-                    details.password = password;
                     console.log(details);
                     history.push('/crud');
                 }).catch((reason: any) => {
