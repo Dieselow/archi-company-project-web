@@ -10,6 +10,7 @@ import { InformationPopUp } from '../caregiverInformationPopUp/caregiverInformat
 import { Details, details, bearerToken } from '../../login/login';
 import { api } from '../../../utils/api/api';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 export type Caregiver = {
     firstname: string;
@@ -27,16 +28,22 @@ export const Patientlist: any[] = [
 type Props = {
 }
 
-const onClick = () => {
-    console.log('on click !');
-}
 
 export const CrudCaregiver = (props: Props) => {
     const [open, setOpen] = React.useState(false);
     const styleProps = {
     }
     const classes = useStyles(styleProps);  
+    const [bearerType, setBearerType] = React.useState('');
 
+    let history = useHistory();
+
+    const onClick = () => {
+        history.push('/caregiver');
+    }
+
+
+    
     const onClickCustom = () => {
         console.log('on click !');
         setOpen(true);
@@ -47,7 +54,8 @@ export const CrudCaregiver = (props: Props) => {
     }
 
     return (<Box className={classes.box}>
-        <Banner onClick={onClick} textTypography={'Hello Doctor ' + details.firstName + '.'} textButton={'Log out'} />
+
+        <Banner onClick={onClick} textTypography={'Hello Doctor ' + details.firstName + '.'} textButton={'Log out'}  searchBar= {true} />
 
         <Box className={classes.background}>
             {/* <CustomButton text={'My info'} onClick={onClickCustom} style={titleButton} /> */}
@@ -56,7 +64,7 @@ export const CrudCaregiver = (props: Props) => {
             </Dialog>
             <Box className={classes.content}>
                 <Box className={classes.caregiverData}>
-                    <PatientData id={details.id} patients={details.patients} />
+                    <PatientData id={details.id} patients={details.patients || []} />
                 </Box>
             </Box>
         </Box>

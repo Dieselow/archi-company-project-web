@@ -52,12 +52,11 @@ const getHealthFile = () => {
     return healthFile;
 }
 
-const healthFile = getHealthFile();
 
 export const HealthFilePopUp = (props: Props) => {
     const styleProps = {
     }
-
+    let healthFile = getHealthFile();
     const classes = useStyles(styleProps);
 
     return (<Box className={classes.box}>

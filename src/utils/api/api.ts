@@ -8,7 +8,7 @@ export const api = {
         caregiver: base + '/caregivers/auth/register',
         secretary: base + '/secretaries/auth/register',
     },
-    doctorPatient : base + '/view/patients',
+    doctorPatient : base + '/caregivers/view/patients',
     patients: base + '/patients',
     caregivers: base + '/caregivers',
     login: base + '/auth/login',
@@ -31,6 +31,10 @@ export const api = {
         caregiver: base + '/caregivers/update/:id?id=',
         secretary: base + '/secretaries/update/:id?id=',
     },
+  
+    search : base + '/search/:request?request=',
+    getUserType : base + "/users/get/:token",
+
     healthfile : { 
         view : base + '/healthfile/view/:id?id=',
         create : base + '/healthfile/create/:id?id=',

@@ -8,6 +8,7 @@ export const useStyles = makeStyles(thme =>
         flexDirection: 'row',
         margin: 0,
         backgroundColor: '#037682',
+        alignItems: 'center',
     },
     link: {
         backgroundColor : 'white',

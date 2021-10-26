@@ -10,19 +10,26 @@ import { titleButton } from '../../../utils/customButton/customButtonHelper';
 import { InformationPopUp } from '../secretaryInformationPopUp/secretaryInformationPopUp';
 import { EquipmentData, Equipment } from '../secretaryEquipmentData/secretaryEquipmentData';
 import { Details, details } from '../../login/login';
+import { useHistory } from 'react-router-dom';
 
 type Props = {
 }
 
-const onClick = (variable: any) => {
-    console.log('on click !');
-}
+
+    
+
+
 
 export const CrudSecretary = (props: Props) => {
   const [open, setOpen] = React.useState(false);
     const styleProps = {
     }
     const classes = useStyles(styleProps);
+    let history = useHistory();
+    const onClick = () => {
+        
+        history.push('/'+ 'secretary');
+    }
 
     const onClickCustom = () => {
         console.log('on click !');
@@ -33,7 +40,7 @@ export const CrudSecretary = (props: Props) => {
         setOpen(false);
     }
     return (<Box className={classes.box}>
-        <Banner onClick={onClick} textTypography={'Hello ' + details.firstName +'.'} textButton={'Log out' } />
+        <Banner onClick={onClick} textTypography={'Hello ' + details.firstName +'.'} textButton={'Log out' } searchBar={true} />
 
         <Box className={classes.background}>
         <CustomButton text={'My info'} onClick={onClickCustom} style={titleButton}/>

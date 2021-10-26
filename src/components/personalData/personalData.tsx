@@ -5,7 +5,7 @@ import { CustomButton } from '../customButton/customButton';
 import { button } from '../../utils/customButton/customButtonHelper';
 
 type Props = {
-    onClick: () => void;
+    onClick?: () => void;
     patient: any;
 }
 
@@ -20,7 +20,7 @@ export const PersonalData = (props: Props) => {
         <Typography className={classes.titleTypography}>
             Personal Data
         </Typography>
-        <CustomButton text={'Edit'} onClick={props.onClick} style={button}/>
+        {props.onClick != null ? <CustomButton text={'Edit'} onClick={props.onClick} style={button}/> : null}
         </Box>
         <Typography className={classes.typography}>
             address : {patient.address}
