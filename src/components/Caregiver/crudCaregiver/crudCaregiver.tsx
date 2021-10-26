@@ -57,7 +57,7 @@ export const CrudCaregiver = (props: Props) => {
             </Dialog>
             <Box className={classes.content}>
                 <Box className={classes.caregiverData}>
-                    <PatientData id={details.id} patients={details.patients} />
+                    <PatientData id={details.id} patients={details.patients || []} />
                 </Box>
             </Box>
         </Box>
