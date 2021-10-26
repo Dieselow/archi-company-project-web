@@ -1,44 +1,42 @@
 import React from 'react';
 import { Button, Typography, Box } from '@material-ui/core';
 import { CustomForm } from '../../customForm/customForm';
-import { useStyles } from './editUserPopUp.style';
+import { useStyles } from './editConsumablePopUp.style';
 import { CustomButton } from '../../customButton/customButton';
 import { button } from '../../../utils/customButton/customButtonHelper';
 import { formPopUp } from '../../../utils/customForm/customFormHelper';
 import { api, getDetails} from '../../../utils/api/api';
 import axios from 'axios';
 import { bearerToken, Details, details } from '../../login/login';
-import { User } from '../userItem/userItem';
-import { ListForm } from '../../popUp/appointmentPopUp/appointmentPopUp';
+import { Consumable } from '../consumableItem/consumableItem';
 
 
 type Props = {
     onClick: (value: any) => void;
-    list:ListForm[];
 }
 
 export {}
-export const EditUserPopUp = (props: Props) => {
-        const [address, setAddress] = React.useState<string>('');
-        const [primaryDoctor, setPrimaryDoctor] = React.useState<string>('');
+export const EditConsumablePopUp = (props: Props) => {
+        const [quantity, setQuantity] = React.useState<string>('');
+        const [treshold, setTreshold] = React.useState<string>('');
         
         const styleProps = {
         }
     
         const classes = useStyles(styleProps);
     
-        const onChangeAddress = (address: string) => {
-            console.log(address);
-            setAddress(address);
+        const onChangeTreshold = (treshold: string) => {
+            console.log(treshold);
+            setTreshold(treshold);
         }
     
-        const onChangePrimaryDoctor= (primaryDoctor: string) => {
-            console.log(primaryDoctor);
-            setPrimaryDoctor(primaryDoctor);
+        const onChangeQuantity= (quantity: string) => {
+            console.log(quantity);
+            setQuantity(quantity);
         }
 
-        const postUpdate= (patient: Details) => {
-            axios.put(api.update.patient, patient,
+        const postUpdate= (consumable: Consumable) => {
+            axios.put(api.consumable.update, consumable,
                 {
                     headers: {
                         Authorization: `Bearer ${bearerToken}`
@@ -56,14 +54,14 @@ export const EditUserPopUp = (props: Props) => {
                Edit user:
             </Typography>
     
-            <CustomForm text={'Address'} style={formPopUp} onChange={onChangeAddress} formType={'textfield'} />
+            <CustomForm text={'Treshold:'} style={formPopUp} onChange={onChangeTreshold} formType={'textfield'} />
 
-            <CustomForm text={'Primary Doctor'} style={formPopUp} onChange={onChangePrimaryDoctor} formType={'list'} list={props.list}/>
+            <CustomForm text={'Quantity'} style={formPopUp} onChange={onChangeQuantity} formType={'textfield'} />
     
             <CustomButton text='Create' onClick={() => props.onClick(
                 {
-                    address: address,
-                    primaryDoctor: primaryDoctor,
+                    quantity: quantity,
+                    treshold: treshold,
                 }
             )} style={button} />
         </Box>

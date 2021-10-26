@@ -1,5 +1,4 @@
 import { UserType } from "../../components/userLogin/userLogin";
-import { Equipment } from '../../components/Secretary/secretaryEquipmentItem/secretaryEquipmentItem';
 
 const base = 'http://localhost:3001/api/v1';
 
@@ -11,10 +10,14 @@ export const api = {
     },
     doctorPatient : base + '/view/patients',
     patients: base + '/patients',
+    caregivers: base + '/caregivers',
     login: base + '/auth/login',
     welcome: base + '/welcome',
     Rooms: base + '/rooms',
     getpatient: base + '/patients',
+    rooms : {
+        rooms : base + '/rooms',
+    },
     delete: {
         patient: base + '/patients/delete/:id?id=',
     },

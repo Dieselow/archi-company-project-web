@@ -18,6 +18,7 @@ type Props = {
     style: Style;
     formType: FormType;
     list?: ListForm[];
+    default?: string;
 }
 
 export const CustomForm = (props: Props) => {
@@ -46,7 +47,7 @@ export const CustomForm = (props: Props) => {
                         id="demo-simple-select"
                         defaultValue={''}
                     >
-                        {list?.map((x : ListForm )=> <MenuItem value={x.value} onClick={() => props.onChange(x.value)}>{x.value}</MenuItem>)}                    
+                        {list?.map((x : ListForm )=> <MenuItem value={x.value} onClick={() => props.onChange(x.id)}>{x.value}</MenuItem>)}                    
                     </Select>
                 </FormControl>
                 break;
@@ -55,7 +56,8 @@ export const CustomForm = (props: Props) => {
                 return <TextField
                     onChange={(event) => props.onChange(event.target.value)}
                     label=''
-                    variant='outlined' />
+                    variant='outlined'
+                    defaultValue={props.default} />
                 break;
         }
     }

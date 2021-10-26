@@ -5,50 +5,121 @@ import { CustomButton } from '../../customButton/customButton';
 import { EquipmentItem } from '../secretaryEquipmentItem/secretaryEquipmentItem';
 import { button } from '../../../utils/customButton/customButtonHelper';
 import { AddEquipmentPopUp } from '../addEquipmentPopUp/addEquipmentPopUp';
+import { api, getDetails } from '../../../utils/api/api';
+import axios from 'axios';
+import { bearerToken, Details, details } from '../../login/login';
 
 export type Equipment = {
-    name: string;
-    installationDate: string;
-    id: string;
+    id?: number
+    equipmentType:
+    {
+        name: string,
+        id?: number
+    },
+    installationDate: string
 }
 
+var equipment: Equipment = {
+    equipmentType: {
+        name: '',
+        id: 0
+    },
+    installationDate: ''
+}
+
+var equipments: Equipment[]
+
 type Props = {
-    equipments : Equipment[]
+    equipments: Equipment[]
 }
 
 const getAllEquipments = () => {
-
+    axios.get(api.equipment.view,
+        {
+            headers: {
+                Authorization: `Bearer ${bearerToken}`
+            }
+        }).then((response: any) => {
+            console.log(details);
+            equipments = response.data;
+        }).catch((reason: any) => {
+            console.log(reason);
+        });
 }
 
+const getAllRooms = () => {
+    console.log('rooms');
+    axios.get(api.rooms.rooms,
+        {
+            headers: {
+                Authorization: `Bearer ${bearerToken}`
+            }
+        }).then((response: any) => {
+            console.log(response);
+        }).catch((reason: any) => {
+            console.log(reason);
+        });
+}
+var requestMadeForEquipments = 0;
+var requestMadeForRooms = 0;
 
 export const EquipmentData = (props: Props) => {
     const [open, setOpen] = React.useState(false);
 
-    const onClickAdd = (value: any) => {
-        console.log(value)
-        
+
+    const onClickAdd = () => {
+        console.log('on click')
+        setOpen(true);
     }
-    const onClick = () => {
+
+    const postCreate = (equipment: Equipment, roomId: String) => {
+        axios.post(api.equipment.create + roomId, equipment,
+            {
+                headers: {
+                    Authorization: `Bearer ${bearerToken}`
+                }
+            }).then((response: any) => {
+                console.log('Created at: ' + response.data);
+            }).catch((reason: any) => {
+                console.log(reason);
+            });
+    }
+
+    const onClickCreate = (value: any) => {
+        console.log(value);
+        console.log(equipment);
+        equipment.equipmentType.name = value.equipmentType.name;
+        equipment.equipmentType.id = undefined;
+        equipment.installationDate = value.installationDate;
+        postCreate(equipment,value.equipmentType.id);
+        console.log('Created equipment');
         setOpen(true);
     }
     const handleClose = (value: string) => {
         console.log(value);
         setOpen(false);
     }
-    
+
     const styleProps = {
     }
     const classes = useStyles(styleProps);
 
+    if (requestMadeForEquipments == 0){
+        getAllEquipments();
+    }
+
+    if (requestMadeForRooms == 0){
+        getAllRooms();
+    }
     return (<Box className={classes.box}>
-        <Typography className={classes.typography}>Equipment List</Typography>
-        
+        <Typography className={classes.typography}>Equipment List <br/></Typography>
+
         <Box>
-        <CustomButton text={'Add Equipment'} onClick={onClick} style={button}/>
-        <Dialog open={open} onClose={handleClose}>
-                <AddEquipmentPopUp onClick={onClickAdd} />
-            </Dialog>
-            {props.equipments.map(x => <EquipmentItem equipment={x}/>)}
+            <CustomButton text={'Add Equipment'} onClick={onClickAdd} style={button} />
+            <Dialog open={open} onClose={handleClose}>
+                <AddEquipmentPopUp onClick={onClickCreate} />
+            </Dialog> 
+            {equipments?.map(x => <EquipmentItem equipment={x}/>)}
         </Box>
     </Box>
     );

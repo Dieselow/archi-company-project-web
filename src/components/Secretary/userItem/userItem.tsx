@@ -7,6 +7,7 @@ import { api, getDetails} from '../../../utils/api/api';
 import axios from 'axios';
 import { bearerToken, Details, details } from '../../login/login';
 import { EditUserPopUp } from '../editUserPopUp/editUserPopUp';
+import { ListForm } from '../../popUp/appointmentPopUp/appointmentPopUp';
 
 export type User= {
     username: string,
@@ -20,18 +21,19 @@ export type User= {
 }
 
 type Props = {
-    user: User
+    user: Details,
+    list: ListForm[],
+    listPatient: Details[],
+    setListPatients : any,
 }
-
-const onClickDelete = () => {
-
-}
-
 
 var userlist : User[];
 
 
+
+
 export const UserItem = (props: Props) => {
+    console.log('UserItem')
     const [open, setOpen] = React.useState(false);
     const styleProps = {
     }
@@ -46,7 +48,6 @@ export const UserItem = (props: Props) => {
         setOpen(false);
     }
 
-
     const onClickUpdate = (value: any) => {
         details.address=value.address;
         details.primaryDoctor=value.primaryDoctor;
@@ -54,28 +55,53 @@ export const UserItem = (props: Props) => {
         console.log('on click !');
         setOpen(true);
     }
-    const getAllPatients = () => {
-        axios.get(api.getpatient,
-                {
-                    headers: {
-                        Authorization: `Bearer ${bearerToken}`
-                    }
-                }).then((response: any) => {
-                    userlist = response.data;
-                    console.log(details);
-                }).catch((reason: any) => {
-                    console.log(reason);
-                });
+
+
+    const onClickDelete = () => {
+        console.log('Delete'); 
+        console.log(details.id);
+        console.log(api.delete.patient + props.user.id.toString());
+        axios.delete(api.delete.patient + props.user.id.toString(),
+            {
+                headers: {
+                    Authorization: `Bearer ${bearerToken}`
+                }
+            }).
+            then((response: any) => {
+                alert(details.firstName + ' deleted');
+                var tmp = props.listPatient;
+                tmp = tmp.filter(x => x.id !== props.user.id);
+                props.setListPatients(tmp);
+                console.log(response);
+            }).catch((reason: any) => {
+                alert(reason);
+            });
     }
 
     const postUpdate= (patient: Details) => {
-        axios.put(api.update.patient+details.id, patient,
+        console.log(patient.primaryDoctor)
+        axios.put(api.update.patient+props.user.id, 
+            {
+                "id": props.user.id,
+                "username": props.user.username,
+                "firstName": props.user.firstName,
+                "lastName": props.user.lastName,
+                "password": props.user.password,
+                "email": props.user.email,
+                "dateOfBirth": props.user.dateOfBirth,
+                "address": patient.address,
+                "phoneNumber": props.user.phoneNumber,
+                "primaryDoctor": {
+                    'id' : parseInt(patient.primaryDoctor || '0')
+                },
+                "roles": props.user.roles,
+            },
             {
                 headers: {
                     Authorization: `Bearer ${bearerToken}`
                 }
             }).then((response: any) => {
-                console.log('Updated at: '+response.data.Updated);
+                console.log('Updated at: '+response.data);
             }).catch((reason: any) => {
                 console.log(reason);
             });
@@ -90,7 +116,7 @@ export const UserItem = (props: Props) => {
         </Typography>
         <CustomButton text={'Edit'} onClick={onClickOpenUpdate} style={button}/>
             <Dialog open={open} onClose={handleClose}>
-                <EditUserPopUp onClick={onClickUpdate} />
+                <EditUserPopUp list={props.list} onClick={onClickUpdate} />
             </Dialog>
         <CustomButton text={'Delete'} onClick={onClickDelete} style={button}/>
     </Box>

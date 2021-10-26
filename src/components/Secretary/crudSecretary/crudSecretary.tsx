@@ -3,37 +3,17 @@ import { Button, Typography, Box, Dialog } from '@material-ui/core';
 import { useStyles } from './crudSecretary.style';
 import { Banner } from '../../banner/banner';
 import { CustomButton } from '../../customButton/customButton';
-import { TicketData } from '../ticketData/ticketData';
-import { Ticket } from '../ticketItem/ticketItem';
+import { ConsumableData } from '../consumableData/consumableData';
+import { Consumable } from '../consumableItem/consumableItem';
 import { UserData } from '../userData/userData';
 import { titleButton } from '../../../utils/customButton/customButtonHelper';
 import { InformationPopUp } from '../secretaryInformationPopUp/secretaryInformationPopUp';
 import { EquipmentData, Equipment } from '../secretaryEquipmentData/secretaryEquipmentData';
 import { Details, details } from '../../login/login';
 
-const equipmentlist : Equipment[] = [
-    {
-        name : 'Scanner',
-        installationDate: '10-10-2018',
-        id: '1',
-    },
-    {
-        name : 'Brancard',
-        installationDate: '01-02-2021',
-        id:'2',
-    }
-]
+const equipmentlist : Equipment[] = []
 
-const ongoingtickets : Ticket[] = [
-    {
-        requestDate : 'Order 10254',
-        consumables: '2 compresses, 5 ciseaux, 3 seringues',
-    },
-    {
-        requestDate : 'Order 21181',
-        consumables: '10 dolipranes',
-    }
-]
+const consumablelist : Consumable[] = []
 
 type Props = {
 }
@@ -72,7 +52,7 @@ export const CrudSecretary = (props: Props) => {
                     <EquipmentData equipments={equipmentlist}/>
                 </Box>
                 <Box className={classes.tickets}>
-                    <TicketData tickets={ongoingtickets}/>
+                    <ConsumableData/>
                 </Box>
             </Box>
         </Box>

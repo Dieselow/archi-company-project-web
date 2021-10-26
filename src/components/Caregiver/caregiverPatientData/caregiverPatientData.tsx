@@ -17,19 +17,16 @@ type Props = {
     id : number,
 }
 
-const onClickCreate = () => {
-
-}
-
 export const PatientData = (props: Props) => {
     const styleProps = {
     }
     const classes = useStyles(styleProps);
+    console.log(props.patients);
 
     return (<Box className={classes.box}>
         <Typography className={classes.typography}>Patient List</Typography>
         <Box>
-            {props.patients.map(x => <PatientItem id={props.id} patient={x}/>)}
+            {props.patients.map(x => <PatientItem id={x.id} patient={x}/>)}
         </Box>
     </Box>
     );

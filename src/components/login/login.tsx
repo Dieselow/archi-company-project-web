@@ -36,7 +36,9 @@ export type Details = {
     licenceNumber? : string;
     patients?: Details[],
 }
+
 export var bearerToken = '';
+export var patients: Details[] = [];
 export var details : Details = {
     address: '',
     dateOfBirth: '',

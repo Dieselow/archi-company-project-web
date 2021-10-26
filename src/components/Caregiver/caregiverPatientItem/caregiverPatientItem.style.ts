@@ -8,10 +8,13 @@ export const useStyles = makeStyles(thme =>
         display: 'flex',
         flexDirection: 'row',
         margin: 2,
+        backgroundColor : '#4e9fa7',
+        borderRadius : 10,
     },
     typography: {
-        fontSize: 20,
+        fontSize: 18,
         color: 'white',
+        minWidth: 80,
         padding: 10,
         fontFamily: 'Monaco',
         fontWeight: 'bold'

@@ -4,7 +4,7 @@ export const useStyles = makeStyles(thme =>
 ({
     box: {
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'left',
         display: 'flex',
         flexDirection: 'row',
         margin: 2,
