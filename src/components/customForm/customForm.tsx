@@ -18,6 +18,7 @@ type Props = {
     style: Style;
     formType: FormType;
     list?: ListForm[];
+    default?: string;
 }
 
 export const CustomForm = (props: Props) => {
@@ -55,7 +56,8 @@ export const CustomForm = (props: Props) => {
                 return <TextField
                     onChange={(event) => props.onChange(event.target.value)}
                     label=''
-                    variant='outlined' />
+                    variant='outlined'
+                    defaultValue={props.default} />
                 break;
         }
     }

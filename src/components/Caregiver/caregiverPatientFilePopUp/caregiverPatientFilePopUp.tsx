@@ -8,22 +8,15 @@ import { CustomForm } from '../../customForm/customForm';
 import { subButton } from '../../../utils/customButton/customButtonHelper';
 import { formPopUp } from '../../../utils/customForm/customFormHelper';
 import { UserType } from '../../userLogin/userLogin';
+import { HealthFile } from '../../popUp/healthFilePopUp/healthFilePopUp';
 
 type Props = {
     onClick: (value: any) => void;
+    healthFile : HealthFile;
 }
 
 export type Treatment = {
     name: string;
-}
-
-const getCaregivers = () => {
-
-}
-
-export type HealthFile = {
-    name: string;
-    condition: string;
 }
 
 export type ListForm = {
@@ -31,37 +24,47 @@ export type ListForm = {
 }
 
 export const HealthFilePopUp = (props: Props) => {
-    const [name, setName] = React.useState<string>('');
-    const [condition, setCondition] = React.useState<string>();
+    const [emergencyContact, setEmergencyContact] = React.useState<string>(props.healthFile.emergencyContact);
+    const [medications, setMedications] = React.useState<string>(props.healthFile.medications);
+    const [chronicConditions, setChronicConditions] = React.useState<string>(props.healthFile.chronicConditions);
+
     const styleProps = {
     }
 
     const classes = useStyles(styleProps);
 
-    const onChangeName = (name: string) => {
-        console.log(name);
-        setName(name);
+    const onChangeEmergencyContact = (value: string) => {
+        console.log(value);
+        setEmergencyContact(value);
     }
 
-
-    const onChangeCondition = (condition: string) => {
-        console.log(condition);
-        setCondition(condition);
+    const onChangeMedications = (value: string) => {
+        console.log(value);
+        setMedications(value);
     }
+
+    const onChangeChronicConditions = (value: string) => {
+        console.log(value);
+        setChronicConditions(value);
+    }
+
     return (<Box className={classes.box}>
 
         <Typography className={classes.typography}>
-            Create a Health File
+            Healthfile
         </Typography>
 
-        <CustomForm text={'Patient name'} style={formPopUp} onChange={onChangeName} formType={'textfield'} />
+        <CustomForm text={'Emergency contact'} style={formPopUp} onChange={onChangeEmergencyContact} formType={'textfield'} default={props.healthFile.emergencyContact}/>
 
-        <CustomForm text={'Enter the condition'} style={formPopUp} onChange={onChangeCondition} formType={'textfield'} />
+        <CustomForm text={'Medications'} style={formPopUp} onChange={onChangeMedications} formType={'textfield'} default={props.healthFile.medications}/>
 
-        <CustomButton text='Create' onClick={() => props.onClick(
+        <CustomForm text={'Chronic conditions'} style={formPopUp} onChange={onChangeChronicConditions} formType={'textfield'} default={props.healthFile.chronicConditions}/>
+
+        <CustomButton text='Update' onClick={() => props.onClick(
             {
-                name: name,
-                condition : condition,
+                emergencyContact: emergencyContact,
+                medications: medications,
+                chronicConditions: chronicConditions
             }
         )} style={button} />
     </Box>

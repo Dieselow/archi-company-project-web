@@ -24,26 +24,7 @@ export const Patientlist: any[] = [
     { name: 'Jack river', },
     { name: 'Joe mayo', }
 ]
-
-var patients: Details[] = [
-]
-
-
-
 type Props = {
-}
-
-const getPatients = () => {
-    axios.get(api.patients, {
-        headers: {
-            Authorization: `Bearer ${bearerToken}`
-        }
-    }).then((response:any) => {
-        console.log(response);
-        patients = response;
-    }).catch((reason:any) => {
-        console.log(reason);
-    })
 }
 
 const onClick = () => {
@@ -52,11 +33,9 @@ const onClick = () => {
 
 export const CrudCaregiver = (props: Props) => {
     const [open, setOpen] = React.useState(false);
-    getPatients();
     const styleProps = {
     }
-    const classes = useStyles(styleProps);
-
+    const classes = useStyles(styleProps);  
 
     const onClickCustom = () => {
         console.log('on click !');
@@ -67,27 +46,17 @@ export const CrudCaregiver = (props: Props) => {
         setOpen(false);
     }
 
-    const callWelcome = () => {
-        axios.get(api.welcome).then((response: any) => {
-            console.log(response);
-
-        }).catch((reason: any) => {
-            console.log(reason);
-        });
-
-    }
-
     return (<Box className={classes.box}>
         <Banner onClick={onClick} textTypography={'Hello Doctor ' + details.firstName + '.'} textButton={'Log out'} />
 
         <Box className={classes.background}>
-            <CustomButton text={'My info'} onClick={onClickCustom} style={titleButton} />
+            {/* <CustomButton text={'My info'} onClick={onClickCustom} style={titleButton} /> */}
             <Dialog open={open} onClose={handleClose}>
                 <InformationPopUp onClick={onClickCustom} caregiver={details} />
             </Dialog>
             <Box className={classes.content}>
                 <Box className={classes.caregiverData}>
-                    <PatientData id={details.id} patients={patients} />
+                    <PatientData id={details.id} patients={details.patients} />
                 </Box>
             </Box>
         </Box>
