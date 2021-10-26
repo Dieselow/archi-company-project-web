@@ -33,7 +33,21 @@ type Props = {
     equipments: Equipment[]
 }
 
-const gellAllRooms = () => {
+const getAllEquipments = () => {
+    axios.get(api.equipment.view,
+        {
+            headers: {
+                Authorization: `Bearer ${bearerToken}`
+            }
+        }).then((response: any) => {
+            console.log(details);
+            equipments = response.data;
+        }).catch((reason: any) => {
+            console.log(reason);
+        });
+}
+
+const getAllRooms = () => {
     console.log('rooms');
     axios.get(api.rooms.rooms,
         {
@@ -46,30 +60,16 @@ const gellAllRooms = () => {
             console.log(reason);
         });
 }
-
-gellAllRooms();
+var requestMadeForEquipments = 0;
+var requestMadeForRooms = 0;
 
 export const EquipmentData = (props: Props) => {
-    const [equipements, setEquipements] = React.useState<Equipment[]>();
     const [open, setOpen] = React.useState(false);
+
 
     const onClickAdd = () => {
         console.log('on click')
         setOpen(true);
-    }
-
-    const getAllEquipments = () => {
-        axios.get(api.equipment.view,
-            {
-                headers: {
-                    Authorization: `Bearer ${bearerToken}`
-                }
-            }).then((response: any) => {
-                console.log(details);
-                equipments = response.data;
-            }).catch((reason: any) => {
-                console.log(reason);
-            });
     }
 
     const postCreate = (equipment: Equipment, roomId: String) => {
@@ -91,7 +91,7 @@ export const EquipmentData = (props: Props) => {
         equipment.equipmentType.name = value.equipmentType.name;
         equipment.equipmentType.id = undefined;
         equipment.installationDate = value.installationDate;
-        postCreate(equipment, value.equipmentType.id);
+        postCreate(equipment,value.equipmentType.id);
         console.log('Created equipment');
         setOpen(true);
     }
@@ -100,23 +100,26 @@ export const EquipmentData = (props: Props) => {
         setOpen(false);
     }
 
-    if (equipements?.length === 0) {
-        getAllEquipments();
-    }
-
     const styleProps = {
     }
     const classes = useStyles(styleProps);
 
+    if (requestMadeForEquipments == 0){
+        getAllEquipments();
+    }
+
+    if (requestMadeForRooms == 0){
+        getAllRooms();
+    }
     return (<Box className={classes.box}>
-        <Typography className={classes.typography}>Equipment List <br /></Typography>
+        <Typography className={classes.typography}>Equipment List <br/></Typography>
 
         <Box>
             <CustomButton text={'Add Equipment'} onClick={onClickAdd} style={button} />
             <Dialog open={open} onClose={handleClose}>
                 <AddEquipmentPopUp onClick={onClickCreate} />
-            </Dialog>
-            {equipments?.map(x => <EquipmentItem equipment={x} />)}
+            </Dialog> 
+            {equipments?.map(x => <EquipmentItem equipment={x}/>)}
         </Box>
     </Box>
     );
