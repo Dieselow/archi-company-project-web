@@ -28,7 +28,7 @@ export const api = {
         secretary: base + '/secretaries/update/:id?id=',
     },
     search : base + '/search/:request?request=',
-    getUserType : base + "/users/get/:token"
+    getUserType : base + "/users/get/:token",
 
 }
 

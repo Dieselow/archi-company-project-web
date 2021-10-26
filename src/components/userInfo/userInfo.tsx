@@ -37,7 +37,7 @@ export const UserInfo = (props: Props) => {
     let history = useHistory();
 
     const HandleRoute = () => {
-        history.push('/'+ bearerType);
+        history.push('/'+ "crud");
     }
 
     axios.get(api.getUserType, {
