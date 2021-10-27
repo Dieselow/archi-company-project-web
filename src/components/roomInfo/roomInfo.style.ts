@@ -1,0 +1,37 @@
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+
+export const useStyles = makeStyles(thme =>
+({
+    typography: {
+        color: 'black',
+        fontFamily: 'Monaco',
+        borderRadius: 2,
+        fontSize: 20
+    },
+    background: {
+        height: '90vh',
+    },
+    content: {
+        backgroundColor: '#4e9fa7',
+        alignItems: 'center',
+        justifyContent: 'center',
+        display: 'flex',
+        flexDirection: 'row',
+        height: '75vh',
+        margin: 10,
+        borderRadius: 10,
+    },
+    box : {
+        height: '100vh',
+        width: '100vw',
+        margin: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    personalData: {
+        width: '50%',
+        margin: 15
+    },
+})
+);
+
